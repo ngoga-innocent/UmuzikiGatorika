@@ -3,12 +3,13 @@ from django.http import JsonResponse
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from .models import Copies,SongType,SongCategory
-from.serializers import CopiesSerializer,SongTypeSerializer,SongCategorySerializer
+from.serializers import CopiesSerializer,SongTypeSerializer,SongCategorySerializer,RequestDocumentSerializer
 from django.core.paginator import Paginator
 from rest_framework import status
 from django.db.models import Q
 from django.forms.models import model_to_dict
 from rest_framework.permissions import IsAuthenticated,AllowAny
+
 
 
 import random
@@ -172,6 +173,14 @@ class CreateRepertoire(APIView):
 #         pass
 #     def post(self, request):
 #         user= request.user
+
+class RequestSongView(APIView):
+    def post(self, request):
+        serializer=RequestDocumentSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response({'data':serializer.data})
+        return Response({'error':serializer.error},status=status.HTTP_400_BAD_REQUEST)
 
 
             

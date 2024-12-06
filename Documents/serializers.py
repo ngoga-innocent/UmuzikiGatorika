@@ -1,6 +1,7 @@
 from rest_framework import serializers
-from .models import Copies,SongType,SongCategory
+from .models import Copies,SongType,SongCategory,Request
 from Accounts.models import Users
+
 class CopiesSerializer(serializers.ModelSerializer):
     document=serializers.FileField()
     # uploader=serializers.PrimaryKeyRelatedField(queryset=Users.objects.all())
@@ -20,3 +21,7 @@ class SongCategorySerializer(serializers.ModelSerializer):
         extra_kwargs={'id': {'read_only': True}} 
     def get_song_count(self, obj):
         return Copies.objects.filter(part=obj).count()           
+class RequestDocumentSerializer(serializers.ModelSerializer):
+        class Meta:
+            model=Request
+            fields='__all__'

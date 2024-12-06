@@ -1,5 +1,6 @@
 from django.shortcuts import render,redirect
 from django.views import View
+from rest_framework.views import APIView
 from Accounts.models import Users
 from Advertise.models import Event, TrendingSongs
 from Musicians.models import MusicianModel
