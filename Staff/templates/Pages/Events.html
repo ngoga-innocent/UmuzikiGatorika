@@ -1,0 +1,109 @@
+{% extends '../staff.html' %} {% load static %} {% block Content %}
+<section class="flex flex-col px-3 py-1">
+  <div class="flex flex-row items-center justify-between">
+    <h1 class="font-bold text-lg">Tredings Upcoming Events</h1>
+    <button
+      type="button"
+      class="add_new_event flex bg-gradient-to-r from-purple-100 to-purple-900 py-2 px-3 rounded-full font-bold text-gray-800 hover:to-indigo-800"
+    >
+      Add New Event
+    </button>
+  </div>
+
+  {% comment %} Add nEW eVENT form {% endcomment %}
+  <div class="add_new_form hidden opacity-0 transform scale-90 transition-all duration-500 ease-in-out bg-gradient-to-b from-slate-50 to-indigo-300 py-3">
+    <h2 class="text-2xl font-bold text-gray-800 mb-4 mx-3 text-gray-600">Add Event</h2>
+    <form
+      method="post"
+      enctype="multipart/form-data"
+      class="space-y-6 bg-white p-6 rounded-lg shadow-md w-[90%] mx-auto"
+      action="{% url 'events' %}"
+    >
+      {% csrf_token %} {{ form.as_p }}
+      <button
+        type="submit"
+        class="w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+      >
+        Submit
+      </button>
+    </form>
+  </div>
+  {% comment %} LIst Events {% endcomment %}
+  <div class="grid grid-cols-4 gap-2 my-1">
+    {% for event in events %}
+        <div class="flex flex-col group rounded-lg overflow-hidden shadow-sm shadow-black rounded-md hover:bg-gradient-to-r from-slate-100 to-slate-400 transition-all duration-500">
+            <div class="h-48 ">
+                <img src="{{event.thumbnail.url}}" class="h-[100%] min-h-36 w-[100%] object-cover " alt="">
+            </div>
+            <div class="p-4 text-gray-800">
+                <h2 class="font-bold text-lg">{{ event.title }}</h2>
+                <p class="text-ellipsis text-sm text-gray-700">{{ event.description | truncatechars:30 }}</p>
+                <p class="text-gray-600 text-sm">Starts at: {{ event.date }}</p>
+                {% comment %} <p class="text-gray-600 text-sm">Ends at: {{ event.end_date }}</p> {% endcomment %}
+                <div class="flex justify-end">
+                    <a
+                        href="#"
+                        class="text-indigo-600 hover:text-indigo-800"
+                    >
+                        Edit
+                    </a>
+                    <button
+                        class="delete_event ml-2 text-red-600 hover:text-red-800"
+                        data-id="{{event.id}}"
+                    >
+                        Delete
+                    </button>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+  </div>
+</section>
+{% endblock Content %}
+{% block Additional_Scripts %}
+    <script>
+        $(document).ready(function () {
+            function getCSRFToken() {
+                return document.querySelector('[name=csrfmiddlewaretoken]').value;
+            }
+            $(".add_new_event").click(function () {
+                const form = $(".add_new_form");
+                if (form.hasClass("hidden")) {
+                    form.removeClass("hidden opacity-0 scale-90");
+                    form.addClass("opacity-100 scale-100");
+                } else {
+                    form.addClass("opacity-0 scale-90");
+                    form.one("transitionend", function () {
+                        form.addClass("hidden"); // Hide after transition completes
+                    });
+                }
+            });
+            $(document).on("click",".delete_event",function(e){
+                e.preventDefault();
+                const eventId = $(this).data("id");
+                const csrfToken = getCSRFToken(); // Make sure this function is defined and works
+                if(!confirm("Are you sure you want to Delete this Event")) return false;
+                $.ajax({
+                    url: "{% url 'events' %}", // Replace with your actual delete endpoint
+                    type: "POST",
+                    headers: {
+                        "X-CSRFToken": csrfToken,
+                    },
+                    data: {
+                        event_id: eventId,
+                        delete: true,
+                    },
+                    success: function (response) {
+                        console.log("Event deleted successfully");
+                        window.location.reload();
+                    },
+                    error: function (xhr) {
+                        console.log("Error: " + xhr.responseJSON.error);
+                    },
+                });
+            });
+        });
+    </script>
+{% endblock Additional_Scripts %}
+
+

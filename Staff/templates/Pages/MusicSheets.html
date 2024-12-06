@@ -1,0 +1,331 @@
+{% extends '../staff.html' %}
+{% block Content %}
+<section class="flex flex-col w-full flex-1 max-h-[96vh] overflow-y-scroll py-3 relative">
+    {% if error %}
+    <p class="text-orange-700">{{error}}</p>
+    {% endif %}
+    <div class="flex flex-row items-center justify-between px-3">
+        <h1>Music Sheets available</h1>
+        <div class="flex flex-row items-center space-x-1">
+            <button type="button"class="add_new flex bg-gradient-to-r from-purple-100 to-purple-900 py-2 px-3 rounded-full font-bold text-gray-800 hover:to-indigo-800" > Add New Song</button>
+            <button type="button"class="song_category flex bg-gradient-to-r from-purple-100 to-purple-900 py-2 px-3 rounded-full font-bold text-gray-800 hover:to-indigo-800" > Add Song Type</button>
+            <button type="button"class="add_new_season flex bg-gradient-to-r from-purple-100 to-purple-900 py-2 px-3 rounded-full font-bold text-gray-800 hover:to-indigo-800" > Add Catholic Season</button>
+        </div>
+    </div>
+    {% if categories %}
+        <div class="flex flex-row space-x-2 space-y-1 bg-white py-3 sticky top-0 z-20 flex-wrap ">
+            {% for category in categories %}
+            <div class=" flex flex-row group items-center  ">
+                <a href="{% url 'single_sheet' category.id %}" class="py-2 px-3 rounded-full bg-gradient-to-r from-slate-50 to-slate-800 hover:to-purple-700 transition-all duration-500">{{category.name}}</a>
+                <button data-id="{{category.id}}" class="delete-category-btn hidden group-hover:flex rounded-full size-7 transition-all duration-500 opacity-60 hover:opacity-100  flex-col items-center justify-center bg-red-600 text-white font-bold "><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+            </div>
+        {% endfor %}
+        </div>
+    {% endif %}
+    <table class="table-auto w-full border border-collapse border-gray-300 flex-1 ">
+        <thead>
+            <tr class="bg-gray-100">
+                <th class="px-4 py-2 text-left ">Name</th>
+                <th class="px-4 py-2 text-left ">Composer</th>
+                <th class="px-4 py-2 text-left ">Uploader</th>
+                <th class="px-4 py-2 text-left ">Part</th>
+                <th class="px-4 py-2 text-left ">Season</th>
+                <th class="px-4 py-2 text-left ">View</th>
+                <th class="px-4 py-2 text-left ">Delete</th>
+            </tr>
+        </thead>
+        <tbody class="text-gray-400 flex-1">
+            {% if sheets %}
+                {% for sheet in sheets %}
+                    <tr style="background-color: {% cycle  'rgb(82 82 91)' 'rgb(39 39 42)' %};">
+                        <td class="px-4 py-2 group text-left flex flex-col">{{ sheet.name }}
+                            <form class="hidden group-hover:flex update-field-form flex items-center " data-id="{{ sheet.id }}" data-field="name">
+                                {% csrf_token %}
+                                <input type="text" name="value" value="{{ sheet.name }}" class="rounded-full bg-gray-200 px-2 outline-none" >
+                                <button type="submit" class="bg-green-900 text-white px-2 py-1 rounded-lg hover:bg-green-500">Update</button>
+                            </form>
+                        </td>
+                        <td class="px-4 py-2 group text-left ">{{ sheet.composer }}
+                            <form class="update-field-form group-hover:flex hidden items-center " data-id="{{ sheet.id }}" data-field="composer">
+                                {% csrf_token %}
+                                <input type="text" name="value" value="{{ sheet.composer }}" class="rounded-full bg-gray-200 px-2 outline-none" >
+                                <button type="submit" class="bg-green-900 text-white px-2 py-1 rounded-lg hover:bg-green-500">Update</button>
+                            </form>
+                        </td>
+                        <td class="px-4 py-2 text-left ">{{ sheet.uploader.username }}
+                            
+                        </td>
+                        <td class="px-4 py-2 group text-left ">{{ sheet.part }}
+                            <form class="update-field-form flex items-center group-hover:flex hidden " data-id="{{ sheet.id }}" data-field="part">
+                                {% csrf_token %}
+                                <select   class="rounded-full bg-gray-200 px-2 outline-none" name="value" id="">
+                                    <option value="">Select Part</option>
+                                    {% for category in categories %}
+                                        <option value="{{ category.id }}">{{ category.name }}</option>
+                                    {% endfor %}
+                                </select>
+                                <button type="submit" class="bg-green-900 text-white px-2 py-1 rounded-lg hover:bg-green-500">Update</button>
+                            </form>
+                        </td>
+                        <td class="px-4 py-2 text-left group ">{{ sheet.category }}
+                            <form class="update-field-form group-hover:flex hidden items-center " data-id="{{ sheet.id }}" data-field="category">
+                                {% csrf_token %}
+                                <select   class="rounded-full bg-gray-200 px-2 outline-none" name="value" id="">
+                                    <option value="">Select Part</option>
+                                    {% for season in seasons %}
+                                        <option value="{{ season.id }}">{{ season.name }}</option>
+                                    {% endfor %}
+                                </select>
+                                <button type="submit" class="bg-green-900 text-white px-2 py-1 rounded-lg hover:bg-green-500">Update</button>
+                            </form>
+                        </td>
+                        <td>
+                            <a class="bg-green-900 text-white px-2 py-1 rounded-lg hover:bg-green-500" target="_blank" href="{{sheet.document.url}}">View</a>
+                        </td>
+                        <td class="bg-gradient-to-r flex flex-col items-center justify-center mx-1 from-purple-200 to-purple-800 text-white px-2 py-1 rounded-full ">
+                            <button type="button" data-id="{{sheet.id}}" class="delete_song_sheet">Delete</button>
+                        </td>
+                    </tr>
+                {% endfor %}
+            {% endif %}
+        </tbody>
+        <div class="sticky top-10 z-20 bg-white flex  ">
+            <span class="flex flex-row items-center self-end">
+                {% if sheets.has_previous %}
+                    {% comment %} <a href="?page=1">&laquo; first</a> {% endcomment %}
+                    <a href="?page={{ sheets.previous_page_number }}" class="py-2 px-2 bg-black flex flex-col items-center justify-center text-red-800 rounded-md"><i class="fa fa-chevron-left" aria-hidden="true"></i></a>
+                {% endif %}
+        
+                <span class="current">
+                    Page {{ sheets.number }} of {{ sheets.paginator.num_pages }}.
+                </span>
+        
+                {% if sheets.has_next %}
+                    <a href="?page={{ sheets.next_page_number }}" class="py-2 px-2 bg-black flex flex-col items-center justify-center text-red-800 rounded-md"><i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+                    {% comment %} <a href="?page={{ sheets.paginator.num_pages }}">last &raquo;</a> {% endcomment %}
+                {% endif %}
+            </span>
+        </div>
+    </table>
+    <div class="modal hidden  w-full h-screen z-50 absolute top-0 flex flex-col items-center justify-center" style="background-color: rgba(0,0,0,0.6);">
+        <div class="w-[70%] bg-white flex flex-col px-3 py-3 modal-content rounded-2xl text-start" id="modal">
+            <h1 class="font-bold">Upload new Songs</h1>
+                    <form
+            action="{% url 'music_sheets' %}"
+            class="w-[100%] flex flex-col  gap-y-2 bg-white mt-5 mx-auto p-5 rounded-lg shadow-md items-start justify-center"
+            method="POST"
+            enctype="multipart/form-data"
+            >
+            {% csrf_token %}
+            <input type="file" name="songs" multiple required />
+            <select
+                class="border border-gray-400 bg-gray-300 py-2 w-[40%] rounded-lg"
+                name="song_category" required
+            >
+                <option value="">Select Category</option>
+                {% for category in categories %}
+                <option value="{{ category.id }}">{{ category.name }}</option>
+                {% endfor %}
+            </select>
+            <select
+                class="border border-gray-400 bg-gray-300 py-2 w-[40%] rounded-lg"
+                name="season" required
+            >
+                <option value="">Select Season</option>
+                {% for season in seasons %}
+                <option value="{{ season.id }}">{{ season.name }}</option>
+                {% endfor %}
+            </select>
+            <button
+                type="submit"
+                class="bg-gradient-to-r from-blue-200 to-purple-700 text-white font-bold px-5 py-2 rounded-lg"
+            >
+                Submit
+            </button>
+            </form>
+        </div>
+    </div>
+    {% comment %} Add Song Type {% endcomment %}
+    <div class="song_modal opacity-0 transition-opacity duration-300 hidden fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+        <div class="modal-content bg-white rounded-lg shadow-lg p-6 w-[90%] max-w-md">
+            <button class="close-modal absolute top-2 right-2 text-gray-500 hover:text-gray-800">
+                &times;
+            </button>
+            <h2 class="text-xl font-bold mb-4">Add New Song Category</h2>
+            <form action="{% url 'song_category' %}" method="POST" class="flex flex-col gap-4">
+                {% csrf_token %}
+                <div>
+                    <label for="name" class="block text-sm font-medium text-gray-700">Song Category Name</label>
+                    <input
+                        type="text"
+                        id="name"
+                        name="category_name"
+                        required
+                        class="mt-1 block w-full py-2 px-2 bg-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+                    />
+                </div>
+                <button
+                    type="submit"
+                    class="w-full bg-gradient-to-r from-purple-500 to-indigo-700 text-white py-2 px-4 rounded-lg shadow-md hover:from-indigo-500 hover:to-purple-700 transition-all"
+                >
+                    Save Category
+                </button>
+            </form>
+        </div>
+    </div>
+    
+</section>
+{% endblock Content %}
+{% block Additional_Scripts %}
+    <Script>
+        $(document).ready(function () {
+            // Open modal when the button is clicked
+            $(".add_new").click(function () {
+                $(".modal").removeClass("hidden");
+            });
+        
+            // Close modal when the close button is clicked
+            $(".close_modal").click(function () {
+                $(".modal").addClass("hidden");
+            });
+        
+            // Close modal when clicking outside the modal content
+            $(".modal").on("click", function (e) {
+                if ($(e.target).closest(".modal-content").length === 0) {
+                    $(".modal").addClass("hidden");
+                }
+            });
+        });
+        {% comment %} Add New Song Category JS {% endcomment %}
+        $(document).ready(function () {
+            // Open modal with animations
+            $(".song_category").click(function () {
+                $(".song_modal")
+                    .removeClass("hidden")
+                    .addClass("flex")
+                    .css("opacity", "1")
+                    .find(".modal-content")
+                    .removeClass("scale-95")
+                    .addClass("scale-100");
+            });
+        
+            // Close modal with animations
+            $(".close-modal").click(function () {
+                $(".song_modal")
+                    .css("opacity", "0")
+                    .find(".modal-content")
+                    .removeClass("scale-100")
+                    .addClass("scale-95");
+                setTimeout(() => {
+                    $(".song_modal").addClass("hidden").removeClass("flex");
+                }, 300); // Match the duration of the transition
+            });
+        
+            // Close modal on clicking outside the modal content
+            $(".song_modal").on("click", function (e) {
+                if (!$(e.target).closest(".modal-content").length) {
+                    $(".close-modal").trigger("click");
+                }
+            });
+        });
+        function getCSRFToken() {
+            return document.querySelector('[name=csrfmiddlewaretoken]').value;
+        }
+        
+        //Delete A song Type
+        $(document).on("click", ".delete-category-btn", function () {
+            const categoryId = $(this).data("id");
+            //console.log("category id",categoryId);
+            const csrf_token=getCSRFToken();
+            $.ajax({
+                url: "{% url 'song_category_delete' %}",
+                type: "POST",
+                headers: {
+                    "X-CSRFToken": csrf_token,
+                },
+                data: {
+                    category_id: categoryId,
+                    delete: true,
+                    csrfmiddlewaretoken: csrf_token,
+                },
+                success: function (response) {
+                    alert(response);
+                    location.reload(); // Reload to update the category list
+                },
+                error: function (xhr) {
+                    alert(xhr.responseJSON.error);
+                },
+            });
+        });
+        {% comment %} Update Songs Part {% endcomment %}
+        $(document).on("submit", ".update-field-form", function (event) {
+            event.preventDefault();
+        
+            const form = $(this);
+            const songId = form.data("id");
+            const fieldName = form.data("field");
+            const fieldValue = form.find('input[name="value"]').val();
+            const fieldValue1 = form.find('select[name="value"]').val();
+            const csrfToken = form.find('[name="csrfmiddlewaretoken"]').val();
+            //console.log(csrfToken);
+            $.ajax({
+                url: "{% url 'music_sheets' %}", // Update this to match your Django view URL
+                type: "PUT",
+                headers: {
+                    "X-CSRFToken": csrfToken,
+                },
+                contentType: "application/json",
+                data: JSON.stringify({
+                    id:songId,
+                    field: fieldName,
+                    value: fieldValue || fieldValue1,
+                }),
+                    //csrfmiddlewaretoken: csrfToken,
+                
+                success: function (response) {
+                    alert(response.message);
+                    location.reload(); // Reload to update the sheet list
+                },
+                error: function (xhr) {
+                    alert("Error: " + xhr.responseJSON.error);
+                },
+            });
+
+            //Delete A Song 
+            
+            
+            
+        });
+        
+        $(document).ready(function () {
+            $(document).on("click", ".delete_song_sheet", function (e) {
+                e.preventDefault();
+                const songId = $(this).data("id");
+                const csrfToken = getCSRFToken(); // Make sure this function is defined and works
+                console.log("Deleting song ID:", songId); // Debugging
+            
+                $.ajax({
+                    url: "{% url 'music_sheets' %}", // Replace with your actual delete endpoint
+                    type: "POST",
+                    headers: {
+                        "X-CSRFToken": csrfToken,
+                    },
+                    data: {
+                        id: songId,
+                        delete: true,
+                    },
+                    success: function (response) {
+                        alert(response.message || "Song deleted successfully!");
+                        location.reload(); // Refresh the list
+                    },
+                    error: function (xhr) {
+                        console.error("Delete failed:", xhr.responseText); // Debugging
+                        alert(xhr.responseJSON?.error || "An error occurred while deleting.");
+                    },
+                });
+            });
+        });
+        
+        
+    </Script>
+{% endblock Additional_Scripts %}

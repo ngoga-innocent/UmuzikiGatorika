@@ -1,0 +1,85 @@
+{% extends '../staff.html' %}
+{% load static %}
+{% block Content %}
+    <div class="grid grid-cols-4 space-y-1 my-1">
+        {% for musician  in musicians %}
+            <div  class="w-[90%] mx-auto flex flex-col items-center text-start rounded-lg relative py-2 px-1 shadow-sm shadow-black bg-white">
+                {% if not musician.verified %}
+                    <form action="">
+                        {% csrf_token %}
+                        <button data-id="{{musician.id}}" class="verify rounded-full bg-orange-300 py-1 px-2 text-white text-xs font-bold">Verify</button>
+                    </form>
+                {% endif %}
+                <div class="self-start"><h1 class="uppercase font-bold text-sm mx-1">{{musician.user.username}}</h1></div>
+                <div class="card_image relative w-[80%] max-w-[90%] min-h-48 h-48 max-h-48 border rounded-md overflow-hidden">
+                    {% if musician.user.profile %}
+                    <img src="{{musician.user.profile.url}}" class="flex-1  h-[100%] w-[100%]" alt="{{musician.user.username}} profile">
+                    {% else %}
+                    <img src="{% static 'img/logo.png' %}" class="flex-1 object-cover h-[100%] w-[100%]" alt="">
+                    
+                {% endif %}
+                {% if musician.user.profile %}<a target="_blank" href="{{musician.user.profile.url}}" class="absolute text-xs bottom-2 right-2 text-white font-bold bg-blue-900 rounded-full py-1 px-3"><i class="fa fa-arrows-h -rotate-45" aria-hidden="true"></i></a>{% endif %}
+                </div>
+                <div class="self-center flex flex-col space-y-1 flex-wrap text-ellipsis  text-center">
+                    <p class="text-xs font-bold">{{musician.user.first_name}} {{musician.user.last_name}}</p>
+                    <div class="flex flex-wrap gap-2 my-2">
+                        {% if musician.skills %}
+                            {% for skill in musician.skills.all %}
+                                <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full">
+                                    {{ skill.name }}
+                                </span>
+                            {% endfor %}
+                        {% else %}
+                            <p class="text-gray-500 text-sm">No skills available</p>
+                        {% endif %}
+                    </div>
+                    <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full">
+                        {{ musician.location }}
+                    </span>
+                    <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full">
+                        {{ musician.phone_number }}
+                    </span>
+                    <p class="max-w-[90%] w-[90%]  text-xs text-ellipsis whitespace-wrap">{{musician.description|truncatechars:50}}</p>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock Content %}
+{% block Additional_Scripts %}
+    <script>
+        $(document).ready(function(){
+            function getCSRFToken() {
+                return document.querySelector('[name=csrfmiddlewaretoken]').value;
+            }
+            $(document).on('click', '.verify', function(e){
+                e.preventDefault();
+                var musician_id = $(this).data('id');
+                $.ajax({
+                    url: '{% url "musicians" %}',
+                    type: 'POST',
+                    headers: {'X-CSRFToken': getCSRFToken()},
+                    
+                    data: {
+                        
+                        musician_id: musician_id,
+                        verify:true
+                        
+                    },
+                    success: function(response){
+                        if(response.success){
+                            alert(response.message);
+                            location.reload();
+                        } else {
+                            alert(response.message);
+                            location.reload();
+                        }
+                    },
+                    error: function(xhr, status, error){
+                        alert('Error verifying musician. Please try again later.');
+                    }
+                });
+            });
+        });
+    </script>
+{% endblock Additional_Scripts %}
+

@@ -1,0 +1,94 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Umuziki Gatorika </title>
+    <link rel="stylesheet" href="{% static 'css/tailwind.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}" />
+    <link rel="icon" type="image/x-icon" href="{% static 'img/logo.png' %}">
+</head>
+<body>
+    {% load static %}
+<section class="w-full flex flex-col items-center text-gray-800 bg-gray-50 ">
+  <!-- Title Section -->
+  <div class="text-center mb-10 about_us w-full h-[60vh] flex flex-col  relative">
+    <div class="absolute top-0 flex flex-col w-[100%]">{% include './Section/navbar.html' %}</div>
+    <div class="self-center py-10">
+        <h1 class="text-3xl font-bold text-white mb-4">About Us</h1>
+    <p class="text-gray-200 max-w-2xl mx-auto text-sm sm:text-base">
+      Welcome to <span class="font-bold text-md">Umuziki Gatorika</span>, your gateway to discovering, sharing, and enjoying Catholic music sheets 
+      and more. Our mission is to make Rwandan Catholic music accessible and enjoyable for everyone.
+    </p>
+    </div>
+  </div>
+<div class="flex flex-col py-16 px-6 lg:px-20">
+     <!-- Image & Content Section -->
+  <div class="w-full flex flex-col md:flex-row gap-10 items-center">
+    <!-- Image Section -->
+    <div class="flex-1">
+      <img 
+        src="{% static 'img/community.png' %}" 
+        alt="Community Music" 
+        class="w-full h-auto object-cover rounded-xl shadow-lg"
+      />
+    </div>
+
+    <!-- Content Section -->
+    <div class="flex-1 flex flex-col gap-5 text-center md:text-left">
+      <h2 class="text-2xl font-bold text-red-900">Our Mission</h2>
+      <p class="text-gray-600 leading-relaxed text-sm sm:text-base">
+        We aim to preserve and share the rich heritage of Rwandan Catholic music. Through **Umuziki Gatorika**, 
+        users can connect with a growing community of musicians, download music sheets, and contribute to keeping 
+        the traditions alive.
+      </p>
+      <h2 class="text-2xl font-bold text-red-900">Why Choose Us?</h2>
+      <ul class="list-disc list-inside text-gray-600 text-sm sm:text-base">
+        <li>Extensive collection of music sheets tailored for Catholic hymns and liturgical needs.</li>
+        <li>User-friendly app design for seamless searching, sharing, and downloading.</li>
+        <li>Passionate about bridging the gap between tradition and technology in music.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Features Section -->
+  <div class="w-full bg-gradient-to-r from-purple-200 to-purple-600 py-16 mt-20 rounded-xl text-white text-center">
+    <h2 class="text-2xl font-bold mb-6">What Makes Us Unique?</h2>
+    <div class="grid gap-8 md:grid-cols-3 px-6">
+      <div class="flex flex-col items-center">
+        <i class="fa fa-users text-4xl mb-4"></i>
+        <h3 class="text-xl font-bold">Community Focused</h3>
+        <p class="text-sm">Connecting musicians and worshippers across Rwanda.</p>
+      </div>
+      <div class="flex flex-col items-center">
+        <i class="fa fa-music text-4xl mb-4"></i>
+        <h3 class="text-xl font-bold">Rich Content</h3>
+        <p class="text-sm">Comprehensive library of Catholic music sheets.</p>
+      </div>
+      <div class="flex flex-col items-center">
+        <i class="fa fa-download text-4xl mb-4"></i>
+        <h3 class="text-xl font-bold">Accessible Anywhere</h3>
+        <p class="text-sm">Download and access your favorite music anytime, anywhere.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Call-to-Action Section -->
+  <div class="w-full mt-20 text-center">
+    <h2 class="text-2xl font-bold text-red-900 mb-4">Join Us Today</h2>
+    <p class="text-gray-600 max-w-xl mx-auto mb-6 text-sm sm:text-base">
+      Be part of a growing community of music lovers and Catholic worshippers. Whether you're an artist, 
+      a choir member, or someone looking for inspiration, **Umuziki Gatorika** is here for you.
+    </p>
+    <a href="https://play.google.com/store/apps/details?id=com.SailorPin.MusicSheets&pcampaignid=web_share" 
+      class="bg-gradient-to-r from-purple-300 to-purple-800 text-white py-3 px-8 rounded-full shadow-lg hover:to-orange-600 transition-all">
+      Download the App
+    </a>
+  </div>
+</div>
+ 
+</section>
+
+</body>
+</html>

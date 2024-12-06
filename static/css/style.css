@@ -1,0 +1,82 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+/* Custom Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Delius&family=Lobster&family=Parkinsans:wght@300..800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Tangerine:wght@400;700&display=swap');
+.hero_image {
+    background: linear-gradient()
+        /* to bottom,
+        rgba(244, 6, 244, 0.3) 40%,
+        rgba(229, 89, 8, 0.4) 40%,
+        rgba(255, 255, 255, 0.2) 20%,
+        transparent 80%
+    ); */
+    /* background-color: white; */
+}
+.hero_Section {
+    background-image: linear-gradient(
+        rgba(0, 0, 0, 0.7), 
+        rgba(0, 0, 0, 0.8)
+    ), 
+    url('../img/bikira_mariya.jpg');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+/* .how_it_works{
+    background-image: url('../img/wave.svg');
+    background-repeat: no-repeat;
+    background-size: contain;
+   
+    background-position: bottom;
+} */
+.contact_us{
+    background-image: url('../img/background.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+.about_us {
+    position: relative; /* To contain the pseudo-element */
+    background-image: url('../img/about_us.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    color: white; /* Ensure text is visible */
+}
+
+.about_us::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8); /* Black overlay with 50% opacity */
+    z-index: 1; /* Places the overlay below the text */
+}
+
+.about_us > * {
+    position: relative; /* Ensures content is above the overlay */
+    z-index: 2;
+}
+.scrollbar-hidden::-webkit-scrollbar {
+    display: none;
+    
+  }
+  
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .scrollbar-hidden {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+    color:rgb(147, 51, 234)
+  }
+.login_body{
+    background-image: linear-gradient(rgba(219, 39 ,119,0.7),rgba(0,0,0,0.3),rgba(120,134,160,0.4)),url('../img/background_pattern.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}

@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Catholic Music</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="{% static 'css/tailwind.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}" />
+    <link rel="icon" type="image/x-icon" href="{% static 'img/logo.png' %}">
+  </head>
+  <body class=" flex-1 min-h-screen min-w-screen">
+    <div class="flex-1 content flex flex-col mx-auto">
+      <div class="hero_Section min-h-screen h-screen">
+        {% include "./Section/navbar.html" %}
+        <div class="flex-1">{% include "./Section/herosection.html" %}</div>
+      </div>
+      <div class="w-[100%] mx-auto flex flex col text-center how_it_works">
+        {% include "./Section/howitworks.html" %}
+      </div>
+      <div class="w-[100%]  h-screen flex flex-col contact_us">
+        {% include "./Section/contactus.html" %}
+      </div>
+      <div class="footer flex flex-col">
+        {% include "./Section/footer.html" %}
+      </div>
+    </div>
+
+    <!--  Add Song Form -->
+    {% comment %}
+    
+    {% endcomment %}
+
+    <script src="" async defer></script>
+  </body>
+</html>

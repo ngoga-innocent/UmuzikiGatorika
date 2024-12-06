@@ -1,0 +1,52 @@
+{% extends '../staff.html' %}
+{% load static %}
+{% block Content %}
+    <section class="flex flex-col px-2">
+        <div class="flex flex-row items-center justify-between my-2">
+            <h1 class="font-bold text-lg">Notifications Center</h1>
+            <div>
+                <button class="create_new_notification bg-gradient-to-r from-blue-200 to-indigo-700  rounded-full px-2 py-1 text-gray-700 font-bold hover:from-purple-300 to-indigo-800 transition-all">Create a New Notification</button>
+            </div>
+        </div>
+        {% comment %} Add new Notification {% endcomment %}
+        <div class="hidden add_notification_form bg-gradient-to-r from-slate-100 to-slate-400 w-[90%] rounded-lg mx-auto px-3 py-2">
+            
+            <form method="post" class="space-y-6 bg-white p-6 rounded-lg shadow-md" action="{% url 'notifications' %}">
+                <h1 class="text-gray-700 font-bold text-lg">Create Notification</h1>
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button
+                    type="submit"
+                    class="w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                >
+                    Submit
+                </button>
+            </form>
+        </div>
+        <div class="gap-y-2 flex flex-col my-2">
+            {% for notification in notifications %}
+                <div style="background-color: {% cycle 'rgb(82 82 91)' 'rgb(244 244 245)' %};" class="group hover:bg-gradient-to-r from-indigo-200 to-purple-800 py-2 px-2 rounded-2xl flex items-center space-x-2 w-[90%] mx-auto ">
+                    <div class="size-10 rounded-full ring-gray-500 overflow-hidden flex flex-col items-center justify-center">
+                        {% if notification.type == 'App Notification' %}
+                            <img src="{% static 'img/logo.png' %}" class="h-[100%] w-[100%]" alt="">
+                        {% else %}
+                            <img src="{% static 'img/logo.png' %}" class="h-[100%] w-[100%]" alt="">
+                        {% endif %}
+                    </div>
+                    <p class="text-xs font-semibold">{{notification.notification}}</p>
+                </div>
+            {% endfor %}
+        
+        </div>
+    </section>
+{% endblock Content %}
+{% block Additional_Scripts %}
+    <script>
+        $(document).ready(function(){
+            $(document).on('click','.create_new_notification',function(){
+                $('.add_notification_form').removeClass('hidden');
+            });
+        });
+    </script>
+{% endblock Additional_Scripts %}
+

@@ -1,0 +1,77 @@
+{% load static %}
+<div class="relative flex flex-col text-center pt-28 pb-10">
+  <!-- Title Section -->
+  <h1 class="text-2xl md:text-3xl font-bold mb-3">
+    How Umuziki Gatorika Mobile App Works?
+  </h1>
+  <p class="text-gray-700 text-sm md:text-base">
+    Umuziki mobile app allows users to download, share, and open music sheets for
+    almost free. <br />
+    The Best Collection of Rwandan music sheets.
+  </p>
+
+  <!-- Steps Section -->
+  <div class="my-4 w-[90%] mx-auto grid md:grid-cols-4 grid-cols-2 gap-x-4 gap-y-6">
+    <!-- Step Items -->
+    {% for step in steps %}
+    <div class="hover:bg-gradient-to-r from-indigo-200 to-indigo-600 transition-all hover:-translate-y-4 duration-500 flex flex-col items-center border border-slate-200 rounded-xl relative py-2 gap-y-3">
+      <div class="rounded-full bg-blue-500 flex items-center justify-center p-3 w-10 h-10">
+        <i class="{{ step.icon }} text-white" aria-hidden="true"></i>
+      </div>
+      <p class="py-2">{{ step.text }}</p>
+      <div class="rounded-full w-8 h-8 bg-red-500 flex items-center justify-center absolute -bottom-5">
+        {{ step.number }}
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+  <!-- Feature Section -->
+  <div class="w-[90%] mx-auto flex flex-col md:flex-row py-10 gap-y-10 md:gap-y-0">
+    <!-- Image Section -->
+    <div class="flex-1 flex flex-col justify-end items-center relative">
+      <div class="w-[80%] md:w-[40vw] h-[80vw] md:h-[40vw] rounded-full overflow-hidden">
+        <img
+          src="{% static 'img/nokia.png' %}"
+          class="w-full h-full object-cover scale-115"
+          alt="Nokia"
+        />
+      </div>
+    </div>
+
+    <!-- Text Section -->
+    <div class="flex-1 flex flex-col items-center md:items-start justify-center gap-y-6">
+      <h1 class="text-2xl md:text-3xl font-bold text-gray-800 text-center md:text-start">
+        Connect with Musicians Across Rwanda Instantly
+      </h1>
+      <p class="text-sm md:text-base text-gray-700 text-center md:text-start">
+        Our platform revolutionizes how you reach musicians in Rwanda. With just a single click, 
+        you can connect to a comprehensive network of artists, composers, instrumentalists, and 
+        vocalists from all corners of the country. Whether you're organizing an event, looking 
+        for collaborations, or promoting opportunities, our system ensures seamless communication 
+        and outreach.
+      </p>
+      <span class="font-bold text-2xl text-gray-800">Key Features:</span>
+      <ul class="text-start list-disc text-gray-700 px-5">
+        <li>Discover and connect with musicians from Rwanda</li>
+        <li>Effortlessly send announcements, invitations, or updates to a wide database of Rwandan musicians</li>
+        <li>Access profiles of musicians from every genre and region in Rwanda</li>
+      </ul>
+      <div class="flex flex-row gap-x-4">
+        <a class="bg-gradient-to-r from-purple-300 to-purple-700 hover:to-orange-600 text-white transition-all duration-500 py-3 px-6 rounded-full" href="https://play.google.com/store/apps/details?id=com.SailorPin.MusicSheets&pcampaignid=web_share">
+          Download the App
+        </a>
+        <a href="{% url 'about_us' %}" class="border border-purple-700 text-purple-700 hover:text-white hover:bg-purple-700 transition-all duration-500 px-10 py-3 rounded-full">
+          Learn More
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Wave SVG Positioned at the Bottom -->
+  <img
+    src="{% static 'img/wave.svg' %}"
+    class="md:hidden absolute bottom-0 left-0 w-full h-auto z-0"
+    alt="Wave Design"
+  />
+</div>

@@ -1,0 +1,102 @@
+{% extends '../staff.html' %} {% load static %} {% block Content %}
+<section class="flex flex-col flex-1 pt-2">
+  {% comment %} Musicians and Trending Events {% endcomment %}
+  <section class="flex flex-row space-x-2">
+    {% comment %} Musicians {% endcomment %} {% if musicians %}
+
+    <div
+      class="w-[20vw] p-3 hover:bg-gradient-to-b from-blue-200 to-indigo-800 hover:cursor-pointer transition-all duration-500 rounded-lg m-3 space-x-2 space-y-1 bg-white shadow-sm shadow-black"
+    >
+      <div class="flex felx-row items-center space-x-2">
+        <h1>Available Musicians</h1>
+        <div
+          class="ring-1 ring-red-600 bg-red-400 text-white font-bold flex flex-col items-center justify-center size-8 rounded-full text-xs"
+        >
+          {{musicians|length}}
+        </div>
+      </div>
+      <div
+        class="grid grid-cols-4 p-3 hover:bg-gradient-to-b from-blue-200 to-indigo-800 hover:cursor-pointer transition-all duration-500 rounded-lg m-3 space-x-2 space-y-1"
+      >
+        {% for musician in musicians %}
+
+        <div
+          class="size-14 rounded-full ring-1 flex flex-col items-center justify-center ringe-gray-600 overflow-hidden hover:-translate-y-5 transition-all hover:z-10 hover:ring-black hover:ring-2 duration-500"
+        >
+          {% if musician.user.profile %}
+          <img
+            src="{{musician.user.profile.url}}"
+            alt="{{musician.user.username}}"
+            class="object-cover flex-1 w-[100%] h-[100%]"
+          />
+          {% else %}
+          <img
+            src="{% static 'img/logo.png' %}"
+            class="object-cover flex-1"
+            alt="Logo"
+          />
+          {% endif %}
+        </div>
+
+        {% endfor %}
+      </div>
+    </div>
+    {% else %}
+    <p>No Musician Found In Database</p>
+    {% endif %} 
+    {% comment %} Trending Events {% endcomment %}
+     {% if events %}
+     <div class="flex-1 flex flex-col space-y-2 bg-gradient-to-t from-gray-200 to-indigo-700 p-4 rounded-md">
+        <h1 class="text-2xl font-bold font-staff ">Trending Events</h1>
+        <div class="flex flex-row h-full space-x-1 w-full max-w-[60vw] overflow-x-scroll scrollbar-hidden">
+            {% for event in events %}
+            <div class="flex-1 rounded-xl overflow-hidden relative group hover:cursor-pointer min-w-[20vw] w-[20vw]">
+                {% if event.thumbnail %}
+                <img src="{{event.thumbnail.url}}" class="flex-1 h-[100%] group-hover:opacity-50" alt="">
+                {% else %}
+                <img src="{% static 'img/background.jpg' %}" class="flex-1 h-[100%] group-hover:opacity-50" alt="">
+                {% endif %}
+                <div class="h-[100%] w-[100%] absolute bg-[rgba(255,0,0,0.6)] opacity-0 group-hover:opacity-100  transition-opacity"></div>
+                <div class="p-4 text-white text-sm absolute bottom-0 left-0 w-full opacity-0 group-hover:opacity-100 transition-opacity">
+                    <h2 class="text-gray-600 font-staff font-bold text-lg">{{event.title}}</h2>
+                    {% comment %} <p>{{event.description}}</p> {% endcomment %}
+                </div>
+            </div>
+            
+        {% endfor %}
+        </div>
+     </div>
+     {% else %}
+     <p class="text-gray-200">No Events Available</p>
+    {% endif %}
+  </section>
+  {% comment %} Copies and Users Sections {% endcomment %}
+  <section class="flex flex-col flex-1 py-2 bg-dark flex-1">
+    <div class="flex flex-row flex-1 space-x-2">
+        <div class="max-h-[50vh] overflow-y-scroll w-[70%] flex flex-col mt-4">
+            <h1 class="text-white font-bold text-lg sticky top-0 bg-dark z-10">Recently Uploaded Copies</h1>
+            {% for copy in copies %}
+                <div style="background-color: {% cycle  'rgb(82 82 91)' 'rgb(39 39 42)' %};" class="hover:bg-black transition-all duration-500 flex flex-row w-full items-center py-2 justify-between  text-white transition-all duration-500 group px-4  rounded-lg">
+                    <div class="flex flex-row items-center space-x-1">
+                        <i class="fa fa-file-pdf-o text-orange-800 text-xl" aria-hidden="true"></i>
+                        <p class="text-xs font-bold text-gray-300">{{copy.name}}</p>
+                    </div>
+                    <div>{{copy.composer}}</div>
+                </div>
+            {% endfor %}
+
+        </div>
+        {% comment %} Trending Youtube Songs {% endcomment %}
+        <div class="flex flex-col w-[25%] space-y-2 max-h-[50vh] overflow-y-scroll">
+            <h1 class="text-white font-bold text-lg sticky top-0 bg-dark z-10">Trending Youtube Songs</h1>
+            {% for song in trending_songs %}
+            
+            <iframe src="{{song.link}}" frameborder="0" allowfullscreen class="w-full h-[20vh] rounded-lg"></iframe>
+
+        
+            {% endfor %}
+        </div>
+    </div>
+  </section>
+</section>
+{% endblock Content %}

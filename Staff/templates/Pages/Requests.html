@@ -1,0 +1,51 @@
+{% extends '../staff.html' %}
+{% block Content %}
+   <section class="flex flex-col px-2">
+        <div class="flex flex-row items-center justify-between my-4">
+            <h1 class="font-bold text-lg">Raised Request</h1>
+        </div>
+        <div class="gap-y-1">
+            {% for request in requests %}
+            <div class="flex flex-row items-center justify-between py-1 px-2 rounded-lg hover:bg-purple-200" style="background-color: {% cycle 'rgb(82 82 91)' 'rgb(244 244 245)' %};">
+                <p class="">{{request.name}}</p>
+               <div class="flex flex-row items-center gap-x-3">
+                <p>{{request.requested_on}}</p>
+                 <form action="">
+                    {% csrf_token %}
+                    <button type="button" data-id="{{request.id}}" class="fulfil_request rounded-full bg-blue-900 text-white font-bold px-4 py-1 hover:bg-gradient-to-b from-indigo-400 to-purple-800 transition-all">Fulfiled</button>
+                </form> 
+               </div>
+
+            </div>
+        {% endfor %}
+        </div>
+   </section>
+{% endblock Content %}
+{% block Additional_Scripts %}
+   <script>
+    $(document).ready(function(){
+        $(document).on('click','.fulfil_request',function(){
+            alert('clicked')
+            var id = $(this).data('id');
+            $.ajax({
+                url: '{% url 'requests' %}',
+                type: 'POST',
+                headers: {'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value},
+                data: {id: id},
+                success: function(response){
+                    if(response.success){
+                        alert('Request fulfilled successfully');
+                        location.reload();
+                    } else {
+                        alert('Error occurred while fulfilling the request');
+                    }
+                }
+            });
+        });
+        
+    });
+   </script>
+{% endblock Additional_Scripts %}
+
+
+

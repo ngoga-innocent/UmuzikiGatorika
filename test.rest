@@ -1,0 +1,120 @@
+POST http://localhost:8000/account/Register
+Content-Type: application/json
+
+{"username":"Ngoga","password":"Ngoga","email":"ngogainncent@gmail.com"}
+###
+
+POST http://localhost:8000/account/Login
+Content-Type: application/json
+
+{"username":"Ngoga","password":"Ngoga@1patrick"}
+
+## update User Profile
+
+
+
+###
+
+GET http://localhost:8000/account/TokenVerification
+Content-Type: application/json
+Authorization: token 50a29e44715e752445c4984325560aaa879ecc85
+
+###
+PUT  http://localhost:8000/account/reset_password
+Content-Type: application/json
+
+{"username":"Ngoga","password":"Ngoga@1patrick"}
+
+###
+GET http://localhost:8000/documents/
+Content-Type: application/json
+
+### delete Copy
+
+DELETE  http://localhost:8000/documents/?copy_id=2abeb669-55bb-4980-9a53-60a1af95ee7c
+Content-Type: application/json
+
+###
+PATCH http://localhost:8000/documents/?copy_id=38753c7d-ccaa-494d-9340-5664cb645332
+Content-Type: application/json
+
+{"name":"Mpa Kunyurwa","composer":"Uyisenga Aristide"}
+
+#### GET SONG TYPE
+GET http://localhost:8000/documents/Gettypes/
+Content-Type: application/json
+
+### GET SONG OF THE TYPE
+GET http://localhost:8000/documents/Gettypes/?type_id=a66a56b0-13a7-4e6e-bcca-f966738e035d
+Content-Type: application/json
+
+##### GET ALL MUSICIAN 
+GET http://localhost:8000/musician
+Content-Type: application/json
+Authorization: token 50a29e44715e752445c4984325560aaa879ecc85
+
+#### CREATE A MUSICIAN
+POST http://localhost:8000/musician/
+Content-Type: application/json
+Authorization: token 50a29e44715e752445c4984325560aaa879ecc85
+
+{"skills":["866b4dd2-9c32-43ea-a973-24a49c5cffb2"],"description":"hello test ","location":"KIGALI","phone_number":"0782214360"}
+
+##### Edit musician
+PUT  http://localhost:8000/musician/
+Content-Type: application/json
+Authorization: token 50a29e44715e752445c4984325560aaa879ecc85
+
+{"skills":["866b4dd2-9c32-43ea-a973-24a49c5cffb2"],"description":"A bad boy in music ","location":"KIGALI","phone_number":"0782214360"}
+####Musical Skills
+GET http://localhost:8000/musician/musical_skills
+Content-Type: :application/json
+##### Edit Profile
+PUT http://localhost:8000/account/update_profile
+Content-Type: application/json
+Authorization: token 5dae1896b04e6a213931cb24c36cf7661fdc74f9
+
+{"first_name":"Ngoga Innocent","password":"Ngoga@1patric"}
+
+###GET PROFILE
+GET http://localhost:8000/account/getProfile
+Content-Type: application/json
+Authorization: token 513d29d075d01c436fd1e241c71716303d6338eb
+
+##### GET Event
+
+GET http://localhost:8000/advertise
+
+Content-Length: application/json
+
+### GET Trending
+
+GET http://localhost:8000/advertise/trendings
+
+Content-Type: application/json
+
+### notification 
+GET http://localhost:8000/notification
+
+Content-Type: application/json
+
+### update notifications
+
+PUT http://localhost:8000/notification/3e7a0163-107f-41b5-923d-c2536e740a05
+Content-Type: application/json
+
+{"read":"true"}
+
+### DELETE Notification
+
+DELETE  http://localhost:8000/notification/3e7a0163-107f-41b5-923d-c2536e740a05
+
+Content-Type: application/json
+
+#####
+
+POST http://localhost:8000/payments/
+Content-Type: application/json
+
+{"phone_number":"0782214360","device_token":"hasadadsudadad","subscription_type":"by_number"}
+
