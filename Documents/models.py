@@ -49,6 +49,7 @@ class Copies(models.Model):
 class Request(models.Model):
     id=models.UUIDField(primary_key=True,default=uuid.uuid4,editable=False)
     name=models.CharField(max_length=255)
+    device=models.CharField(max_length=255,null=True,blank=True)
     requested_on=models.DateTimeField(default=timezone.now)
     status=models.BooleanField(default=False)
     
