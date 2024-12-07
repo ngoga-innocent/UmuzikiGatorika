@@ -218,7 +218,7 @@ LOGGING = {
         'file': {
             'level': 'ERROR',
             'class': 'logging.FileHandler',
-            'filename': './error.log',
+            'filename': './error1.log',
         },
     },
     'loggers': {

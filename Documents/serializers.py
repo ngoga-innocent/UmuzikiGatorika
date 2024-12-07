@@ -9,6 +9,15 @@ class CopiesSerializer(serializers.ModelSerializer):
         model=Copies
         fields='__all__'
         read_only_fields = ['uploader']
+    def validate_name(self, value):
+        if len(value) > 100:
+            raise serializers.ValidationError("Name exceeds 100 characters.")
+        return value
+
+    def validate_composer(self, value):
+        if len(value) > 100:
+            raise serializers.ValidationError("Composer exceeds 100 characters.")
+        return value    
 class SongTypeSerializer(serializers.ModelSerializer):
     class Meta:
         model=SongType

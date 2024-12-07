@@ -1,8 +1,10 @@
 {% extends '../staff.html' %}
 {% block Content %}
 <section class="flex flex-col w-full flex-1 max-h-[96vh] overflow-y-scroll py-3 relative">
-    {% if error %}
-    <p class="text-orange-700">{{error}}</p>
+    {% if errors %}
+        {% for error in errors %}
+        <p class="text-orange-700">{{error}}</p>
+        {% endfor %}
     {% endif %}
     <div class="flex flex-row items-center justify-between px-3">
         <h1>Music Sheets available</h1>
@@ -34,12 +36,12 @@
                 <th class="px-4 py-2 text-left ">Delete</th>
             </tr>
         </thead>
-        <tbody class="text-gray-400 flex-1">
+        <tbody class="text-gray-400 ">
             {% if sheets %}
                 {% for sheet in sheets %}
-                    <tr style="background-color: {% cycle  'rgb(82 82 91)' 'rgb(39 39 42)' %};">
-                        <td class="px-4 py-2 group text-left flex flex-col">{{ sheet.name }}
-                            <form class="hidden group-hover:flex update-field-form flex items-center " data-id="{{ sheet.id }}" data-field="name">
+                    <tr class="" style="background-color: {% cycle  'rgb(82 82 91)' 'rgb(39 39 42)' %};">
+                        <td class="px-4 py-2 group text-left ">{{ sheet.name }}
+                            <form class="hidden group-hover:flex update-field-form  items-center " data-id="{{ sheet.id }}" data-field="name">
                                 {% csrf_token %}
                                 <input type="text" name="value" value="{{ sheet.name }}" class="rounded-full bg-gray-200 px-2 outline-none" >
                                 <button type="submit" class="bg-green-900 text-white px-2 py-1 rounded-lg hover:bg-green-500">Update</button>
@@ -82,8 +84,8 @@
                         <td>
                             <a class="bg-green-900 text-white px-2 py-1 rounded-lg hover:bg-green-500" target="_blank" href="{{sheet.document.url}}">View</a>
                         </td>
-                        <td class="bg-gradient-to-r flex flex-col items-center justify-center mx-1 from-purple-200 to-purple-800 text-white px-2 py-1 rounded-full ">
-                            <button type="button" data-id="{{sheet.id}}" class="delete_song_sheet">Delete</button>
+                        <td>
+                            <button class="bg-gradient-to-r flex items-center mx-1 from-purple-200 to-purple-800 text-white px-2 py-1 rounded-full " type="button" data-id="{{sheet.id}}" class="delete_song_sheet">Delete</button>
                         </td>
                     </tr>
                 {% endfor %}

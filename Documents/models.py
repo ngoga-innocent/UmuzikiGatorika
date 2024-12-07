@@ -7,15 +7,15 @@ from django.utils import timezone
 
 class SongType(models.Model):
     id=models.UUIDField(primary_key=True,default=uuid.uuid4,editable=False)
-    name=models.CharField(max_length=255,null=False)
-    season=models.CharField(max_length=255,null=True,default='Ibihe Bisanzwe')
+    name=models.CharField(max_length=512,null=False)
+    season=models.CharField(max_length=512,null=True,default='Ibihe Bisanzwe')
     thumbnail=models.ImageField(upload_to='Song_Type',null=True)
 
     def __str__(self):
         return self.name
 class SongCategory(models.Model):
     id=models.UUIDField(primary_key=True,default=uuid.uuid4,editable=False)
-    name=models.CharField(max_length=255,default='Others',unique=True)
+    name=models.CharField(max_length=512,default='Others',unique=True)
     def __str__(self):
         return self.name
     def get_song_category(self):
@@ -30,16 +30,21 @@ def song_upload_path(instance, filename):
     # Return the upload path
     return os.path.join('songs_docs', category_name,filename)
 class Copies(models.Model):
-    id=models.UUIDField(primary_key=True,default=uuid.uuid4,editable=False)
-    name=models.CharField(max_length=255,null=False)
-    composer=models.CharField(max_length=255,null=False)
-    part=models.ForeignKey(SongCategory,null=True,on_delete=models.SET_NULL)
-    uploader=models.ForeignKey(Users,on_delete=models.CASCADE,null=True,default='')
-    document=models.FileField(upload_to=song_upload_path)
-    category=models.ForeignKey(SongType,on_delete=models.SET_NULL,null=True,default='')
-    uploaded_on=models.DateTimeField(default=timezone.now)
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    name = models.TextField()
+    composer = models.TextField()
+    part = models.ForeignKey(SongCategory, null=True, on_delete=models.SET_NULL)
+    uploader = models.ForeignKey(Users, on_delete=models.CASCADE, null=True, default='')
+    document = models.FileField(upload_to=song_upload_path,max_length=10000)
+    category = models.ForeignKey(SongType, on_delete=models.SET_NULL, null=True, default='')
+    uploaded_on = models.DateTimeField(default=timezone.now)
+
+    class Meta:
+        db_table = 'copies'
+
     def __str__(self):
         return self.name
+
     
 class Request(models.Model):
     id=models.UUIDField(primary_key=True,default=uuid.uuid4,editable=False)

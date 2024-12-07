@@ -12,6 +12,7 @@ from django.http import HttpResponse,JsonResponse
 from Advertise.forms import EventForm
 from Notifications.models import NotificationModal
 from Notifications.forms import NotificationModalForm
+from Documents.serializers import CopiesSerializer
 import re
 import json
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
@@ -42,7 +43,7 @@ class Staff(LoginRequiredMixin, UserPassesTestMixin,View):
         }
         return render(request,'./Pages/Dashboard.html',context)
 class MusicSheetView(LoginRequiredMixin,UserPassesTestMixin,View):
-    login_url = '/login/'  # Redirect for unauthenticated users
+    login_url = '/account/login'  # Redirect for unauthenticated users
 
     def test_func(self):
         return self.request.user.is_staff  # Allow only staff use
@@ -79,6 +80,7 @@ class MusicSheetView(LoginRequiredMixin,UserPassesTestMixin,View):
     def post(self, request):
         category_id = request.POST.get('song_category')
         season_id = request.POST.get('season')
+        
         if "delete" in request.POST:
             song_id = request.POST.get('id')
             try:
@@ -87,64 +89,76 @@ class MusicSheetView(LoginRequiredMixin,UserPassesTestMixin,View):
                 return JsonResponse({"message": "Successfully deleted a song"})
             except Copies.DoesNotExist:
                 return JsonResponse({"error": "Song not found"})
+        
         try:
             category = SongCategory.objects.get(id=category_id)
             if season_id is not None:
-                season=SongType.objects.get(id=season_id)
+                season = SongType.objects.get(id=season_id)
         except SongCategory.DoesNotExist:
             return render(request, 'home.html', {"error": "Invalid Category"})
         except SongType.DoesNotExist:
-            pass
+            season = None
+
         songs = request.FILES.getlist('songs')
         user = request.user
-        
+
         if not songs:
             return render(request, 'home.html', {"error": "No songs uploaded."})
-        
+
         errors = []
         allowed_extensions = ['pdf', 'mp3']
         max_file_size = 10 * 1024 * 1024  # 10 MB
 
-        with transaction.atomic():
-            for song in songs:
-                name = song.name
-    
-                # Remove the file extension
-                if name.endswith('.pdf'):
-                    name = name[:-4]  # Remove the last 4 characters (".pdf")
-                
-                # Standardize delimiters to "_"
-                standardized_name = re.sub(r"[\-()]", "_", name)
-                parts = standardized_name.split("_")
-                
-                if len(parts) < 2:  # Ensure there are at least two parts
-                    print(f"Skipping file: {name}. Expected format: 'Title _ Composer'")
-                    continue
+        for song in songs:
+            name = song.name
+            if name.endswith('.pdf'):
+                name = name[:-4]
 
-                # First part as the title
-                title = parts[0].strip()
-                
-                # All remaining parts as the composer name
-                composer = " ".join(parts[1:]).strip()
-                
-                # Debugging output
-                print(f"Title: {title}, Composer: {composer}")
+            # Standardize and validate the filename
+            standardized_name = re.sub(r"[\-()]", "_", name)
+            parts = standardized_name.split("_")
+            if len(parts) < 2:
+                errors.append(f"Skipping file {name}. Expected format: 'Title_Composer'")
+                continue
 
-                # Create a copy using the parsed data
-                Copies.objects.create(
-                    name=title,
-                    composer=composer,
-                    uploader=user,
-                    part=category,
-                    document=song,
-                    # category=category
-                )
+            title = parts[0].strip()
+            composer = " ".join(parts[1:]).strip()
+            title = title[:100]  # Truncate to 100 characters
+            composer = composer[:100]
 
+            # Check file extension and size
+            if song.size > max_file_size:
+                errors.append(f"{name} exceeds the maximum file size of 10 MB.")
+                continue
 
+            if not any(song.name.lower().endswith(ext) for ext in allowed_extensions):
+                errors.append(f"{name} has an unsupported file format.")
+                continue
+
+            # Prepare data for serializer
+            data = {
+                'name': title,
+                'composer': composer,
+                'uploader': user.id,
+                'part': category_id,
+                'document': song,
+                'category': season_id
+            }
+
+            # Validate and save using the serializer
+            serializer = CopiesSerializer(data=data)
+            if serializer.is_valid():
+                serializer.save()
+            else:
+                # Collect validation errors
+                errors.append(f"Failed to upload {name}: {serializer.errors}")
+
+        # Provide feedback to the user
         if errors:
             return render(request, './Pages/MusicSheets.html', {"errors": errors})
         
         return redirect('music_sheets')
+
     def put(self, request, *args, **kwargs):
         data = json.loads(request.body)
         field = data.get("field")
@@ -177,7 +191,7 @@ class MusicSheetView(LoginRequiredMixin,UserPassesTestMixin,View):
         except Copies.DoesNotExist:
             return JsonResponse({"error": "Song not found"}, status=404)
 class SongCategoryView(LoginRequiredMixin,UserPassesTestMixin,View):
-    login_url = '/login/'  # Redirect for unauthenticated users
+    login_url = '/account/login'  # Redirect for unauthenticated users
 
     def test_func(self):
         return self.request.user.is_staff  # Allow only staff use
@@ -204,7 +218,7 @@ class SongCategoryView(LoginRequiredMixin,UserPassesTestMixin,View):
         except Exception as e:
             return JsonResponse({"error": str(e)}, status=400)
 class MusicianView(LoginRequiredMixin,UserPassesTestMixin,View):
-    login_url = '/login/'  # Redirect for unauthenticated users
+    login_url = '/account/login'  # Redirect for unauthenticated users
 
     def test_func(self):
         return self.request.user.is_staff  # Allow only staff use
@@ -241,7 +255,7 @@ class MusicianView(LoginRequiredMixin,UserPassesTestMixin,View):
         except MusicianModel.DoesNotExist:
             return JsonResponse({"error":"Musician not found"},status=404)   
 class TredingVideo(LoginRequiredMixin,UserPassesTestMixin,View):
-    login_url = '/login/'  # Redirect for unauthenticated users
+    login_url = '/account/login'  # Redirect for unauthenticated users
 
     def test_func(self):
         return self.request.user.is_staff  # Allow only staff use
@@ -263,7 +277,7 @@ class TredingVideo(LoginRequiredMixin,UserPassesTestMixin,View):
         tredingVideo.save()
         return JsonResponse({"message":"Successfully created a new Trending Song","success":True},status=200)
 class EventsView(LoginRequiredMixin,UserPassesTestMixin,View):
-    login_url = '/login/'  # Redirect for unauthenticated users
+    login_url = '/account/login'  # Redirect for unauthenticated users
 
     def test_func(self):
         return self.request.user.is_staff  # Allow only staff use
@@ -288,7 +302,7 @@ class EventsView(LoginRequiredMixin,UserPassesTestMixin,View):
             return redirect('events')
         return render(request, './Pages/Events.html', {'form': form})
 class NotificationView(LoginRequiredMixin,UserPassesTestMixin,View):
-    login_url = '/login/'  # Redirect for unauthenticated users
+    login_url = '/account/login'  # Redirect for unauthenticated users
 
     def test_func(self):
         return self.request.user.is_staff  # Allow only staff use
