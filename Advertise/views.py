@@ -10,16 +10,20 @@ from django.utils import timezone
 class Adverts(APIView):
     def get(self,request):
         event_id=request.GET.get('id',None)
-        if event_id:
+        
+        if event_id is not None:
+            print(f"Received event_id: {event_id}")
             try:
-                event=Event.objects.get(pk=event_id)
-                event_images=EventImage.objects.filter(event=event_id)
-                event_serializer=EventSerializer(event,context={'request':request},many=True)
-                event_image_serializer=EventImageSerializer(event_images,context={"request":request},many=True)
+                event=Event.objects.get(id=event_id)
+                print(event)
+                # event_images=EventImage.objects.filter(event=event_id)
+                event_serializer=EventSerializer(event,context={'request':request})
+                print(event_serializer)
+                # event_image_serializer=EventImageSerializer(event_images,context={"request":request},many=True)
 
-                return Response({'event':event_serializer,'event_image':event_image_serializer})
+                return Response({"event":event_serializer.data},status=status.HTTP_200_OK)
             except Event.DoesNotExist:
-                return Response({"detail":'No event found'},status=status.HTTP_204_NO_CONTENT)
+                return Response({"detail":'No event found'},status=404)
         else:
             one_month_ago = timezone.now() - timedelta(days=30)
             print(one_month_ago)

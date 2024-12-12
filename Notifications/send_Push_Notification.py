@@ -1,7 +1,7 @@
 import requests
 from requests.exceptions import RequestException
 import time
-
+from .models import Device
 def send_push_notification(expo_push_token, title, body, data=None, retries=3, delay=5):
     url = "https://exp.host/--/api/v2/push/send"
     headers = {
@@ -14,7 +14,7 @@ def send_push_notification(expo_push_token, title, body, data=None, retries=3, d
         "sound": "default",
         "title": title,
         "body": body,
-        "data": data or {"someData": "goes here"}
+        "data":data or {"url": "umuzikiGatorika://home"}
     }
 
     for attempt in range(retries):
@@ -38,3 +38,13 @@ def send_push_notification(expo_push_token, title, body, data=None, retries=3, d
 
     return None  # Return None if all retries failed
 
+def send_to_allDevice(title,body,data=None):
+    devices=Device.objects.all()
+    for device in devices:
+        if device.token:  # Ensure the device has a valid token
+            try:
+                send_push_notification(device.token, title, body, data)
+            except Exception as e:
+                print(f"Failed to send notification to device {device.id} {device.token}: {e}")
+def send_email():
+    pass                

@@ -8,4 +8,4 @@ def send_notification(instance, sender, created, **kwargs):
     if created:
         all_devices=Device.objects.all()
         for device in all_devices:
-            send_push_notification(device.token, f"New Event New Event on {instance.date}",f"{instance.title}")
+            send_push_notification(device.token, f"New Event New Event on {instance.date}",f"{instance.title}",{"url":f"umuzikigatorika://single_event/{instance.id}"})

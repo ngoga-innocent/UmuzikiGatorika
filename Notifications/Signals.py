@@ -16,7 +16,7 @@ def created_notification(sender, instance, created, **kwargs):
                 for device in devices:
                     if device.token:  # Ensure the device has a valid token
                         try:
-                            send_push_notification(device.token, "Notification", f"{instance.notification}")
+                            send_push_notification(device.token, "New Notification", f"{instance.notification}",{"url":"umuzikigatorika://notifications"})
                         except Exception as e:
                             print(e)
                             logger.error(f"Failed to send notification to device {device.id}: {e}")

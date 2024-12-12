@@ -22,7 +22,7 @@ class EventForm(forms.ModelForm):
                 'class': 'mt-1 block w-full py-2 px-2 rounded-md border-gray-700 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm',
                 'placeholder': 'Enter event location'
             }),
-            'date': forms.DateTimeInput(attrs={
+            'date': forms.DateInput(attrs={
                 'class': 'mt-1 block w-full py-2 px-2 rounded-md border-gray-700 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm',
                 'type': 'datetime-local'
             }),
