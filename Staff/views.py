@@ -67,7 +67,7 @@ class MusicSheetView(LoginRequiredMixin,UserPassesTestMixin,View):
              
         songs = Copies.objects.filter(part=part.id)
         
-        paginator = Paginator(songs, 25)  # Show 25 contacts per page.
+        paginator = Paginator(songs, 50)  # Show 25 contacts per page.
         page_number = request.GET.get("page")
         page_obj = paginator.get_page(page_number)
         categories=SongCategory.objects.all()
@@ -115,7 +115,7 @@ class MusicSheetView(LoginRequiredMixin,UserPassesTestMixin,View):
                 name = name[:-4]
 
             # Standardize and validate the filename
-            standardized_name = re.sub(r"[\-()]", "_", name)
+            standardized_name = re.sub(r"[\-()',`~]", "_", name)
             parts = standardized_name.split("_")
             if len(parts) < 2:
                 errors.append(f"Skipping file {name}. Expected format: 'Title_Composer'")

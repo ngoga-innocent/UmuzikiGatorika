@@ -285,8 +285,8 @@
                     //csrfmiddlewaretoken: csrfToken,
                 
                 success: function (response) {
-                    alert(response.message);
-                    location.reload(); // Reload to update the sheet list
+                    console.log(response.message);
+                    //location.reload(); // Reload to update the sheet list
                 },
                 error: function (xhr) {
                     alert("Error: " + xhr.responseJSON.error);
