@@ -8,6 +8,8 @@ from django.db.models import Q
 from rest_framework import status
 from django.db.utils import IntegrityError
 from .models import Device
+from .send_Push_Notification import send_email
+from django.conf import settings
 # Create your views here.
 
 class NotificationView(APIView):
@@ -54,5 +56,20 @@ class RegisterDevice(APIView):
                 return Response({"message": "Device already registered"}, status=status.HTTP_200_OK)
         except IntegrityError:
             return Response({"error": "Device token must be unique"}, status=status.HTTP_400_BAD_REQUEST)
+        
+class SendEmail(APIView):
+    def post(self, request):
+        email = request.data.get('email')
+        subject = request.data.get('subject')
+        message = request.data.get('message')
+
+        if not email or not subject or not message:
+            return Response({"error": "Email, subject, and message are required"}, status=status.HTTP_400_BAD_REQUEST)
+
+        try:
+            send_email(subject, message, [settings.EMAIL_HOST_USER])
+            return Response({"message": "Email sent successfully"}, status=status.HTTP_200_OK)
+        except Exception as e:
+            return Response({"error": f"Failed to send email: {e}"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)        
 
 

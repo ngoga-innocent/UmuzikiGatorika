@@ -89,7 +89,17 @@ class MusicSheetView(LoginRequiredMixin,UserPassesTestMixin,View):
                 return JsonResponse({"message": "Successfully deleted a song"})
             except Copies.DoesNotExist:
                 return JsonResponse({"error": "Song not found"})
-        
+        if "check" in request.POST:
+            song_id = request.POST.get('song_id')
+            try:
+                song = Copies.objects.get(id=song_id)
+                song.checked = True
+                song.save()
+                print("saved")
+                return JsonResponse({"message": "Successfully marked a song as checked"})
+            except Copies.DoesNotExist:
+                print("got an unknown song")
+                return JsonResponse({"error": "Song not found"})
         try:
             category = SongCategory.objects.get(id=category_id)
             if season_id is not None:
@@ -98,6 +108,7 @@ class MusicSheetView(LoginRequiredMixin,UserPassesTestMixin,View):
             return render(request, 'home.html', {"error": "Invalid Category"})
         except SongType.DoesNotExist:
             season = None
+            
 
         songs = request.FILES.getlist('songs')
         user = request.user

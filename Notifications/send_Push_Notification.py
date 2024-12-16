@@ -2,6 +2,10 @@ import requests
 from requests.exceptions import RequestException
 import time
 from .models import Device
+from django.core.mail import send_mail,EmailMultiAlternatives
+from django.template.loader import render_to_string
+from django.utils.html import strip_tags
+from django.conf import settings
 def send_push_notification(expo_push_token, title, body, data=None, retries=3, delay=5):
     url = "https://exp.host/--/api/v2/push/send"
     headers = {
@@ -46,5 +50,21 @@ def send_to_allDevice(title,body,data=None):
                 send_push_notification(device.token, title, body, data)
             except Exception as e:
                 print(f"Failed to send notification to device {device.id} {device.token}: {e}")
-def send_email():
-    pass                
+def send_email(title,message,receiver):
+    html_message = render_to_string('email.html', {'title': title,'message': message})
+    plain_message = strip_tags(html_message)
+    email = EmailMultiAlternatives(
+        subject=title,
+        body=plain_message,
+        from_email=settings.EMAIL_HOST_USER,
+        to=receiver)
+    email.attach_alternative(html_message, "text/html")
+    email.send()
+    # send_mail(
+    #     title,
+    #     message,
+    #     settings.EMAIL_HOST_USER, #Sender Configured in settings.EMAIL_HOST
+    #     receiver, #Receiver(s) of the email
+    #     fail_silently=False,
+    # )
+                  

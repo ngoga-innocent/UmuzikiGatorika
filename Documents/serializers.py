@@ -18,6 +18,9 @@ class CopiesSerializer(serializers.ModelSerializer):
         if len(value) > 100:
             raise serializers.ValidationError("Composer exceeds 100 characters.")
         return value    
+    def create(self, validated_data):
+        validated_data['checked'] = False  # Ensure checked is always False
+        return super().create(validated_data)
 class SongTypeSerializer(serializers.ModelSerializer):
     class Meta:
         model=SongType

@@ -37,7 +37,9 @@ class Copies(models.Model):
     uploader = models.ForeignKey(Users, on_delete=models.CASCADE, null=True, default='')
     document = models.FileField(upload_to=song_upload_path,max_length=10000)
     category = models.ForeignKey(SongType, on_delete=models.SET_NULL, null=True, default='')
+    checked=models.BooleanField(default=True)
     uploaded_on = models.DateTimeField(default=timezone.now)
+    
 
     class Meta:
         db_table = 'copies'

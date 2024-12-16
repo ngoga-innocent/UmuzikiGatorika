@@ -34,6 +34,7 @@
                 <th class="px-4 py-2 text-left ">Season</th>
                 <th class="px-4 py-2 text-left ">View</th>
                 <th class="px-4 py-2 text-left ">Delete</th>
+                <th class="px-4 py-2 text-left ">Checked</th>
             </tr>
         </thead>
         <tbody class="text-gray-400 ">
@@ -85,8 +86,17 @@
                             <a class="bg-green-900 text-white px-2 py-1 rounded-lg hover:bg-green-500" target="_blank" href="{{sheet.document.url}}">View</a>
                         </td>
                         <td>
-                            <button class="bg-gradient-to-r flex items-center mx-1 from-purple-200 to-purple-800 text-white px-2 py-1 rounded-full " type="button" data-id="{{sheet.id}}" class="delete_song_sheet">Delete</button>
+                            <button class="bg-gradient-to-r flex items-center mx-1 from-purple-200 to-purple-800 text-white px-2 py-1 rounded-full delete_song_sheet" type="button" data-id="{{sheet.id}}">Delete</button>
                         </td>
+                        {% if sheet.checked %}
+                        <td>
+                            <button class="bg-gradient-to-r flex items-center mx-1 from-green-200 to-green-800 text-white px-2 py-1 rounded-full " type="button" data-id="{{sheet.id}}" class="">Checked</button>
+                        </td>
+                        {% else %}
+                        <td>
+                            <button class="bg-gradient-to-r flex items-center mx-1 from-red-200 to-red-800 text-white px-2 py-1 text-xs rounded-full check_song" type="button" data-id="{{sheet.id}}">Not Checked</button>
+                        </td>
+                        {% endif %}
                     </tr>
                 {% endfor %}
             {% endif %}
@@ -327,6 +337,31 @@
                 });
             });
         });
+        //Check A song
+        $(document).ready(function(){
+            $(".check_song").click(function(){
+                var song_id=$(this).data("id");
+                var csrfToken=getCSRFToken();
+                $.ajax({
+                    url: "{% url 'music_sheets' %}",
+                    type: "POST",
+                    headers: {
+                        "X-CSRFToken": csrfToken,
+                    },
+                    data: {
+                        song_id: song_id,
+                        check: true,
+                    },
+                    success: function (response) {
+                        alert(response.message);
+                        location.reload();
+                    },
+                    error: function (xhr) {
+                        alert(xhr.responseJSON.error);
+                    },
+                });
+            });
+        }); //
         
         
     </Script>

@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from django.views import View
 from Documents.models import Copies,SongCategory,SongType
-from Notifications.send_Push_Notification import send_push_notification
+from Notifications.send_Push_Notification import send_email
 
 # Create your views here.
 def HomeView(request):
@@ -16,7 +16,16 @@ class Home(View):
         # print(categories)
         context={"categories":categories}
         return render(request,'home.html',context)
-    
+    def post(self, request):
+        title=request.POST.get('title')
+        message=request.POST.get('message')
+        receiver=request.POST.get('email')
+        try:
+            send_email(f'Contact from message '+ title,message,['ngogainnocent1@gmail.com'])
+            return render(request,'home.html',{'message':'message sent Successfully'})
+        except Exception as e:
+            print(f"Failed to send email: {e}")
+            return redirect('home')
     
 
     
