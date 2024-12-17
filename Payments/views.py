@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from rest_framework import status
 import requests
 import json
 from .serializers import PaymentSerializer
@@ -24,41 +25,81 @@ class PaymentClass(APIView):
         response = requests.request("POST", url, headers=headers, data=payload)
         
         return response.json()
-    def Deposit(self,phone_number,device_token,subscription_type=None):
+    def Deposit(self, phone_number,amount, device_token, subscription_type=None):
         url = "https://payments.paypack.rw/api/transactions/cashin"
+        print(f"Phone Number: {phone_number}, Device Token: {device_token}")
         
         payload = json.dumps({
-        "amount": 100,
-        "number":phone_number
+            "amount": amount,
+            "number": phone_number
         })
         headers = {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-        'Authorization': f'Bearer {self.authorize()["access"]}',
-        'X-Webhook-Mode':'development'
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'Authorization': f'Bearer {self.authorize()["access"]}',
+            'X-Webhook-Mode': 'development'
         }
 
-        response = requests.request("POST", url, headers=headers, data=payload)
-        if response.status_code ==200:
-            payment_status=response.json().get('status')
-            amount=response.json().get('amount')
-            reference_key=response.json().get('ref')
-            payment=Payment.objects.create(payment_status=payment_status,device_tokem=device_token,amount=amount,reference_key=reference_key,subscription_type=subscription_type)
-            payment.save()
-        return Response({"response":response.json()})
-    def post(self,request, *args, **kwargs):
+        try:
+            response = requests.post(url, headers=headers, data=payload)
+            print(f"Response Status Code: {response.status_code}")
+            print(f"Response Body: {response.text}")
+
+            if response.status_code == 200:
+                response_data = response.json()
+                payment_status = response_data.get('status')
+                amount = response_data.get('amount')
+                reference_key = response_data.get('ref')
+
+                # Create a Payment object
+                try:
+                    payment = Payment.objects.create(
+                    payment_status=payment_status,
+                    device_tokem=device_token,
+                    amount=amount,
+                    reference_key=reference_key,
+                    # subscription_type=subscription_type
+                )
+                    print(payment)
+                    payment.save()
+                    return Response({"response": "Saved Successfully"}, status=status.HTTP_200_OK)
+                except Exception as e:
+                    print(f"Failed to save payment: {e}")
+                    return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+            # Handle non-200 responses gracefully
+            else:
+                try:
+                    error_message = response.json()
+                except ValueError:
+                    error_message = {"error": "Unexpected response from payment API"}
+                return Response(error_message, status=response.status_code)
+
+        except requests.exceptions.RequestException as e:
+            print(f"Request Error: {e}")
+            return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+
+    def post(self, request, *args, **kwargs):
+        if kwargs.get("action") == "deposit":
+            phone_number = request.data.get('phone_number')
+            device_token = request.data.get('device_token')
+            amount=request.data.get('amount')
+
+            if not phone_number or not device_token:
+                return Response({"error": "Phone number and device token are required."}, status=status.HTTP_400_BAD_REQUEST)
+
+            subscription_type = request.data.get("subscription_type")
+            # Properly return the response from the Deposit method
+            return self.Deposit(phone_number, amount,device_token, subscription_type)
+
+        elif kwargs.get("action") == "webhook":
+            return self.webhook(request)
         
-        
-        if kwargs.get("action")=="deposit":
-            phone_number=request.data['phone_number']
-            device_token=request.data['device_token']
-            if subscription_type:=request.data.get("subscription_type"):
-                return self.Deposit(phone_number,device_token,subscription_type)
-            return self.Deposit(phone_number,device_token) 
-        if kwargs.get("action")=="webhook":
-            return self.webhook(request)  # Assuming webhook is POST request for this action  # This method is not implemented in the current code. You can implement this method as per your requirements.  # For example, you can save the webhook data to your database.  # You can also use the webhook data to process the payment and update the status of the transaction.  # Make sure to validate the webhook data before processing it.  # You can use the `request.data` to access the webhook data.  # You can also use the `request.headers` to access the headers of the webhook request.  # You can use the `request.method` to check the HTTP method of the webhook request.  # You can use the `request.path` to check the path of the webhook request.  # You can use the `request.query_params` to access the query parameters of the webhook request.  # You can use the `request.
         else:
-            return Response({"message": "Invalid action"})
+            return Response({"message": "Invalid action"}, status=status.HTTP_400_BAD_REQUEST)
+
+
     def webhook(self,request):
         data = json.loads(request.body.decode('utf-8'))
         print("Webhook data:", data)
