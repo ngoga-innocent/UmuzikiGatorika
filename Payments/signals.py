@@ -24,7 +24,7 @@ def update_subscription(instance,sender,created,**kwargs):
                     subscription.save()
         elif instance.payment_status =='completed' and instance.subscription_type =='Donation':
             try:
-                token = instance.device_tokemstart
+                token = instance.device_tokem
                 if token !='Donating_Device':
                     send_push_notification(token, "Thank you for a donation", "We have received your Donation worthy May God support your Daily activities"+str(instance.amount))
             except Exception as e:
