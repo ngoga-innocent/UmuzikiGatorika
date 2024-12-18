@@ -25,8 +25,12 @@ class RegisterView(APIView):
             user.save()
             print(serializer.data)
             return Response(serializer.data)
+        error_messages = " ".join(
+            [f"{key}: {', '.join(value)}" for key, value in serializer.errors.items()]
+        )
         print(serializer.errors)
-        return Response({"error":serializer.errors},status=status.HTTP_400_BAD_REQUEST)
+        print(error_messages)
+        return Response({"error": error_messages}, status=status.HTTP_400_BAD_REQUEST)
         
 class LoginView(APIView):
     def post(self,request):
