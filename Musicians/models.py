@@ -23,7 +23,7 @@ class MusicianModel(models.Model):
     id=models.UUIDField(primary_key=True,editable=False,default=uuid.uuid4)
     user=models.OneToOneField(to=Users,on_delete=models.CASCADE,unique=True)
     skills=models.ManyToManyField(to=MusicSkillChoices,related_name='musician')
-    description=models.CharField(max_length=255)
+    description=models.TextField()
     recommended=models.BooleanField(default=False)
     location=models.CharField(max_length=255)
     phone_number=models.CharField(max_length=255)
