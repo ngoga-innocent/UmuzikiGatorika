@@ -1,6 +1,6 @@
 from django.urls import path
 from django.contrib.auth.views import LogoutView
-from .views import Staff,MusicSheetView,SongCategoryView,MusicianView,TredingVideo,EventsView,NotificationView,Requests
+from .views import Staff,MusicSheetView,SongCategoryView,MusicianView,TredingVideo,EventsView,NotificationView,Requests,Payments
 
 urlpatterns = [
     path('',Staff.as_view(),name='dashboard'),
@@ -13,6 +13,10 @@ urlpatterns = [
     path('events',EventsView.as_view(),name='events'),
     path('notifications',NotificationView.as_view(),name='notifications'),
     path('requests',Requests.as_view(),name='requests'),
+    path('payments',Payments.as_view(),name='web_payments'),
+    # path('logout/', LogoutView.as_view(next_page='/'), name='logout'),
+    # path('webhook',PaymentClass.as_view(),{"action":"webhook"},name='payment'),
+    # path('webhook', PaymentClass.as_view(),{"action":"webhook"},name='payment'
     # path('webhook',PaymentClass.as_view(),{"action":"webhook"},name='payment'),
     
     

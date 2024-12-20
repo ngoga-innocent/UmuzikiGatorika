@@ -4100,3 +4100,1672 @@ Traceback (most recent call last):
            ^^^^^^^^
 AssertionError: .accepted_renderer not set on Response
 "GET /account/TokenVerification HTTP/1.1" 500 68615
+Internal Server Error: /staff/payments
+Traceback (most recent call last):
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 716, in urlopen
+    httplib_response = self._make_request(
+        conn,
+    ...<5 lines>...
+        chunked=chunked,
+    )
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 468, in _make_request
+    six.raise_from(e, None)
+    ~~~~~~~~~~~~~~^^^^^^^^^
+  File "<string>", line 3, in raise_from
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 463, in _make_request
+    httplib_response = conn.getresponse()
+  File "/usr/local/Cellar/python@3.13/3.13.0_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/http/client.py", line 1428, in getresponse
+    response.begin()
+    ~~~~~~~~~~~~~~^^
+  File "/usr/local/Cellar/python@3.13/3.13.0_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/http/client.py", line 331, in begin
+    version, status, reason = self._read_status()
+                              ~~~~~~~~~~~~~~~~~^^
+  File "/usr/local/Cellar/python@3.13/3.13.0_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/http/client.py", line 300, in _read_status
+    raise RemoteDisconnected("Remote end closed connection without"
+                             " response")
+http.client.RemoteDisconnected: Remote end closed connection without response
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/requests/adapters.py", line 439, in send
+    resp = conn.urlopen(
+        method=request.method,
+    ...<8 lines>...
+        timeout=timeout
+    )
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 802, in urlopen
+    retries = retries.increment(
+        method, url, error=e, _pool=self, _stacktrace=sys.exc_info()[2]
+    )
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/urllib3/util/retry.py", line 552, in increment
+    raise six.reraise(type(error), error, _stacktrace)
+          ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/urllib3/packages/six.py", line 769, in reraise
+    raise value.with_traceback(tb)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 716, in urlopen
+    httplib_response = self._make_request(
+        conn,
+    ...<5 lines>...
+        chunked=chunked,
+    )
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 468, in _make_request
+    six.raise_from(e, None)
+    ~~~~~~~~~~~~~~^^^^^^^^^
+  File "<string>", line 3, in raise_from
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 463, in _make_request
+    httplib_response = conn.getresponse()
+  File "/usr/local/Cellar/python@3.13/3.13.0_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/http/client.py", line 1428, in getresponse
+    response.begin()
+    ~~~~~~~~~~~~~~^^
+  File "/usr/local/Cellar/python@3.13/3.13.0_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/http/client.py", line 331, in begin
+    version, status, reason = self._read_status()
+                              ~~~~~~~~~~~~~~~~~^^
+  File "/usr/local/Cellar/python@3.13/3.13.0_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/http/client.py", line 300, in _read_status
+    raise RemoteDisconnected("Remote end closed connection without"
+                             " response")
+urllib3.exceptions.ProtocolError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/Users/ngoga/Desktop/Web/Apis/CatholicSong-main/Staff/views.py", line 364, in get
+    account_info=Merchant().me()
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/paypack/merchant.py", line 35, in me
+    res = self.get(url=url)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/paypack/client.py", line 59, in get
+    return self._makeRequest(method='GET', url=url, params=params)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/paypack/client.py", line 55, in _makeRequest
+    return self.client.request(method=method, url=url, json=json, headers=headers, params=params, files=files)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/requests/sessions.py", line 542, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/requests/sessions.py", line 655, in send
+    r = adapter.send(request, **kwargs)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/requests/adapters.py", line 498, in send
+    raise ConnectionError(err, request=request)
+requests.exceptions.ConnectionError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+"GET /staff/payments HTTP/1.1" 500 201295
+Internal Server Error: /staff/payments
+Traceback (most recent call last):
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/Users/ngoga/Desktop/Web/Apis/CatholicSong-main/Staff/views.py", line 366, in get
+    today = now.today()
+            ^^^^^^^^^
+AttributeError: 'function' object has no attribute 'today'
+Internal Server Error: /staff/payments
+Traceback (most recent call last):
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/Users/ngoga/Desktop/Web/Apis/CatholicSong-main/Staff/views.py", line 366, in get
+    today = now.today()
+            ^^^^^^^^^
+AttributeError: 'function' object has no attribute 'today'
+"GET /staff/payments HTTP/1.1" 500 76537
+Internal Server Error: /staff/payments
+Traceback (most recent call last):
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/Users/ngoga/Desktop/Web/Apis/CatholicSong-main/Staff/views.py", line 366, in get
+    today = now.today()
+            ^^^^^^^^^
+AttributeError: 'function' object has no attribute 'today'
+"GET /staff/payments HTTP/1.1" 500 75300
+Internal Server Error: /staff/payments
+Traceback (most recent call last):
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/Users/ngoga/Desktop/Web/Apis/CatholicSong-main/Staff/views.py", line 366, in get
+    today = now.date()
+            ^^^^^^^^
+AttributeError: 'function' object has no attribute 'date'
+"GET /staff/payments HTTP/1.1" 500 76529
+Internal Server Error: /staff/payments
+Traceback (most recent call last):
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/Users/ngoga/Desktop/Web/Apis/CatholicSong-main/Staff/views.py", line 366, in get
+    today = now.date()
+            ^^^^^^^^
+AttributeError: 'function' object has no attribute 'date'
+"GET /staff/payments HTTP/1.1" 500 75292
+Internal Server Error: /staff/payments
+Traceback (most recent call last):
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 716, in urlopen
+    httplib_response = self._make_request(
+        conn,
+    ...<5 lines>...
+        chunked=chunked,
+    )
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 468, in _make_request
+    six.raise_from(e, None)
+    ~~~~~~~~~~~~~~^^^^^^^^^
+  File "<string>", line 3, in raise_from
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 463, in _make_request
+    httplib_response = conn.getresponse()
+  File "/usr/local/Cellar/python@3.13/3.13.0_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/http/client.py", line 1428, in getresponse
+    response.begin()
+    ~~~~~~~~~~~~~~^^
+  File "/usr/local/Cellar/python@3.13/3.13.0_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/http/client.py", line 331, in begin
+    version, status, reason = self._read_status()
+                              ~~~~~~~~~~~~~~~~~^^
+  File "/usr/local/Cellar/python@3.13/3.13.0_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/http/client.py", line 300, in _read_status
+    raise RemoteDisconnected("Remote end closed connection without"
+                             " response")
+http.client.RemoteDisconnected: Remote end closed connection without response
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/requests/adapters.py", line 439, in send
+    resp = conn.urlopen(
+        method=request.method,
+    ...<8 lines>...
+        timeout=timeout
+    )
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 802, in urlopen
+    retries = retries.increment(
+        method, url, error=e, _pool=self, _stacktrace=sys.exc_info()[2]
+    )
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/urllib3/util/retry.py", line 552, in increment
+    raise six.reraise(type(error), error, _stacktrace)
+          ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/urllib3/packages/six.py", line 769, in reraise
+    raise value.with_traceback(tb)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 716, in urlopen
+    httplib_response = self._make_request(
+        conn,
+    ...<5 lines>...
+        chunked=chunked,
+    )
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 468, in _make_request
+    six.raise_from(e, None)
+    ~~~~~~~~~~~~~~^^^^^^^^^
+  File "<string>", line 3, in raise_from
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 463, in _make_request
+    httplib_response = conn.getresponse()
+  File "/usr/local/Cellar/python@3.13/3.13.0_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/http/client.py", line 1428, in getresponse
+    response.begin()
+    ~~~~~~~~~~~~~~^^
+  File "/usr/local/Cellar/python@3.13/3.13.0_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/http/client.py", line 331, in begin
+    version, status, reason = self._read_status()
+                              ~~~~~~~~~~~~~~~~~^^
+  File "/usr/local/Cellar/python@3.13/3.13.0_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/http/client.py", line 300, in _read_status
+    raise RemoteDisconnected("Remote end closed connection without"
+                             " response")
+urllib3.exceptions.ProtocolError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/Users/ngoga/Desktop/Web/Apis/CatholicSong-main/Staff/views.py", line 365, in get
+    account_info=Merchant().me()
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/paypack/merchant.py", line 35, in me
+    res = self.get(url=url)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/paypack/client.py", line 59, in get
+    return self._makeRequest(method='GET', url=url, params=params)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/paypack/client.py", line 55, in _makeRequest
+    return self.client.request(method=method, url=url, json=json, headers=headers, params=params, files=files)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/requests/sessions.py", line 542, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/requests/sessions.py", line 655, in send
+    r = adapter.send(request, **kwargs)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/requests/adapters.py", line 498, in send
+    raise ConnectionError(err, request=request)
+requests.exceptions.ConnectionError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+"GET /staff/payments HTTP/1.1" 500 201241
+Internal Server Error: /staff/payments
+Traceback (most recent call last):
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 716, in urlopen
+    httplib_response = self._make_request(
+        conn,
+    ...<5 lines>...
+        chunked=chunked,
+    )
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 468, in _make_request
+    six.raise_from(e, None)
+    ~~~~~~~~~~~~~~^^^^^^^^^
+  File "<string>", line 3, in raise_from
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 463, in _make_request
+    httplib_response = conn.getresponse()
+  File "/usr/local/Cellar/python@3.13/3.13.0_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/http/client.py", line 1428, in getresponse
+    response.begin()
+    ~~~~~~~~~~~~~~^^
+  File "/usr/local/Cellar/python@3.13/3.13.0_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/http/client.py", line 331, in begin
+    version, status, reason = self._read_status()
+                              ~~~~~~~~~~~~~~~~~^^
+  File "/usr/local/Cellar/python@3.13/3.13.0_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/http/client.py", line 300, in _read_status
+    raise RemoteDisconnected("Remote end closed connection without"
+                             " response")
+http.client.RemoteDisconnected: Remote end closed connection without response
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/requests/adapters.py", line 439, in send
+    resp = conn.urlopen(
+        method=request.method,
+    ...<8 lines>...
+        timeout=timeout
+    )
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 802, in urlopen
+    retries = retries.increment(
+        method, url, error=e, _pool=self, _stacktrace=sys.exc_info()[2]
+    )
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/urllib3/util/retry.py", line 552, in increment
+    raise six.reraise(type(error), error, _stacktrace)
+          ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/urllib3/packages/six.py", line 769, in reraise
+    raise value.with_traceback(tb)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 716, in urlopen
+    httplib_response = self._make_request(
+        conn,
+    ...<5 lines>...
+        chunked=chunked,
+    )
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 468, in _make_request
+    six.raise_from(e, None)
+    ~~~~~~~~~~~~~~^^^^^^^^^
+  File "<string>", line 3, in raise_from
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 463, in _make_request
+    httplib_response = conn.getresponse()
+  File "/usr/local/Cellar/python@3.13/3.13.0_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/http/client.py", line 1428, in getresponse
+    response.begin()
+    ~~~~~~~~~~~~~~^^
+  File "/usr/local/Cellar/python@3.13/3.13.0_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/http/client.py", line 331, in begin
+    version, status, reason = self._read_status()
+                              ~~~~~~~~~~~~~~~~~^^
+  File "/usr/local/Cellar/python@3.13/3.13.0_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/http/client.py", line 300, in _read_status
+    raise RemoteDisconnected("Remote end closed connection without"
+                             " response")
+urllib3.exceptions.ProtocolError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/Users/ngoga/Desktop/Web/Apis/CatholicSong-main/Staff/views.py", line 365, in get
+    account_info=Merchant().me()
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/paypack/merchant.py", line 35, in me
+    res = self.get(url=url)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/paypack/client.py", line 59, in get
+    return self._makeRequest(method='GET', url=url, params=params)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/paypack/client.py", line 55, in _makeRequest
+    return self.client.request(method=method, url=url, json=json, headers=headers, params=params, files=files)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/requests/sessions.py", line 542, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/requests/sessions.py", line 655, in send
+    r = adapter.send(request, **kwargs)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/requests/adapters.py", line 498, in send
+    raise ConnectionError(err, request=request)
+requests.exceptions.ConnectionError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+"GET /staff/payments HTTP/1.1" 500 201242
+Internal Server Error: /staff/payments
+Traceback (most recent call last):
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/urllib3/connection.py", line 174, in _new_conn
+    conn = connection.create_connection(
+        (self._dns_host, self.port), self.timeout, **extra_kw
+    )
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/urllib3/util/connection.py", line 72, in create_connection
+    for res in socket.getaddrinfo(host, port, family, socket.SOCK_STREAM):
+               ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/Cellar/python@3.13/3.13.0_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/socket.py", line 975, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+               ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+socket.gaierror: [Errno 8] nodename nor servname provided, or not known
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 716, in urlopen
+    httplib_response = self._make_request(
+        conn,
+    ...<5 lines>...
+        chunked=chunked,
+    )
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 404, in _make_request
+    self._validate_conn(conn)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 1061, in _validate_conn
+    conn.connect()
+    ~~~~~~~~~~~~^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/urllib3/connection.py", line 363, in connect
+    self.sock = conn = self._new_conn()
+                       ~~~~~~~~~~~~~~^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/urllib3/connection.py", line 186, in _new_conn
+    raise NewConnectionError(
+        self, "Failed to establish a new connection: %s" % e
+    )
+urllib3.exceptions.NewConnectionError: <urllib3.connection.HTTPSConnection object at 0x10521f250>: Failed to establish a new connection: [Errno 8] nodename nor servname provided, or not known
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/requests/adapters.py", line 439, in send
+    resp = conn.urlopen(
+        method=request.method,
+    ...<8 lines>...
+        timeout=timeout
+    )
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 802, in urlopen
+    retries = retries.increment(
+        method, url, error=e, _pool=self, _stacktrace=sys.exc_info()[2]
+    )
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/urllib3/util/retry.py", line 594, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='payments.paypack.rw', port=443): Max retries exceeded with url: /api/merchants/me (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x10521f250>: Failed to establish a new connection: [Errno 8] nodename nor servname provided, or not known'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/Users/ngoga/Desktop/Web/Apis/CatholicSong-main/Staff/views.py", line 365, in get
+    account_info=Merchant().me()
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/paypack/merchant.py", line 35, in me
+    res = self.get(url=url)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/paypack/client.py", line 59, in get
+    return self._makeRequest(method='GET', url=url, params=params)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/paypack/client.py", line 55, in _makeRequest
+    return self.client.request(method=method, url=url, json=json, headers=headers, params=params, files=files)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/requests/sessions.py", line 542, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/requests/sessions.py", line 655, in send
+    r = adapter.send(request, **kwargs)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/requests/adapters.py", line 516, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPSConnectionPool(host='payments.paypack.rw', port=443): Max retries exceeded with url: /api/merchants/me (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x10521f250>: Failed to establish a new connection: [Errno 8] nodename nor servname provided, or not known'))
+"GET /staff/payments HTTP/1.1" 500 169770
+Internal Server Error: /staff/payments
+Traceback (most recent call last):
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 716, in urlopen
+    httplib_response = self._make_request(
+        conn,
+    ...<5 lines>...
+        chunked=chunked,
+    )
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 468, in _make_request
+    six.raise_from(e, None)
+    ~~~~~~~~~~~~~~^^^^^^^^^
+  File "<string>", line 3, in raise_from
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 463, in _make_request
+    httplib_response = conn.getresponse()
+  File "/usr/local/Cellar/python@3.13/3.13.0_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/http/client.py", line 1428, in getresponse
+    response.begin()
+    ~~~~~~~~~~~~~~^^
+  File "/usr/local/Cellar/python@3.13/3.13.0_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/http/client.py", line 331, in begin
+    version, status, reason = self._read_status()
+                              ~~~~~~~~~~~~~~~~~^^
+  File "/usr/local/Cellar/python@3.13/3.13.0_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/http/client.py", line 300, in _read_status
+    raise RemoteDisconnected("Remote end closed connection without"
+                             " response")
+http.client.RemoteDisconnected: Remote end closed connection without response
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/requests/adapters.py", line 439, in send
+    resp = conn.urlopen(
+        method=request.method,
+    ...<8 lines>...
+        timeout=timeout
+    )
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 802, in urlopen
+    retries = retries.increment(
+        method, url, error=e, _pool=self, _stacktrace=sys.exc_info()[2]
+    )
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/urllib3/util/retry.py", line 552, in increment
+    raise six.reraise(type(error), error, _stacktrace)
+          ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/urllib3/packages/six.py", line 769, in reraise
+    raise value.with_traceback(tb)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 716, in urlopen
+    httplib_response = self._make_request(
+        conn,
+    ...<5 lines>...
+        chunked=chunked,
+    )
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 468, in _make_request
+    six.raise_from(e, None)
+    ~~~~~~~~~~~~~~^^^^^^^^^
+  File "<string>", line 3, in raise_from
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 463, in _make_request
+    httplib_response = conn.getresponse()
+  File "/usr/local/Cellar/python@3.13/3.13.0_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/http/client.py", line 1428, in getresponse
+    response.begin()
+    ~~~~~~~~~~~~~~^^
+  File "/usr/local/Cellar/python@3.13/3.13.0_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/http/client.py", line 331, in begin
+    version, status, reason = self._read_status()
+                              ~~~~~~~~~~~~~~~~~^^
+  File "/usr/local/Cellar/python@3.13/3.13.0_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/http/client.py", line 300, in _read_status
+    raise RemoteDisconnected("Remote end closed connection without"
+                             " response")
+urllib3.exceptions.ProtocolError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/Users/ngoga/Desktop/Web/Apis/CatholicSong-main/Staff/views.py", line 365, in get
+    account_info=Merchant().me()
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/paypack/merchant.py", line 35, in me
+    res = self.get(url=url)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/paypack/client.py", line 59, in get
+    return self._makeRequest(method='GET', url=url, params=params)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/paypack/client.py", line 55, in _makeRequest
+    return self.client.request(method=method, url=url, json=json, headers=headers, params=params, files=files)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/requests/sessions.py", line 542, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/requests/sessions.py", line 655, in send
+    r = adapter.send(request, **kwargs)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/requests/adapters.py", line 498, in send
+    raise ConnectionError(err, request=request)
+requests.exceptions.ConnectionError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+"GET /staff/payments HTTP/1.1" 500 201241
+Internal Server Error: /staff/payments
+Traceback (most recent call last):
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 716, in urlopen
+    httplib_response = self._make_request(
+        conn,
+    ...<5 lines>...
+        chunked=chunked,
+    )
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 468, in _make_request
+    six.raise_from(e, None)
+    ~~~~~~~~~~~~~~^^^^^^^^^
+  File "<string>", line 3, in raise_from
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 463, in _make_request
+    httplib_response = conn.getresponse()
+  File "/usr/local/Cellar/python@3.13/3.13.0_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/http/client.py", line 1428, in getresponse
+    response.begin()
+    ~~~~~~~~~~~~~~^^
+  File "/usr/local/Cellar/python@3.13/3.13.0_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/http/client.py", line 331, in begin
+    version, status, reason = self._read_status()
+                              ~~~~~~~~~~~~~~~~~^^
+  File "/usr/local/Cellar/python@3.13/3.13.0_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/http/client.py", line 300, in _read_status
+    raise RemoteDisconnected("Remote end closed connection without"
+                             " response")
+http.client.RemoteDisconnected: Remote end closed connection without response
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/requests/adapters.py", line 439, in send
+    resp = conn.urlopen(
+        method=request.method,
+    ...<8 lines>...
+        timeout=timeout
+    )
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 802, in urlopen
+    retries = retries.increment(
+        method, url, error=e, _pool=self, _stacktrace=sys.exc_info()[2]
+    )
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/urllib3/util/retry.py", line 552, in increment
+    raise six.reraise(type(error), error, _stacktrace)
+          ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/urllib3/packages/six.py", line 769, in reraise
+    raise value.with_traceback(tb)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 716, in urlopen
+    httplib_response = self._make_request(
+        conn,
+    ...<5 lines>...
+        chunked=chunked,
+    )
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 468, in _make_request
+    six.raise_from(e, None)
+    ~~~~~~~~~~~~~~^^^^^^^^^
+  File "<string>", line 3, in raise_from
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 463, in _make_request
+    httplib_response = conn.getresponse()
+  File "/usr/local/Cellar/python@3.13/3.13.0_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/http/client.py", line 1428, in getresponse
+    response.begin()
+    ~~~~~~~~~~~~~~^^
+  File "/usr/local/Cellar/python@3.13/3.13.0_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/http/client.py", line 331, in begin
+    version, status, reason = self._read_status()
+                              ~~~~~~~~~~~~~~~~~^^
+  File "/usr/local/Cellar/python@3.13/3.13.0_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/http/client.py", line 300, in _read_status
+    raise RemoteDisconnected("Remote end closed connection without"
+                             " response")
+urllib3.exceptions.ProtocolError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/Users/ngoga/Desktop/Web/Apis/CatholicSong-main/Staff/views.py", line 365, in get
+    account_info=Merchant().me()
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/paypack/merchant.py", line 35, in me
+    res = self.get(url=url)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/paypack/client.py", line 59, in get
+    return self._makeRequest(method='GET', url=url, params=params)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/paypack/client.py", line 55, in _makeRequest
+    return self.client.request(method=method, url=url, json=json, headers=headers, params=params, files=files)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/requests/sessions.py", line 542, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/requests/sessions.py", line 655, in send
+    r = adapter.send(request, **kwargs)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/requests/adapters.py", line 498, in send
+    raise ConnectionError(err, request=request)
+requests.exceptions.ConnectionError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+"GET /staff/payments HTTP/1.1" 500 201241
+Internal Server Error: /staff/payments
+Traceback (most recent call last):
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 716, in urlopen
+    httplib_response = self._make_request(
+        conn,
+    ...<5 lines>...
+        chunked=chunked,
+    )
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 468, in _make_request
+    six.raise_from(e, None)
+    ~~~~~~~~~~~~~~^^^^^^^^^
+  File "<string>", line 3, in raise_from
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 463, in _make_request
+    httplib_response = conn.getresponse()
+  File "/usr/local/Cellar/python@3.13/3.13.0_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/http/client.py", line 1428, in getresponse
+    response.begin()
+    ~~~~~~~~~~~~~~^^
+  File "/usr/local/Cellar/python@3.13/3.13.0_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/http/client.py", line 331, in begin
+    version, status, reason = self._read_status()
+                              ~~~~~~~~~~~~~~~~~^^
+  File "/usr/local/Cellar/python@3.13/3.13.0_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/http/client.py", line 300, in _read_status
+    raise RemoteDisconnected("Remote end closed connection without"
+                             " response")
+http.client.RemoteDisconnected: Remote end closed connection without response
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/requests/adapters.py", line 439, in send
+    resp = conn.urlopen(
+        method=request.method,
+    ...<8 lines>...
+        timeout=timeout
+    )
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 802, in urlopen
+    retries = retries.increment(
+        method, url, error=e, _pool=self, _stacktrace=sys.exc_info()[2]
+    )
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/urllib3/util/retry.py", line 552, in increment
+    raise six.reraise(type(error), error, _stacktrace)
+          ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/urllib3/packages/six.py", line 769, in reraise
+    raise value.with_traceback(tb)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 716, in urlopen
+    httplib_response = self._make_request(
+        conn,
+    ...<5 lines>...
+        chunked=chunked,
+    )
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 468, in _make_request
+    six.raise_from(e, None)
+    ~~~~~~~~~~~~~~^^^^^^^^^
+  File "<string>", line 3, in raise_from
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 463, in _make_request
+    httplib_response = conn.getresponse()
+  File "/usr/local/Cellar/python@3.13/3.13.0_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/http/client.py", line 1428, in getresponse
+    response.begin()
+    ~~~~~~~~~~~~~~^^
+  File "/usr/local/Cellar/python@3.13/3.13.0_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/http/client.py", line 331, in begin
+    version, status, reason = self._read_status()
+                              ~~~~~~~~~~~~~~~~~^^
+  File "/usr/local/Cellar/python@3.13/3.13.0_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/http/client.py", line 300, in _read_status
+    raise RemoteDisconnected("Remote end closed connection without"
+                             " response")
+urllib3.exceptions.ProtocolError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/Users/ngoga/Desktop/Web/Apis/CatholicSong-main/Staff/views.py", line 365, in get
+    account_info=Merchant().me()
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/paypack/merchant.py", line 35, in me
+    res = self.get(url=url)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/paypack/client.py", line 59, in get
+    return self._makeRequest(method='GET', url=url, params=params)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/paypack/client.py", line 55, in _makeRequest
+    return self.client.request(method=method, url=url, json=json, headers=headers, params=params, files=files)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/requests/sessions.py", line 542, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/requests/sessions.py", line 655, in send
+    r = adapter.send(request, **kwargs)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/requests/adapters.py", line 498, in send
+    raise ConnectionError(err, request=request)
+requests.exceptions.ConnectionError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+"GET /staff/payments HTTP/1.1" 500 201240
+Internal Server Error: /staff/payments
+Traceback (most recent call last):
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 716, in urlopen
+    httplib_response = self._make_request(
+        conn,
+    ...<5 lines>...
+        chunked=chunked,
+    )
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 468, in _make_request
+    six.raise_from(e, None)
+    ~~~~~~~~~~~~~~^^^^^^^^^
+  File "<string>", line 3, in raise_from
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 463, in _make_request
+    httplib_response = conn.getresponse()
+  File "/usr/local/Cellar/python@3.13/3.13.0_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/http/client.py", line 1428, in getresponse
+    response.begin()
+    ~~~~~~~~~~~~~~^^
+  File "/usr/local/Cellar/python@3.13/3.13.0_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/http/client.py", line 331, in begin
+    version, status, reason = self._read_status()
+                              ~~~~~~~~~~~~~~~~~^^
+  File "/usr/local/Cellar/python@3.13/3.13.0_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/http/client.py", line 300, in _read_status
+    raise RemoteDisconnected("Remote end closed connection without"
+                             " response")
+http.client.RemoteDisconnected: Remote end closed connection without response
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/requests/adapters.py", line 439, in send
+    resp = conn.urlopen(
+        method=request.method,
+    ...<8 lines>...
+        timeout=timeout
+    )
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 802, in urlopen
+    retries = retries.increment(
+        method, url, error=e, _pool=self, _stacktrace=sys.exc_info()[2]
+    )
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/urllib3/util/retry.py", line 552, in increment
+    raise six.reraise(type(error), error, _stacktrace)
+          ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/urllib3/packages/six.py", line 769, in reraise
+    raise value.with_traceback(tb)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 716, in urlopen
+    httplib_response = self._make_request(
+        conn,
+    ...<5 lines>...
+        chunked=chunked,
+    )
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 468, in _make_request
+    six.raise_from(e, None)
+    ~~~~~~~~~~~~~~^^^^^^^^^
+  File "<string>", line 3, in raise_from
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 463, in _make_request
+    httplib_response = conn.getresponse()
+  File "/usr/local/Cellar/python@3.13/3.13.0_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/http/client.py", line 1428, in getresponse
+    response.begin()
+    ~~~~~~~~~~~~~~^^
+  File "/usr/local/Cellar/python@3.13/3.13.0_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/http/client.py", line 331, in begin
+    version, status, reason = self._read_status()
+                              ~~~~~~~~~~~~~~~~~^^
+  File "/usr/local/Cellar/python@3.13/3.13.0_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/http/client.py", line 300, in _read_status
+    raise RemoteDisconnected("Remote end closed connection without"
+                             " response")
+urllib3.exceptions.ProtocolError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/Users/ngoga/Desktop/Web/Apis/CatholicSong-main/Staff/views.py", line 365, in get
+    account_info=Merchant().me()
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/paypack/merchant.py", line 35, in me
+    res = self.get(url=url)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/paypack/client.py", line 59, in get
+    return self._makeRequest(method='GET', url=url, params=params)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/paypack/client.py", line 55, in _makeRequest
+    return self.client.request(method=method, url=url, json=json, headers=headers, params=params, files=files)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/requests/sessions.py", line 542, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/requests/sessions.py", line 655, in send
+    r = adapter.send(request, **kwargs)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/requests/adapters.py", line 498, in send
+    raise ConnectionError(err, request=request)
+requests.exceptions.ConnectionError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+"GET /staff/payments HTTP/1.1" 500 201241
+Internal Server Error: /staff/payments
+Traceback (most recent call last):
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 716, in urlopen
+    httplib_response = self._make_request(
+        conn,
+    ...<5 lines>...
+        chunked=chunked,
+    )
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 468, in _make_request
+    six.raise_from(e, None)
+    ~~~~~~~~~~~~~~^^^^^^^^^
+  File "<string>", line 3, in raise_from
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 463, in _make_request
+    httplib_response = conn.getresponse()
+  File "/usr/local/Cellar/python@3.13/3.13.0_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/http/client.py", line 1428, in getresponse
+    response.begin()
+    ~~~~~~~~~~~~~~^^
+  File "/usr/local/Cellar/python@3.13/3.13.0_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/http/client.py", line 331, in begin
+    version, status, reason = self._read_status()
+                              ~~~~~~~~~~~~~~~~~^^
+  File "/usr/local/Cellar/python@3.13/3.13.0_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/http/client.py", line 300, in _read_status
+    raise RemoteDisconnected("Remote end closed connection without"
+                             " response")
+http.client.RemoteDisconnected: Remote end closed connection without response
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/requests/adapters.py", line 439, in send
+    resp = conn.urlopen(
+        method=request.method,
+    ...<8 lines>...
+        timeout=timeout
+    )
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 802, in urlopen
+    retries = retries.increment(
+        method, url, error=e, _pool=self, _stacktrace=sys.exc_info()[2]
+    )
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/urllib3/util/retry.py", line 552, in increment
+    raise six.reraise(type(error), error, _stacktrace)
+          ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/urllib3/packages/six.py", line 769, in reraise
+    raise value.with_traceback(tb)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 716, in urlopen
+    httplib_response = self._make_request(
+        conn,
+    ...<5 lines>...
+        chunked=chunked,
+    )
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 468, in _make_request
+    six.raise_from(e, None)
+    ~~~~~~~~~~~~~~^^^^^^^^^
+  File "<string>", line 3, in raise_from
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 463, in _make_request
+    httplib_response = conn.getresponse()
+  File "/usr/local/Cellar/python@3.13/3.13.0_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/http/client.py", line 1428, in getresponse
+    response.begin()
+    ~~~~~~~~~~~~~~^^
+  File "/usr/local/Cellar/python@3.13/3.13.0_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/http/client.py", line 331, in begin
+    version, status, reason = self._read_status()
+                              ~~~~~~~~~~~~~~~~~^^
+  File "/usr/local/Cellar/python@3.13/3.13.0_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/http/client.py", line 300, in _read_status
+    raise RemoteDisconnected("Remote end closed connection without"
+                             " response")
+urllib3.exceptions.ProtocolError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/Users/ngoga/Desktop/Web/Apis/CatholicSong-main/Staff/views.py", line 365, in get
+    account_info=Merchant().me()
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/paypack/merchant.py", line 35, in me
+    res = self.get(url=url)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/paypack/client.py", line 59, in get
+    return self._makeRequest(method='GET', url=url, params=params)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/paypack/client.py", line 55, in _makeRequest
+    return self.client.request(method=method, url=url, json=json, headers=headers, params=params, files=files)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/requests/sessions.py", line 542, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/requests/sessions.py", line 655, in send
+    r = adapter.send(request, **kwargs)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/requests/adapters.py", line 498, in send
+    raise ConnectionError(err, request=request)
+requests.exceptions.ConnectionError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+"GET /staff/payments HTTP/1.1" 500 201241
+Internal Server Error: /staff/payments
+Traceback (most recent call last):
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 716, in urlopen
+    httplib_response = self._make_request(
+        conn,
+    ...<5 lines>...
+        chunked=chunked,
+    )
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 468, in _make_request
+    six.raise_from(e, None)
+    ~~~~~~~~~~~~~~^^^^^^^^^
+  File "<string>", line 3, in raise_from
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 463, in _make_request
+    httplib_response = conn.getresponse()
+  File "/usr/local/Cellar/python@3.13/3.13.0_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/http/client.py", line 1428, in getresponse
+    response.begin()
+    ~~~~~~~~~~~~~~^^
+  File "/usr/local/Cellar/python@3.13/3.13.0_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/http/client.py", line 331, in begin
+    version, status, reason = self._read_status()
+                              ~~~~~~~~~~~~~~~~~^^
+  File "/usr/local/Cellar/python@3.13/3.13.0_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/http/client.py", line 300, in _read_status
+    raise RemoteDisconnected("Remote end closed connection without"
+                             " response")
+http.client.RemoteDisconnected: Remote end closed connection without response
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/requests/adapters.py", line 439, in send
+    resp = conn.urlopen(
+        method=request.method,
+    ...<8 lines>...
+        timeout=timeout
+    )
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 802, in urlopen
+    retries = retries.increment(
+        method, url, error=e, _pool=self, _stacktrace=sys.exc_info()[2]
+    )
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/urllib3/util/retry.py", line 552, in increment
+    raise six.reraise(type(error), error, _stacktrace)
+          ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/urllib3/packages/six.py", line 769, in reraise
+    raise value.with_traceback(tb)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 716, in urlopen
+    httplib_response = self._make_request(
+        conn,
+    ...<5 lines>...
+        chunked=chunked,
+    )
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 468, in _make_request
+    six.raise_from(e, None)
+    ~~~~~~~~~~~~~~^^^^^^^^^
+  File "<string>", line 3, in raise_from
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 463, in _make_request
+    httplib_response = conn.getresponse()
+  File "/usr/local/Cellar/python@3.13/3.13.0_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/http/client.py", line 1428, in getresponse
+    response.begin()
+    ~~~~~~~~~~~~~~^^
+  File "/usr/local/Cellar/python@3.13/3.13.0_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/http/client.py", line 331, in begin
+    version, status, reason = self._read_status()
+                              ~~~~~~~~~~~~~~~~~^^
+  File "/usr/local/Cellar/python@3.13/3.13.0_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/http/client.py", line 300, in _read_status
+    raise RemoteDisconnected("Remote end closed connection without"
+                             " response")
+urllib3.exceptions.ProtocolError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/Users/ngoga/Desktop/Web/Apis/CatholicSong-main/Staff/views.py", line 365, in get
+    account_info=Merchant().me()
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/paypack/merchant.py", line 35, in me
+    res = self.get(url=url)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/paypack/client.py", line 59, in get
+    return self._makeRequest(method='GET', url=url, params=params)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/paypack/client.py", line 55, in _makeRequest
+    return self.client.request(method=method, url=url, json=json, headers=headers, params=params, files=files)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/requests/sessions.py", line 542, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/requests/sessions.py", line 655, in send
+    r = adapter.send(request, **kwargs)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/requests/adapters.py", line 498, in send
+    raise ConnectionError(err, request=request)
+requests.exceptions.ConnectionError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+"GET /staff/payments HTTP/1.1" 500 201241
+Internal Server Error: /staff/payments
+Traceback (most recent call last):
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 716, in urlopen
+    httplib_response = self._make_request(
+        conn,
+    ...<5 lines>...
+        chunked=chunked,
+    )
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 468, in _make_request
+    six.raise_from(e, None)
+    ~~~~~~~~~~~~~~^^^^^^^^^
+  File "<string>", line 3, in raise_from
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 463, in _make_request
+    httplib_response = conn.getresponse()
+  File "/usr/local/Cellar/python@3.13/3.13.0_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/http/client.py", line 1428, in getresponse
+    response.begin()
+    ~~~~~~~~~~~~~~^^
+  File "/usr/local/Cellar/python@3.13/3.13.0_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/http/client.py", line 331, in begin
+    version, status, reason = self._read_status()
+                              ~~~~~~~~~~~~~~~~~^^
+  File "/usr/local/Cellar/python@3.13/3.13.0_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/http/client.py", line 300, in _read_status
+    raise RemoteDisconnected("Remote end closed connection without"
+                             " response")
+http.client.RemoteDisconnected: Remote end closed connection without response
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/requests/adapters.py", line 439, in send
+    resp = conn.urlopen(
+        method=request.method,
+    ...<8 lines>...
+        timeout=timeout
+    )
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 802, in urlopen
+    retries = retries.increment(
+        method, url, error=e, _pool=self, _stacktrace=sys.exc_info()[2]
+    )
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/urllib3/util/retry.py", line 552, in increment
+    raise six.reraise(type(error), error, _stacktrace)
+          ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/urllib3/packages/six.py", line 769, in reraise
+    raise value.with_traceback(tb)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 716, in urlopen
+    httplib_response = self._make_request(
+        conn,
+    ...<5 lines>...
+        chunked=chunked,
+    )
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 468, in _make_request
+    six.raise_from(e, None)
+    ~~~~~~~~~~~~~~^^^^^^^^^
+  File "<string>", line 3, in raise_from
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 463, in _make_request
+    httplib_response = conn.getresponse()
+  File "/usr/local/Cellar/python@3.13/3.13.0_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/http/client.py", line 1428, in getresponse
+    response.begin()
+    ~~~~~~~~~~~~~~^^
+  File "/usr/local/Cellar/python@3.13/3.13.0_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/http/client.py", line 331, in begin
+    version, status, reason = self._read_status()
+                              ~~~~~~~~~~~~~~~~~^^
+  File "/usr/local/Cellar/python@3.13/3.13.0_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/http/client.py", line 300, in _read_status
+    raise RemoteDisconnected("Remote end closed connection without"
+                             " response")
+urllib3.exceptions.ProtocolError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/Users/ngoga/Desktop/Web/Apis/CatholicSong-main/Staff/views.py", line 365, in get
+    account_info=Merchant().me()
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/paypack/merchant.py", line 35, in me
+    res = self.get(url=url)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/paypack/client.py", line 59, in get
+    return self._makeRequest(method='GET', url=url, params=params)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/paypack/client.py", line 55, in _makeRequest
+    return self.client.request(method=method, url=url, json=json, headers=headers, params=params, files=files)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/requests/sessions.py", line 542, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/requests/sessions.py", line 655, in send
+    r = adapter.send(request, **kwargs)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/requests/adapters.py", line 498, in send
+    raise ConnectionError(err, request=request)
+requests.exceptions.ConnectionError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+"GET /staff/payments HTTP/1.1" 500 201241
+Internal Server Error: /staff/payments
+Traceback (most recent call last):
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 716, in urlopen
+    httplib_response = self._make_request(
+        conn,
+    ...<5 lines>...
+        chunked=chunked,
+    )
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 468, in _make_request
+    six.raise_from(e, None)
+    ~~~~~~~~~~~~~~^^^^^^^^^
+  File "<string>", line 3, in raise_from
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 463, in _make_request
+    httplib_response = conn.getresponse()
+  File "/usr/local/Cellar/python@3.13/3.13.0_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/http/client.py", line 1428, in getresponse
+    response.begin()
+    ~~~~~~~~~~~~~~^^
+  File "/usr/local/Cellar/python@3.13/3.13.0_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/http/client.py", line 331, in begin
+    version, status, reason = self._read_status()
+                              ~~~~~~~~~~~~~~~~~^^
+  File "/usr/local/Cellar/python@3.13/3.13.0_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/http/client.py", line 300, in _read_status
+    raise RemoteDisconnected("Remote end closed connection without"
+                             " response")
+http.client.RemoteDisconnected: Remote end closed connection without response
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/requests/adapters.py", line 439, in send
+    resp = conn.urlopen(
+        method=request.method,
+    ...<8 lines>...
+        timeout=timeout
+    )
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 802, in urlopen
+    retries = retries.increment(
+        method, url, error=e, _pool=self, _stacktrace=sys.exc_info()[2]
+    )
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/urllib3/util/retry.py", line 552, in increment
+    raise six.reraise(type(error), error, _stacktrace)
+          ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/urllib3/packages/six.py", line 769, in reraise
+    raise value.with_traceback(tb)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 716, in urlopen
+    httplib_response = self._make_request(
+        conn,
+    ...<5 lines>...
+        chunked=chunked,
+    )
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 468, in _make_request
+    six.raise_from(e, None)
+    ~~~~~~~~~~~~~~^^^^^^^^^
+  File "<string>", line 3, in raise_from
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 463, in _make_request
+    httplib_response = conn.getresponse()
+  File "/usr/local/Cellar/python@3.13/3.13.0_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/http/client.py", line 1428, in getresponse
+    response.begin()
+    ~~~~~~~~~~~~~~^^
+  File "/usr/local/Cellar/python@3.13/3.13.0_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/http/client.py", line 331, in begin
+    version, status, reason = self._read_status()
+                              ~~~~~~~~~~~~~~~~~^^
+  File "/usr/local/Cellar/python@3.13/3.13.0_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/http/client.py", line 300, in _read_status
+    raise RemoteDisconnected("Remote end closed connection without"
+                             " response")
+urllib3.exceptions.ProtocolError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/Users/ngoga/Desktop/Web/Apis/CatholicSong-main/Staff/views.py", line 365, in get
+    account_info=Merchant().me()
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/paypack/merchant.py", line 35, in me
+    res = self.get(url=url)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/paypack/client.py", line 59, in get
+    return self._makeRequest(method='GET', url=url, params=params)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/paypack/client.py", line 55, in _makeRequest
+    return self.client.request(method=method, url=url, json=json, headers=headers, params=params, files=files)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/requests/sessions.py", line 542, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/requests/sessions.py", line 655, in send
+    r = adapter.send(request, **kwargs)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/requests/adapters.py", line 498, in send
+    raise ConnectionError(err, request=request)
+requests.exceptions.ConnectionError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+"GET /staff/payments HTTP/1.1" 500 201241
+Internal Server Error: /payments/cashout
+Traceback (most recent call last):
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/ngoga/Desktop/Web/Apis/CatholicSong-main/Payments/views.py", line 120, in post
+    return self.CashOut(amount)
+                        ^^^^^^
+UnboundLocalError: cannot access local variable 'amount' where it is not associated with a value
+"POST /payments/cashout HTTP/1.1" 500 94369
+Internal Server Error: /payments/cashout
+Traceback (most recent call last):
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/ngoga/Desktop/Web/Apis/CatholicSong-main/Payments/views.py", line 121, in post
+    return self.CashOut(amount)
+                        ^^^^^^
+UnboundLocalError: cannot access local variable 'amount' where it is not associated with a value
+"POST /payments/cashout HTTP/1.1" 500 94398
+Internal Server Error: /payments/cashout
+Traceback (most recent call last):
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/ngoga/Desktop/Web/Apis/CatholicSong-main/Payments/views.py", line 124, in post
+    return self.CashOut(amount)
+           ~~~~~~~~~~~~^^^^^^^^
+  File "/Users/ngoga/Desktop/Web/Apis/CatholicSong-main/Payments/views.py", line 100, in CashOut
+    print(response.ref)
+          ^^^^^^^^^^^^
+AttributeError: 'dict' object has no attribute 'ref'
+"POST /payments/cashout HTTP/1.1" 500 99787
+Internal Server Error: /staff/payments
+Traceback (most recent call last):
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/db/backends/base/base.py", line 279, in ensure_connection
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/db/backends/base/base.py", line 256, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/db/backends/postgresql/base.py", line 332, in get_new_connection
+    connection = self.Database.connect(**conn_params)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/psycopg/connection.py", line 98, in connect
+    attempts = conninfo_attempts(params)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/psycopg/_conninfo_attempts.py", line 50, in conninfo_attempts
+    raise e.OperationalError(str(last_exc))
+psycopg.OperationalError: [Errno 8] nodename nor servname provided, or not known
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/Users/ngoga/Desktop/Web/Apis/CatholicSong-main/Staff/views.py", line 382, in get
+    success_payments=Payment.objects.filter(payment_status='pending').count()
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/db/models/query.py", line 620, in count
+    return self.query.get_count(using=self.db)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/db/models/sql/query.py", line 630, in get_count
+    return obj.get_aggregation(using, {"__count": Count("*")})["__count"]
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/db/models/sql/query.py", line 616, in get_aggregation
+    result = compiler.execute_sql(SINGLE)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/db/models/sql/compiler.py", line 1572, in execute_sql
+    cursor = self.connection.cursor()
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/db/backends/base/base.py", line 320, in cursor
+    return self._cursor()
+           ~~~~~~~~~~~~^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/db/backends/base/base.py", line 296, in _cursor
+    self.ensure_connection()
+    ~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/db/backends/base/base.py", line 278, in ensure_connection
+    with self.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/db/backends/base/base.py", line 279, in ensure_connection
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/db/backends/base/base.py", line 256, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/db/backends/postgresql/base.py", line 332, in get_new_connection
+    connection = self.Database.connect(**conn_params)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/psycopg/connection.py", line 98, in connect
+    attempts = conninfo_attempts(params)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/psycopg/_conninfo_attempts.py", line 50, in conninfo_attempts
+    raise e.OperationalError(str(last_exc))
+django.db.utils.OperationalError: [Errno 8] nodename nor servname provided, or not known
+"GET /staff/payments HTTP/1.1" 500 189891
+Internal Server Error: /staff/payments
+Traceback (most recent call last):
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/db/backends/base/base.py", line 279, in ensure_connection
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/db/backends/base/base.py", line 256, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/db/backends/postgresql/base.py", line 332, in get_new_connection
+    connection = self.Database.connect(**conn_params)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/psycopg/connection.py", line 98, in connect
+    attempts = conninfo_attempts(params)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/psycopg/_conninfo_attempts.py", line 50, in conninfo_attempts
+    raise e.OperationalError(str(last_exc))
+psycopg.OperationalError: [Errno 8] nodename nor servname provided, or not known
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/Users/ngoga/Desktop/Web/Apis/CatholicSong-main/Staff/views.py", line 382, in get
+    success_payments=Payment.objects.filter(payment_status='pending').count()
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/db/models/query.py", line 620, in count
+    return self.query.get_count(using=self.db)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/db/models/sql/query.py", line 630, in get_count
+    return obj.get_aggregation(using, {"__count": Count("*")})["__count"]
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/db/models/sql/query.py", line 616, in get_aggregation
+    result = compiler.execute_sql(SINGLE)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/db/models/sql/compiler.py", line 1572, in execute_sql
+    cursor = self.connection.cursor()
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/db/backends/base/base.py", line 320, in cursor
+    return self._cursor()
+           ~~~~~~~~~~~~^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/db/backends/base/base.py", line 296, in _cursor
+    self.ensure_connection()
+    ~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/db/backends/base/base.py", line 278, in ensure_connection
+    with self.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/db/backends/base/base.py", line 279, in ensure_connection
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/db/backends/base/base.py", line 256, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/db/backends/postgresql/base.py", line 332, in get_new_connection
+    connection = self.Database.connect(**conn_params)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/psycopg/connection.py", line 98, in connect
+    attempts = conninfo_attempts(params)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/psycopg/_conninfo_attempts.py", line 50, in conninfo_attempts
+    raise e.OperationalError(str(last_exc))
+django.db.utils.OperationalError: [Errno 8] nodename nor servname provided, or not known
+"GET /staff/payments HTTP/1.1" 500 188811
+Internal Server Error: /staff/payments
+Traceback (most recent call last):
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/db/backends/base/base.py", line 279, in ensure_connection
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/db/backends/base/base.py", line 256, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/db/backends/postgresql/base.py", line 332, in get_new_connection
+    connection = self.Database.connect(**conn_params)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/psycopg/connection.py", line 98, in connect
+    attempts = conninfo_attempts(params)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/psycopg/_conninfo_attempts.py", line 50, in conninfo_attempts
+    raise e.OperationalError(str(last_exc))
+psycopg.OperationalError: [Errno 8] nodename nor servname provided, or not known
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/Users/ngoga/Desktop/Web/Apis/CatholicSong-main/Staff/views.py", line 382, in get
+    success_payments=Payment.objects.filter(payment_status='pending').count()
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/db/models/query.py", line 620, in count
+    return self.query.get_count(using=self.db)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/db/models/sql/query.py", line 630, in get_count
+    return obj.get_aggregation(using, {"__count": Count("*")})["__count"]
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/db/models/sql/query.py", line 616, in get_aggregation
+    result = compiler.execute_sql(SINGLE)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/db/models/sql/compiler.py", line 1572, in execute_sql
+    cursor = self.connection.cursor()
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/db/backends/base/base.py", line 320, in cursor
+    return self._cursor()
+           ~~~~~~~~~~~~^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/db/backends/base/base.py", line 296, in _cursor
+    self.ensure_connection()
+    ~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/db/backends/base/base.py", line 278, in ensure_connection
+    with self.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/db/backends/base/base.py", line 279, in ensure_connection
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/db/backends/base/base.py", line 256, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/db/backends/postgresql/base.py", line 332, in get_new_connection
+    connection = self.Database.connect(**conn_params)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/psycopg/connection.py", line 98, in connect
+    attempts = conninfo_attempts(params)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/psycopg/_conninfo_attempts.py", line 50, in conninfo_attempts
+    raise e.OperationalError(str(last_exc))
+django.db.utils.OperationalError: [Errno 8] nodename nor servname provided, or not known
+"GET /staff/payments HTTP/1.1" 500 189891
+Internal Server Error: /payments/webhook
+Traceback (most recent call last):
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/ngoga/Desktop/Web/Apis/CatholicSong-main/Payments/views.py", line 139, in post
+    return self.webhook(request)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/ngoga/Desktop/Web/Apis/CatholicSong-main/Payments/views.py", line 153, in webhook
+    data = json.loads(request.body.decode('utf-8'))
+  File "/usr/local/Cellar/python@3.13/3.13.0_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^
+  File "/usr/local/Cellar/python@3.13/3.13.0_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/json/decoder.py", line 344, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/Cellar/python@3.13/3.13.0_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/json/decoder.py", line 362, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+"POST /payments/webhook HTTP/1.1" 500 110868
+Internal Server Error: /payments/webhook
+Traceback (most recent call last):
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/ngoga/Desktop/Web/Apis/CatholicSong-main/Payments/views.py", line 139, in post
+    return self.webhook(request)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/ngoga/Desktop/Web/Apis/CatholicSong-main/Payments/views.py", line 153, in webhook
+    data = json.loads(request.body.decode('utf-8'))
+  File "/usr/local/Cellar/python@3.13/3.13.0_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^
+  File "/usr/local/Cellar/python@3.13/3.13.0_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/json/decoder.py", line 344, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/Cellar/python@3.13/3.13.0_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/json/decoder.py", line 362, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+"POST /payments/webhook HTTP/1.1" 500 110868
+Internal Server Error: /payments/webhook
+Traceback (most recent call last):
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/ngoga/Desktop/Web/Apis/CatholicSong-main/Payments/views.py", line 139, in post
+    return self.webhook(request)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/ngoga/Desktop/Web/Apis/CatholicSong-main/Payments/views.py", line 153, in webhook
+    data = json.loads(request.body.decode('utf-8'))
+  File "/usr/local/Cellar/python@3.13/3.13.0_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^
+  File "/usr/local/Cellar/python@3.13/3.13.0_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/json/decoder.py", line 344, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/Cellar/python@3.13/3.13.0_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/json/decoder.py", line 362, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+"POST /payments/webhook HTTP/1.1" 500 111102
+Internal Server Error: /payments/webhook
+Traceback (most recent call last):
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/ngoga/Desktop/Web/Apis/CatholicSong-main/Payments/views.py", line 139, in post
+    return self.webhook(request)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/ngoga/Desktop/Web/Apis/CatholicSong-main/Payments/views.py", line 153, in webhook
+    data = json.loads(request.body.decode('utf-8'))
+  File "/usr/local/Cellar/python@3.13/3.13.0_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^
+  File "/usr/local/Cellar/python@3.13/3.13.0_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/json/decoder.py", line 344, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/Cellar/python@3.13/3.13.0_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/json/decoder.py", line 362, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+"POST /payments/webhook HTTP/1.1" 500 111102

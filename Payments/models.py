@@ -34,8 +34,10 @@ class Payment(models.Model):
     payment_status=models.CharField(max_length=255,choices=payment_status_choice,null=False,default='pending')
     device_tokem=models.CharField(max_length=255)
     amount=models.IntegerField()
+    paid_number=models.CharField(max_length=255,default='00000000000')
     active=models.BooleanField(default=True)
     subscription_type=models.CharField(max_length=255,null=False,choices=subscription_type_choice,default='Donation')
+    transaction_kind=models.CharField(max_length=50,default='Cash In')
     reference_key=models.CharField(max_length=255)
     created_at=models.DateTimeField(default=timezone.now)
     def __str__(self):

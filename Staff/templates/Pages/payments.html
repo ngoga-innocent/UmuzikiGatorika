@@ -1,0 +1,147 @@
+{% extends '../staff.html' %}
+{% block Content %}
+    <Section class="flex flex-col px-3 py-3 bg-gray-200 flex-1">
+        <div class=" rounded-md w-[100%] grid grid-cols-12 gap-x-2 flex-wrap  items-start">
+            <div class="col-span-8 border border-gray-400 rounded-lg bg-white p-2">
+                <canvas id="myChart"></canvas>
+              </div>
+            <div class=" p-2 rounded-lg col-span-4 my-4 flex-1 flex flex-col justify-center items-center my-3 gap-x-1 gap-y-3 w-[100%] ">
+                <div class="w-[100%] border border-gray-400 flex-1 bg-white  h-fit flex flex-col rounded-md px-4 py-3  justify-center">
+                    <div class="flex  flex-row items-center justify-between w-[100%]">
+                        <h1 class="text-gray-800 font-bold ">Total Balance</h1>
+                        <button class="text-purple-700 font-bold cashout">Cashout</button>
+                        
+                    </div>
+                    <div class="flex flex-row items-center justify-between">
+                        <h1 class=" text-gray-300 font-bold">{{account_info.balance}} Rwf</h1>
+                    <p class=" text-gray-300 font-bold text-xs">0782214360</h1>
+                    </div>
+                </div>
+                <div class="bg-white border border-gray-400 p-2 rounded-md w-[100%] h-56 max-h-56  flex flex-col items-center justify-center">
+                    <canvas style="width: 30px;height: 30px;" width="30px" height="40px" id="failed_success"></canvas>
+                </div>
+                {% comment %} <div class=" flex-1 bg-white  h-fit flex flex-col rounded-md px-4 py-3 text-center items-center justify-center">
+                    <h1 class="text-gray-800 font-bold ">Total Balance</h1>
+                    <h1 class="text-lg text-violet-700 font-bold">{{account_info.balance}} Rwf</h1>
+                </div> {% endcomment %}
+            </div>
+        </div>
+        {% comment %} Payment History {% endcomment %}
+        <div class="grid grid-cols-12 my-2  py-4 ">
+            
+                <div class='col-span-8 bg-white flex flex-col rounded-lg px-3 py-2 border border-gray-400 bg-white justify-between'>
+                    <div class="flex flex-row justify-between items-center px-2 my-2 py-4">
+                        <h1 class="text-gray-800 font-bold">Payment History</h1>
+                        <a href="#"  class="text-purple-600 hover:text-purple-900 transition-all ">See All</a>
+                    </div>
+                
+                {% if payment_histories %}
+                    {% for history in payment_histories %}
+                        <div style="background-color: {% cycle 'rgba(82 82 91 0.2)' 'rgba(39 39 42 0.3)' %}" class="py-1 px-2 bg-opacity-2 flex flex-row w-[100%] justify-between">
+                            <p class=" text-sm">{{ history.paid_number }}</p>
+                            <p class="text-sm">{{ history.created_at }}</p>
+                            <p class="text-sm">{{ history.transaction_kind }}</p>
+                            <p class="text-sm">{{ history.amount }} Rwf</p>
+                            <button class="transition-all hover:bg-gray-200 rounded-full px-3 py-2 border border-gray-300 flex flex-row gap-x-1 items-center">
+                                <i class="fa fa-credit-card-alt" aria-hidden="true"></i>
+                                <p>Paid</p>
+                            </button>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+            
+        </div>
+    </Section>
+{% endblock Content %}
+{% block Additional_Scripts %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    const ctx = document.getElementById('myChart');
+    const failed_success_ctx = document.getElementById('failed_success');
+    new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: {{labels | safe}},
+        datasets: [{
+          label: 'Week Donations',
+          data: {{values |safe}},
+          borderWidth: 1,
+          borderRadius:20,
+          fill: true,
+          backgroundColor:'rgb(148, 125, 170)',
+          borderColor: 'rgb(75, 192, 192)',
+          hoverBackgroundColor:'bluesky',
+          tension: 0.2
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+    new Chart(failed_success_ctx, {
+      type: 'doughnut',
+      data: {
+        labels: {{success_failure_label | safe}},
+        datasets: [{
+          label: 'Week Donations',
+          data: {{success_failure_data |safe}},
+          borderWidth: 1,
+          borderRadius:20,
+          fill: true,
+          backgroundColor:'rgb(148, 125, 170)',
+          backgroundColor: [
+          'rgb(54, 162, 235)',
+            'rgb(255, 99, 132)',
+            
+            
+            ],
+            hoverOffset: 4,
+          borderColor: 'rgb(75, 192, 192)',
+          hoverBackgroundColor:'bluesky',
+          tension: 0.2
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+  </script>
+  <script>
+    $(document).ready(function(){
+        $(document).on('click','.cashout',function(){
+            // Do something when the button is clicked
+            
+            const amount=prompt('How Much in RWF').valueOf()
+            alert('You are about to cash out your account to 0782214360. This action is irreversible.' + amount);
+            // window.location.href = "/dashboard/cashout"; // Redirect to cashout page
+             $.ajax({
+                 url: "{% url 'cashout' %}",
+                 type: 'POST',
+                 headers: {'X-CSRFToken': '{{ csrf_token }}'},
+                 data: {amount: amount},
+                 success: function(response){
+                     if(response.success){
+                         alert('Cashout successful');
+                         location.reload();
+                     }else {
+                         alert('Failed to cash out');
+                     }
+                 },
+                 error: function(xhr, status, error){
+                     alert('Failed to cash out');
+                }
+             });
+        });
+    });
+  </script>
+  
+{% endblock Additional_Scripts %}

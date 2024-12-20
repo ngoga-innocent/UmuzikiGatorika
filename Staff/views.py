@@ -13,9 +13,18 @@ from Advertise.forms import EventForm
 from Notifications.models import NotificationModal
 from Notifications.forms import NotificationModalForm
 from Documents.serializers import CopiesSerializer
+from Payments.models import Payment
+from django.db.models import Sum
+from django.db.models import Q
 import re
 import json
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from paypack.client import HttpClient
+from paypack.oauth2 import Oauth
+from paypack.merchant import Merchant
+from datetime import timedelta
+from django.utils.timezone import now
+import os
 # Create your views here.
 class Staff(LoginRequiredMixin, UserPassesTestMixin,View):
     login_url = '/account/login'  # Redirect for unauthenticated users
@@ -343,3 +352,58 @@ class Requests(View):
             return JsonResponse({"message":"Request approved successfully","success":True},status=200)
         except Request.DoesNotExist:
             return JsonResponse({"error":"Invalid Request"},status=404)
+class Payments(View):
+    
+    # client_id="700c2faa-9695-11ef-99e6-dead742b0238", 
+    # client_secret="0468b57fef5436ed526a41d85555aab6da39a3ee5e6b4b0d3255bfef95601890afd80709"
+    client_id=os.getenv("PAYPACK_ID")
+    client_secret=os.getenv("PAYPACK_SECRET")
+
+    HttpClient(client_id=client_id, client_secret=client_secret)
+    auth = Oauth().auth()
+    # print(auth)
+    def get(self, request, *args, **kwargs):
+        account_info=Merchant().me()
+        today = now().date()
+    
+        # Generate the last 7 days, including today
+        last_week = [today - timedelta(days=i) for i in range(6, -1, -1)]
+        
+        # Prepare a dictionary to hold results
+        payments_per_day = {day: 0 for day in last_week}
+        
+        # Query payments from the last 7 days
+        start_date = last_week[0]
+        end_date = last_week[-1] + timedelta(days=1)  # End date is exclusive
+        
+        payments = Payment.objects.filter(
+            created_at__date__gte=start_date,  # Ensure date part matches
+            created_at__date__lt=end_date
+        ).values('created_at__date').annotate(total_amount=Sum('amount'))
+        success_payments=Payment.objects.filter(payment_status='successful').count()
+        failed_payments=Payment.objects.filter(payment_status='failed').count()
+        # print(success_payments,failed_payments)
+        # Populate the dictionary with the aggregated results
+        for payment in payments:
+            date = payment['created_at__date']
+            if date in payments_per_day:
+                payments_per_day[date] = payment['total_amount']
+        
+        # Return data in a format suitable for the chart (e.g., labels and values)
+        labels = [day.strftime('%Y-%m-%d') for day in last_week]
+        values = [payments_per_day[day] for day in last_week]
+        
+        payment_history=Payment.objects.filter(payment_status='successful').order_by('-created_at')[:50]
+        
+        context={
+             'labels': labels,
+             'values': values,
+             'start_date': start_date,
+             'end_date': end_date,
+             'success_failure_label':["Successfull","Failed"],
+             'success_failure_data':[success_payments,failed_payments],
+             'account_info':account_info,
+             'payment_histories':payment_history,
+        }
+        # print(context)
+        return render(request,'./Pages/payments.html',context)        

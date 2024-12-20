@@ -2,6 +2,7 @@ from django.urls import path
 from .views import PaymentClass
 urlpatterns = [
     path('',PaymentClass.as_view(),{"action":"deposit"},name='payment'),
+    path('cashout',PaymentClass.as_view(),{"action":"cashout"},name='cashout'),
     path('webhook',PaymentClass.as_view(),{"action":"webhook"},name='payment'),
     
     

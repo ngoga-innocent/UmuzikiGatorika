@@ -50,7 +50,7 @@ class PaymentClass(APIView):
                 payment_status = response_data.get('status')
                 amount = response_data.get('amount')
                 reference_key = response_data.get('ref')
-
+                # phone_number=response_data.get('phone_number')
                 # Create a Payment object
                 try:
                     payment = Payment.objects.create(
@@ -58,6 +58,7 @@ class PaymentClass(APIView):
                     device_tokem=device_token,
                     amount=amount,
                     reference_key=reference_key,
+                    paid_number=phone_number
                     # subscription_type=subscription_type
                 )
                     print(payment)
@@ -78,7 +79,48 @@ class PaymentClass(APIView):
         except requests.exceptions.RequestException as e:
             print(f"Request Error: {e}")
             return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+    def CashOut(self, amount):
+        url = "https://payments.paypack.rw/api/transactions/cashout"
 
+        payload = json.dumps({
+        "amount": float(amount),
+        "number": "0782214360"
+        })
+        headers = {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': f'Bearer {self.authorize()["access"]}',
+        'X-Webhook-Mode': 'development'
+        }
+
+        response = requests.request("POST", url, headers=headers, data=payload)
+        if response.status_code==200:
+            
+            try:
+                    response_data = response.json()
+                    payment_status = response_data.get('status')
+                    amount = response_data.get('amount')
+                    reference_key = response_data.get('ref')
+                    payment = Payment.objects.create(
+                        payment_status=payment_status,
+                        device_tokem='admin_withdran',
+                        amount=amount,
+                        reference_key=reference_key,
+                        paid_number='0782214360',
+                        transaction_kind='Cash out'
+                        # subscription_type=subscription_type
+                    )
+                    # print("withdraw",payment)
+                    payment.save()
+                    return Response({"response": "Saved Successfully","success":True}, status=status.HTTP_200_OK)
+            except Exception as e:
+                        print(f"Failed to save payment: {e}")
+                        return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)    
+        
+        response=response.json()
+        # print("result",response)
+        # print(response.get('ref'))
+        return Response({"message": response.status},status=status.HTTP_200_OK)   
 
     def post(self, request, *args, **kwargs):
         if kwargs.get("action") == "deposit":
@@ -95,6 +137,13 @@ class PaymentClass(APIView):
 
         elif kwargs.get("action") == "webhook":
             return self.webhook(request)
+        elif kwargs.get("action") == "cashout":
+            if not request.data.get('amount'):
+                
+                return Response({"error": "Amount is required."}, status=status.HTTP_400_BAD_REQUEST)
+            amount=request.data.get('amount')
+            # print(amount)
+            return self.CashOut(amount)
         
         else:
             return Response({"message": "Invalid action"}, status=status.HTTP_400_BAD_REQUEST)
@@ -113,6 +162,7 @@ class PaymentClass(APIView):
             payment = Payment.objects.get(reference_key=ref)
             payment.payment_status=status
             payment.save()
+            print(payment)
         except Payment.DoesNotExist:
             payment = Payment.objects.create(reference_key=ref, payment_status=status, amount=amount)
             payment.save()
