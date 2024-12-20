@@ -133,7 +133,7 @@ class PaymentClass(APIView):
 
             subscription_type = request.data.get("subscription_type")
             # Properly return the response from the Deposit method
-            return self.Deposit(request,phone_number, amount,device_token, subscription_type)
+            return self.Deposit(phone_number, amount,device_token, subscription_type)
 
         elif kwargs.get("action") == "webhook":
             return self.webhook(request)
