@@ -133,7 +133,7 @@ class PaymentClass(APIView):
 
             subscription_type = request.data.get("subscription_type")
             # Properly return the response from the Deposit method
-            return self.Deposit(phone_number, amount,device_token, subscription_type)
+            return self.Deposit(request,phone_number, amount,device_token, subscription_type)
 
         elif kwargs.get("action") == "webhook":
             return self.webhook(request)
@@ -143,7 +143,7 @@ class PaymentClass(APIView):
                 return Response({"error": "Amount is required."}, status=status.HTTP_400_BAD_REQUEST)
             amount=request.data.get('amount')
             # print(amount)
-            return self.CashOut(amount)
+            return self.CashOut(request,amount)
         
         else:
             return Response({"message": "Invalid action"}, status=status.HTTP_400_BAD_REQUEST)

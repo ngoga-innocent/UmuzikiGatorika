@@ -133,10 +133,12 @@
                          alert('Cashout successful');
                          location.reload();
                      }else {
+                            console.log(response);
                          alert('Failed to cash out');
                      }
                  },
                  error: function(xhr, status, error){
+                    console.log(error);
                      alert('Failed to cash out');
                 }
              });
