@@ -39,7 +39,7 @@ class Adverts(APIView):
             return Response({"details":serializer.errors},status=status.HTTP_400_BAD_REQUEST)    
 class Trending(APIView):
     def get(self,request):
-        trending=TrendingSongs.objects.all()
+        trending=TrendingSongs.objects.all().order_by('-created_at')
         serializer=TrendingSerializer(trending,context={'request':request},many=True)
         return Response({'trending':serializer.data},status=status.HTTP_200_OK)
     
