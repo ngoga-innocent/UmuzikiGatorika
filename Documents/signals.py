@@ -13,5 +13,5 @@ def SendNotification(sender,instance,created,**kwargs):
 @receiver(post_save,sender=Request)
 def SendRequestNotification(sender,instance,created,**kwargs):
     if created:
-        send_to_allDevice("New Request",f"A new request has been made" + instance.name,{"url":"umuzikigatorika://requests"})
+        send_to_allDevice("New Request",f" " + instance.name,{"url":"umuzikigatorika://requests"})
         # Send notification to user        
