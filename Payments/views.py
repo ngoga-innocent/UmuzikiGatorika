@@ -27,7 +27,7 @@ class PaymentClass(APIView):
         return response.json()
     def Deposit(self, phone_number,amount, device_token, subscription_type=None):
         url = "https://payments.paypack.rw/api/transactions/cashin"
-        print(f"Phone Number: {phone_number}, Device Token: {device_token}")
+        # print(f"Phone Number: {phone_number}, Device Token: {device_token}")
         
         payload = json.dumps({
             "amount": amount,
@@ -42,8 +42,8 @@ class PaymentClass(APIView):
 
         try:
             response = requests.post(url, headers=headers, data=payload)
-            print(f"Response Status Code: {response.status_code}")
-            print(f"Response Body: {response.text}")
+            # print(f"Response Status Code: {response.status_code}")
+            # print(f"Response Body: {response.text}")
 
             if response.status_code == 200:
                 response_data = response.json()
@@ -61,7 +61,7 @@ class PaymentClass(APIView):
                     paid_number=phone_number
                     # subscription_type=subscription_type
                 )
-                    print(payment)
+                    # print(payment)
                     payment.save()
                     return Response({"response": "Saved Successfully"}, status=status.HTTP_200_OK)
                 except Exception as e:

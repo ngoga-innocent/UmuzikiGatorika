@@ -1,6 +1,7 @@
 from django.db import models
 import uuid
 from django.utils import timezone
+from datetime import timedelta
 # Create your models here.
 class Subscriptions(models.Model):
     subscription_type_choice=(
@@ -41,4 +42,19 @@ class Payment(models.Model):
     reference_key=models.CharField(max_length=255)
     created_at=models.DateTimeField(default=timezone.now)
     def __str__(self):
-        return f''+self.reference_key    
+        return f''+self.reference_key
+    def is_month_over(self):
+        """
+        Checks if a month has passed since the last payment for this device_tokem.
+        """
+        last_payment = Payment.objects.filter(
+            device_tokem=self.device_tokem,
+            payment_status='completed'
+        ).order_by('-created_at').first()
+        
+        if not last_payment:
+            return True  # No payments found, assume the month is over
+        
+        # Check if 30 days have passed since the last payment
+        one_month_ago = timezone.now() - timedelta(days=30)
+        return last_payment.created_at < one_month_ago    

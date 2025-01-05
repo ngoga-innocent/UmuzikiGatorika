@@ -9,7 +9,7 @@ from rest_framework import status
 from django.db.models import Q
 from django.forms.models import model_to_dict
 from rest_framework.permissions import IsAuthenticated,AllowAny
-
+from Payments.models import Payment
 
 
 import random
@@ -87,7 +87,9 @@ class SongCategoryView(APIView):
     def get(self,request):
         category_id = request.GET.get('category_id', None)
         season_id=request.GET.get('season',None)
-        
+        device_token=request.GET.get('device_token',None)
+        # print(device_token)
+        # print(category_id)
         if category_id is not None:
             try:
                 category=SongCategory.objects.get(id=category_id)
@@ -102,11 +104,19 @@ class SongCategoryView(APIView):
                 page_number = request.GET.get("page",1)
                 page_obj = paginator.get_page(page_number)
                 serializer=CopiesSerializer(page_obj,many=True,context={"request":request})
-                    
+                is_month_over=True
+                if device_token:
+                   try:
+                        payment = Payment.objects.filter(device_tokem=device_token).order_by('-created_at').first()
+                        if payment and not payment.is_month_over():
+                            is_month_over=False
+                   except Payment.DoesNotExist:
+                       pass      
                 return Response({   
                                     'songs':serializer.data,
                                     'current_page': page_obj.number,  # Current page number
-                                    'next': page_obj.next_page_number() if page_obj.has_next() else None
+                                    'next': page_obj.next_page_number() if page_obj.has_next() else None,
+                                    'is_month_over':is_month_over
                                 })
             except SongCategory.DoesNotExist:
                 return Response({'detail':'The Category is not found'})
@@ -118,10 +128,19 @@ class SongCategoryView(APIView):
                 page_number = request.GET.get("page",1)
                 page_obj = paginator.get_page(page_number)
                 serializer=CopiesSerializer(page_obj,many=True,context={"request":request})
+                is_month_over=True
+                if device_token:
+                   try:
+                        payment = Payment.objects.filter(device_tokem=device_token).order_by('-created_at').first()
+                        if payment and not payment.is_month_over():
+                            is_month_over=False
+                   except Payment.DoesNotExist:
+                       pass  
                 return Response({   
                                     'songs':serializer.data,
                                     'current_page': page_obj.number,  # Current page number
-                                    'next': page_obj.next_page_number() if page_obj.has_next() else None
+                                    'next': page_obj.next_page_number() if page_obj.has_next() else None,
+                                    'is_month_over':is_month_over
                                 })
             except SongType.DoesNotExist:
                 return Response({'detail':'The Season is not found'})    
@@ -138,7 +157,10 @@ class SongCategoryView(APIView):
         return Response({"detail":serializer.errors},status=status.HTTP_400_BAD_REQUEST)   
 class Search(APIView):
     def get(self,request):
-        search_query = request.GET.get('q', '').strip()  # Get query and strip whitespace
+        search_query = request.GET.get('q', '').strip()
+        device_token=request.GET.get('device_token', '').strip()
+        # print(device_token)
+        # Get query and strip whitespace
     # print("search query:", search_query)
 
         if search_query:  # Check if search_query is provided
@@ -149,9 +171,16 @@ class Search(APIView):
             # If no songs found, return a different message
             if not songs.exists():
                 return Response({'detail': 'No songs found matching the query.'}, status=status.HTTP_404_NOT_FOUND)
-
+            is_month_over=True
+            if device_token:
+                   try:
+                        payment = Payment.objects.filter(device_tokem=device_token).order_by('-created_at').first()
+                        if payment and not payment.is_month_over():
+                            is_month_over=False
+                   except Payment.DoesNotExist:
+                       pass  
             serializer = CopiesSerializer(songs, many=True, context={'request': request})
-            return Response({"songs": serializer.data}, status=status.HTTP_200_OK)
+            return Response({"songs": serializer.data,"is_month_over":is_month_over}, status=status.HTTP_200_OK)
         
         return Response({'detail': 'No search query provided.'}, status=status.HTTP_400_BAD_REQUEST)
 class CreateRepertoire(APIView):
