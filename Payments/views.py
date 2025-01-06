@@ -144,8 +144,8 @@ class PaymentClass(APIView):
                 return Response({"error": "Amount is required."}, status=status.HTTP_400_BAD_REQUEST)
             amount=request.data.get('amount')
             # print(amount)
-            # print(self.CashOut(amount))
-            return self.CashOut(amount)
+            print(self.CashOut(amount))
+            return self.CashOut(self,amount)
         
         else:
             return Response({"message": "Invalid action"}, status=status.HTTP_400_BAD_REQUEST)
