@@ -145,7 +145,7 @@ class PaymentClass(APIView):
             amount=request.data.get('amount')
             # print(amount)
             print(self.CashOut(amount))
-            return self.CashOut(self,amount)
+            return self.CashOut(amount)
         
         else:
             return Response({"message": "Invalid action"}, status=status.HTTP_400_BAD_REQUEST)
