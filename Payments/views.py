@@ -92,8 +92,9 @@ class PaymentClass(APIView):
         'Authorization': f'Bearer {self.authorize()["access"]}',
         'X-Webhook-Mode': 'development'
         }
-
+        # print(payload)
         response = requests.request("POST", url, headers=headers, data=payload)
+        # print(response)
         if response.status_code==200:
             
             try:
@@ -110,7 +111,7 @@ class PaymentClass(APIView):
                         transaction_kind='Cash out'
                         # subscription_type=subscription_type
                     )
-                    # print("withdraw",payment)
+                    print("withdraw",payment)
                     payment.save()
                     return Response({"response": "Saved Successfully","success":True}, status=status.HTTP_200_OK)
             except Exception as e:
@@ -143,7 +144,8 @@ class PaymentClass(APIView):
                 return Response({"error": "Amount is required."}, status=status.HTTP_400_BAD_REQUEST)
             amount=request.data.get('amount')
             # print(amount)
-            return self.CashOut(request,amount)
+            # print(self.CashOut(amount))
+            return self.CashOut(amount)
         
         else:
             return Response({"message": "Invalid action"}, status=status.HTTP_400_BAD_REQUEST)
