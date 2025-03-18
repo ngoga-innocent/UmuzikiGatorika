@@ -3,11 +3,11 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from .models import NotificationModal
-from .serializers import NotificationSeriazer,DeviceSerializer
+from .serializers import NotificationSeriazer,DeviceSerializer,AppAnnouncementSerializer
 from django.db.models import Q
 from rest_framework import status
 from django.db.utils import IntegrityError
-from .models import Device
+from .models import Device,AppAnnouncement
 from .send_Push_Notification import send_email
 from django.conf import settings
 # Create your views here.
@@ -73,3 +73,8 @@ class SendEmail(APIView):
             return Response({"error": f"Failed to send email: {e}"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)        
 
 
+class AppAnnouncementView(APIView):
+    def get(self, request, *args, **kwargs):
+        announcements = AppAnnouncement.objects.all().order_by("-id")[:1]
+        serializer = AppAnnouncementSerializer(announcements, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)

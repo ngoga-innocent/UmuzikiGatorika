@@ -108,10 +108,10 @@ class SongCategoryView(APIView):
                 if device_token:
                    try:
                         payment = Payment.objects.filter(device_tokem=device_token).order_by('-created_at').first()
-                        
+                        print(payment.is_month_over())
                         if payment and not payment.is_month_over():
                             is_month_over=False
-                            print(payment.is_month_over())
+                            
                    except Payment.DoesNotExist:
                        pass      
                 return Response({   

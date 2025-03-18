@@ -6,6 +6,8 @@ import requests
 import json
 from .serializers import PaymentSerializer
 from .models import Payment
+from datetime import timedelta
+from django.utils.timezone import now
 # Create your views here.
 class PaymentClass(APIView):
     BASE_url = "https://payments.paypack.rw"
@@ -172,3 +174,33 @@ class PaymentClass(APIView):
         return Response({"message": "Webhook received"})
     
 
+class CheckDevicePaid(APIView):
+    def get(self, request):
+        print("Received request:", request.GET)  # Debug incoming request
+        
+        device_token = request.GET.get("device_token") or request.data.get("device_token")
+        print("Extracted device_token:", device_token)  # Debug extracted token
+        
+        if not device_token:
+            print("Error: Device token is missing")
+            return Response({"error": "Device token is required."}, status=status.HTTP_400_BAD_REQUEST)
+
+        try:
+            last_payment = Payment.objects.filter(device_tokem=device_token).last()
+            print("Last payment record:", last_payment)  # Debug last payment
+
+            if not last_payment:
+                return Response({"paid": False, "message": "No payment record found. Payment required."}, status=status.HTTP_200_OK)
+
+            one_month_ago = now() - timedelta(days=30)
+            print("One month ago:", one_month_ago)
+            print("Last payment date:", last_payment.created_at)
+
+            if last_payment.created_at >= one_month_ago and last_payment.payment_status =='completed':
+                return Response({"paid": True, "message": "Device is active."}, status=status.HTTP_200_OK)
+            else:
+                return Response({"paid": False, "message": "Payment has expired. Please renew."}, status=status.HTTP_200_OK)
+
+        except Exception as e:
+            print("Error occurred:", str(e))  # Debug unexpected error
+            return Response({"error": "Internal Server Error", "details": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)

@@ -14,6 +14,7 @@ from django.views import View
 from django.contrib.auth.hashers import make_password,check_password
 from django.contrib.auth import login,logout
 from django.contrib.auth import login, authenticate
+from .serializers import UserSerializer
 # Create your views here.
 class RegisterView(APIView):
     def post(self,request):
@@ -84,7 +85,7 @@ def UpdateProfile(request):
         auth_token=request.META.get('HTTP_AUTHORIZATION')
         user = TokenVerification(auth_token)
         if not user:
-            return Response({'detail':'Please Login'})
+            return Response({'detail':'Please Login'},status=status.HTTP_401_UNAUTHORIZED)
         try:
             user_object=Users.objects.get(pk=user.id)
             serializer=UserSerializer(user_object,data=request.data,partial=True)
@@ -96,6 +97,60 @@ def UpdateProfile(request):
                 return Response({"detail":serializer.errors},status=status.HTTP_400_BAD_REQUEST)
         except Users.DoesNotExist:
             return Response({'detail':'user not found'},status=status.HTTP_401_UNAUTHORIZED)
+class ProfileView(APIView):
+    permission_classes = [IsAuthenticated]
+    def get(self, request):
+        user = request.user
+        serializer = UserSerializer(user)
+        return Response({"user":serializer.data})    
+    def put(self, request):
+        """Partially update user profile fields"""
+        try:
+            user = request.user
+            print(request.data)
+            serializer = UserSerializer(user, data=request.data, partial=True)  # Partial update
+            if serializer.is_valid():
+                serializer.save()
+                return Response({"user": serializer.data}, status=status.HTTP_200_OK)
+            print(serializer.errors)
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+        except Exception as e:
+            print(e)
+            return Response(
+                {"error": "Something went wrong", "details": str(e)},
+                status=status.HTTP_500_INTERNAL_SERVER_ERROR
+            )
+    def patch(self, request):
+        """Change user password without using a serializer"""
+        user = request.user
+        data = request.data
+
+        # Extract old and new password
+        old_password = data.get("old_password")
+        new_password = data.get("new_password")
+        # confirm_password = data.get("confirm_password")
+
+        # Validate required fields
+        if not old_password or not new_password:
+            return Response(
+                {"error": "All fields (old_password, new_password) are required"},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+
+        # Check if old password is correct
+        if not user.check_password(old_password):
+            return Response({"error": "Old password is incorrect"}, status=status.HTTP_400_BAD_REQUEST)
+
+        # Check if new password matches confirmation
+        # if new_password != confirm_password:
+        #     return Response({"error": "New passwords do not match"}, status=status.HTTP_400_BAD_REQUEST)
+
+        # Change password and save
+        user.set_password(new_password)
+        user.save()
+
+        return Response({"message": "Password updated successfully"}, status=status.HTTP_200_OK) 
 @api_view(['GET'])
 def GetProfile(request):
     auth_token=request.META.get('HTTP_AUTHORIZATION')
@@ -137,3 +192,34 @@ class WebLogin(View):
         # Log the user in and redirect to home
         login(request, user)
         return redirect('home')
+class ChangePassword(APIView):
+    # print("called")
+    def post(self,request):
+        phone_number = request.data.get("phone_number")
+        print(phone_number)
+        if not phone_number:
+            return Response({"error": "Phone number is required"}, status=400)
+
+        try:
+            user = Users.objects.get(phone_number=phone_number)
+            return Response({"success": "Phone number verified"}, status=200)
+        
+        except Users.DoesNotExist:
+            return Response({"error": "Phone number not found"}, status=404)
+        except Exception as e:
+            print(f"Unexpected error in phone verification: {str(e)}")
+            return Response({"error": "Something went wrong"}, status=500)
+    def patch(self,request):
+        phone_number = request.data.get("phone_number")
+        new_password = request.data.get("new_password")
+
+        if not phone_number or not new_password:
+            return Response({"error": "Phone number and new password required"}, status=400)
+
+        try:
+            user = Users.objects.get(phone_number=phone_number)
+            user.set_password(new_password)
+            user.save()
+            return Response({"success": "Password updated successfully"}, status=200)
+        except Users.DoesNotExist:
+            return Response({"error": "User not found"}, status=404)
