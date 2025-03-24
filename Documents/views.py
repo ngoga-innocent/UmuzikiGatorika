@@ -88,7 +88,7 @@ class SongCategoryView(APIView):
         category_id = request.GET.get('category_id', None)
         season_id=request.GET.get('season',None)
         device_token=request.GET.get('device_token',None)
-        print(device_token)
+        # print(device_token)
         print(category_id)
         if category_id is not None:
             try:
@@ -108,7 +108,7 @@ class SongCategoryView(APIView):
                 if device_token:
                    try:
                         payment = Payment.objects.filter(device_tokem=device_token).order_by('-created_at').first()
-                        print(payment.is_month_over())
+                        print("",payment.is_month_over())
                         if payment and not payment.is_month_over():
                             is_month_over=False
                             

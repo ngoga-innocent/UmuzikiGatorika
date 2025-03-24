@@ -43,6 +43,8 @@ class Payment(models.Model):
     created_at=models.DateTimeField(default=timezone.now)
     def __str__(self):
         return f''+self.reference_key
+    class Meta:
+        ordering=['-created_at']
     def is_month_over(self):
         """
         Checks if a month has passed since the last payment for this device_tokem.
@@ -57,4 +59,5 @@ class Payment(models.Model):
         
         # Check if 30 days have passed since the last payment
         one_month_ago = timezone.now() - timedelta(days=30)
+        print(one_month_ago)
         return last_payment.created_at < one_month_ago    

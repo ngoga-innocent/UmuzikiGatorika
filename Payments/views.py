@@ -176,10 +176,10 @@ class PaymentClass(APIView):
 
 class CheckDevicePaid(APIView):
     def get(self, request):
-        print("Received request:", request.GET)  # Debug incoming request
+        # print("Received request:", request.GET)  # Debug incoming request
         
         device_token = request.GET.get("device_token") or request.data.get("device_token")
-        print("Extracted device_token:", device_token)  # Debug extracted token
+        # print("Extracted device_token:", device_token)  # Debug extracted token
         
         if not device_token:
             print("Error: Device token is missing")
@@ -193,8 +193,8 @@ class CheckDevicePaid(APIView):
                 return Response({"paid": False, "message": "No payment record found. Payment required."}, status=status.HTTP_200_OK)
 
             one_month_ago = now() - timedelta(days=30)
-            print("One month ago:", one_month_ago)
-            print("Last payment date:", last_payment.created_at)
+            # print("One month ago:", one_month_ago)
+            # print("Last payment date:", last_payment.created_at)
 
             if last_payment.created_at >= one_month_ago and last_payment.payment_status =='completed':
                 return Response({"paid": True, "message": "Device is active."}, status=status.HTTP_200_OK)
