@@ -88,8 +88,8 @@ class SongCategoryView(APIView):
         category_id = request.GET.get('category_id', None)
         season_id=request.GET.get('season',None)
         device_token=request.GET.get('device_token',None)
-        # print(device_token)
-        print(category_id)
+        print("sONG category token",device_token)
+        print("category id",category_id)
         if category_id is not None:
             try:
                 category=SongCategory.objects.get(id=category_id)
@@ -113,7 +113,9 @@ class SongCategoryView(APIView):
                             is_month_over=False
                             
                    except Payment.DoesNotExist:
-                       pass      
+                       pass
+                   except Exception as e:
+                       print("error",e)      
                 return Response({   
                                     'songs':serializer.data,
                                     'current_page': page_obj.number,  # Current page number
@@ -122,7 +124,9 @@ class SongCategoryView(APIView):
                                 })
             except SongCategory.DoesNotExist:
                 return Response({'detail':'The Category is not found'})
-        if season_id is not None:
+            except Exception as e:
+                print("song category error",e)
+        elif season_id is not None:
             try:
                 season=SongType.objects.get(id=season_id)
                 types=Copies.objects.filter(category=season).order_by('name')
@@ -137,7 +141,9 @@ class SongCategoryView(APIView):
                         if payment and not payment.is_month_over():
                             is_month_over=False
                    except Payment.DoesNotExist:
-                       pass  
+                       pass 
+                   except Exception as e:
+                       print("season error",e) 
                 return Response({   
                                     'songs':serializer.data,
                                     'current_page': page_obj.number,  # Current page number
