@@ -12490,3 +12490,192 @@ Traceback (most recent call last):
            ^^^^^^^^
 AssertionError: .accepted_renderer not set on Response
 "GET /account/TokenVerification HTTP/1.1" 500 69789
+The number of GET/POST parameters exceeded settings.DATA_UPLOAD_MAX_NUMBER_FIELDS.
+Traceback (most recent call last):
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/http/request.py", line 521, in __init__
+    for key, value in parse_qsl(query_string, **parse_qsl_kwargs):
+                      ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/Cellar/python@3.13/3.13.1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/urllib/parse.py", line 800, in parse_qsl
+    raise ValueError('Max number of fields exceeded')
+ValueError: Max number of fields exceeded
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/core/handlers/base.py", line 185, in _get_response
+    response = middleware_method(
+        request, callback, callback_args, callback_kwargs
+    )
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/middleware/csrf.py", line 465, in process_view
+    self._check_token(request)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/middleware/csrf.py", line 368, in _check_token
+    request_csrf_token = request.POST.get("csrfmiddlewaretoken", "")
+                         ^^^^^^^^^^^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/core/handlers/wsgi.py", line 93, in _get_post
+    self._load_post_and_files()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/http/request.py", line 391, in _load_post_and_files
+    self._post = QueryDict(self.body, encoding="utf-8")
+                 ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/http/request.py", line 528, in __init__
+    raise TooManyFieldsSent(
+    ...<2 lines>...
+    ) from e
+django.core.exceptions.TooManyFieldsSent: The number of GET/POST parameters exceeded settings.DATA_UPLOAD_MAX_NUMBER_FIELDS.
+Internal Server Error: /account/TokenVerification
+Traceback (most recent call last):
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/rest_framework/response.py", line 59, in rendered_content
+    assert renderer, ".accepted_renderer not set on Response"
+           ^^^^^^^^
+AssertionError: .accepted_renderer not set on Response
+"GET /account/TokenVerification HTTP/1.1" 500 69596
+Internal Server Error: /account/TokenVerification
+Traceback (most recent call last):
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/rest_framework/response.py", line 59, in rendered_content
+    assert renderer, ".accepted_renderer not set on Response"
+           ^^^^^^^^
+AssertionError: .accepted_renderer not set on Response
+"GET /account/TokenVerification HTTP/1.1" 500 69596
+Internal Server Error: /account/TokenVerification
+Traceback (most recent call last):
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/rest_framework/response.py", line 59, in rendered_content
+    assert renderer, ".accepted_renderer not set on Response"
+           ^^^^^^^^
+AssertionError: .accepted_renderer not set on Response
+"GET /account/TokenVerification HTTP/1.1" 500 69596
+Internal Server Error: /account/TokenVerification
+Traceback (most recent call last):
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/rest_framework/response.py", line 59, in rendered_content
+    assert renderer, ".accepted_renderer not set on Response"
+           ^^^^^^^^
+AssertionError: .accepted_renderer not set on Response
+"GET /account/TokenVerification HTTP/1.1" 500 69596
+Internal Server Error: /account/TokenVerification
+Traceback (most recent call last):
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/rest_framework/response.py", line 59, in rendered_content
+    assert renderer, ".accepted_renderer not set on Response"
+           ^^^^^^^^
+AssertionError: .accepted_renderer not set on Response
+"GET /account/TokenVerification HTTP/1.1" 500 69596
+Internal Server Error: /account/TokenVerification
+Traceback (most recent call last):
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/rest_framework/response.py", line 59, in rendered_content
+    assert renderer, ".accepted_renderer not set on Response"
+           ^^^^^^^^
+AssertionError: .accepted_renderer not set on Response
+"GET /account/TokenVerification HTTP/1.1" 500 69596
+Internal Server Error: /account/TokenVerification
+Traceback (most recent call last):
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/rest_framework/response.py", line 59, in rendered_content
+    assert renderer, ".accepted_renderer not set on Response"
+           ^^^^^^^^
+AssertionError: .accepted_renderer not set on Response
+"GET /account/TokenVerification HTTP/1.1" 500 69596
+Internal Server Error: /account/TokenVerification
+Traceback (most recent call last):
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/rest_framework/response.py", line 59, in rendered_content
+    assert renderer, ".accepted_renderer not set on Response"
+           ^^^^^^^^
+AssertionError: .accepted_renderer not set on Response
+"GET /account/TokenVerification HTTP/1.1" 500 69596
+Internal Server Error: /account/TokenVerification
+Traceback (most recent call last):
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/rest_framework/response.py", line 59, in rendered_content
+    assert renderer, ".accepted_renderer not set on Response"
+           ^^^^^^^^
+AssertionError: .accepted_renderer not set on Response
+"GET /account/TokenVerification HTTP/1.1" 500 69596
+Internal Server Error: /account/TokenVerification
+Traceback (most recent call last):
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/rest_framework/response.py", line 59, in rendered_content
+    assert renderer, ".accepted_renderer not set on Response"
+           ^^^^^^^^
+AssertionError: .accepted_renderer not set on Response
+"GET /account/TokenVerification HTTP/1.1" 500 69596
+Internal Server Error: /account/TokenVerification
+Traceback (most recent call last):
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/rest_framework/response.py", line 59, in rendered_content
+    assert renderer, ".accepted_renderer not set on Response"
+           ^^^^^^^^
+AssertionError: .accepted_renderer not set on Response
+"GET /account/TokenVerification HTTP/1.1" 500 69596

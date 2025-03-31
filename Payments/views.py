@@ -130,7 +130,7 @@ class PaymentClass(APIView):
             phone_number = request.data.get('phone_number')
             device_token = request.data.get('device_token')
             amount=request.data.get('amount')
-
+            print("from payment",device_token)
             if not phone_number or not device_token:
                 return Response({"error": "Phone number and device token are required."}, status=status.HTTP_400_BAD_REQUEST)
 
@@ -179,14 +179,14 @@ class CheckDevicePaid(APIView):
         # print("Received request:", request.GET)  # Debug incoming request
         
         device_token = request.GET.get("device_token") or request.data.get("device_token")
-        # print("Extracted device_token:", device_token)  # Debug extracted token
+        print("Extracted device_token:", device_token)  # Debug extracted token
         
         if not device_token:
             print("Error: Device token is missing")
             return Response({"error": "Device token is required."}, status=status.HTTP_400_BAD_REQUEST)
 
         try:
-            last_payment = Payment.objects.filter(device_tokem=device_token).last()
+            last_payment = Payment.objects.filter(device_tokem=device_token,payment_status='completed').first()
             print("Last payment record:", last_payment)  # Debug last payment
 
             if not last_payment:

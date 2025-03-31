@@ -10,7 +10,8 @@ from django.db.models import Q
 from django.forms.models import model_to_dict
 from rest_framework.permissions import IsAuthenticated,AllowAny
 from Payments.models import Payment
-
+from datetime import timedelta
+from django.utils.timezone import now
 
 import random
 # Create your views here.
@@ -107,10 +108,15 @@ class SongCategoryView(APIView):
                 is_month_over=True
                 if device_token:
                    try:
-                        payment = Payment.objects.filter(device_tokem=device_token).order_by('-created_at').first()
-                        print("",payment.is_month_over())
-                        if payment and not payment.is_month_over():
-                            is_month_over=False
+                        payment = Payment.objects.filter(device_tokem=device_token,payment_status='completed').order_by('-created_at').first()
+
+                        # print("",payment.is_month_over())
+                        print(payment)
+                        one_month_ago = now() - timedelta(days=30)
+                        # print(payment.created_at >= one_month_ago)
+
+                        if payment and payment.created_at >= one_month_ago:
+                            is_month_over=True
                             
                    except Payment.DoesNotExist:
                        pass
