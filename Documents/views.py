@@ -108,7 +108,7 @@ class SongCategoryView(APIView):
                 is_month_over=True
                 if device_token:
                    try:
-                        payment = Payment.objects.filter(device_tokem=device_token,payment_status='completed').order_by('-created_at').first()
+                        payment = Payment.objects.filter(device_tokem=device_token,payment_status='successful').order_by('-created_at').first()
 
                         # print("",payment.is_month_over())
                         print(payment)

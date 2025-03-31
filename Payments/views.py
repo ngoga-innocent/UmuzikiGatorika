@@ -186,17 +186,18 @@ class CheckDevicePaid(APIView):
             return Response({"error": "Device token is required."}, status=status.HTTP_400_BAD_REQUEST)
 
         try:
-            last_payment = Payment.objects.filter(device_tokem=device_token,payment_status='completed').first()
+            last_payment = Payment.objects.filter(device_tokem=device_token, payment_status='successful').order_by('-created_at').first()
+
             print("Last payment record:", last_payment)  # Debug last payment
 
             if not last_payment:
                 return Response({"paid": False, "message": "No payment record found. Payment required."}, status=status.HTTP_200_OK)
 
             one_month_ago = now() - timedelta(days=30)
-            # print("One month ago:", one_month_ago)
-            # print("Last payment date:", last_payment.created_at)
-
-            if last_payment.created_at >= one_month_ago and last_payment.payment_status =='completed':
+            print("One month ago:", one_month_ago)
+            print("Last payment date:", last_payment.created_at)
+            print(last_payment.created_at >= one_month_ago)
+            if last_payment.created_at >= one_month_ago and last_payment.payment_status =='successful':
                 return Response({"paid": True, "message": "Device is active."}, status=status.HTTP_200_OK)
             else:
                 return Response({"paid": False, "message": "Payment has expired. Please renew."}, status=status.HTTP_200_OK)
