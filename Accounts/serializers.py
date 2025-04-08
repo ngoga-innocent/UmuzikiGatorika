@@ -13,7 +13,7 @@ class UserSerializer(serializers.ModelSerializer):
             "first_name":{"required":False},
             "last_name":{"required":False},
             "profile":{"required":False,"allow_null":True},
-            "phone_number":{"required":False}
+            "phone_number":{"required":False,"allow_blank":True,"allow_null":True}
         }
 
         # def create(self,validated_data):

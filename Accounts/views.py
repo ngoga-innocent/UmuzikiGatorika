@@ -26,12 +26,16 @@ class RegisterView(APIView):
             user.save()
             print(serializer.data)
             return Response(serializer.data)
-        error_messages = " ".join(
-            [f"{key}: {', '.join(value)}" for key, value in serializer.errors.items()]
-        )
-        print(serializer.errors)
-        print(error_messages)
-        return Response({"error": error_messages}, status=status.HTTP_400_BAD_REQUEST)
+        else:
+            print("error",serializer.errors)
+            error_messages = " ".join(
+                [f"{key}: {', '.join(value)}" for key, value in serializer.errors.items()]
+            )
+            
+            print("error",serializer.errors)
+            print(error_messages)
+            return Response({"error": error_messages}, status=status.HTTP_400_BAD_REQUEST)
+    
         
 class LoginView(APIView):
     def post(self,request):
@@ -151,6 +155,23 @@ class ProfileView(APIView):
         user.save()
 
         return Response({"message": "Password updated successfully"}, status=status.HTTP_200_OK) 
+    def delete(self,request):
+        # user=request.user
+        if request.user:
+            user=get_object_or_404(Users,id=request.user.id)
+            print("users",user)
+            if user:
+                try:
+                    user.delete()
+                except Exception as e:
+                    print(e)
+                    return Response({"message":"Failed to Delete the account"},status=401)
+                return Response({"message": "User deleted successfully"}, status=status.HTTP_200_OK)
+            else:
+                return Response({"error": "User not found"}, status=status.HTTP_404_NOT_FOUND)
+        else:
+            return Response({"error": "User not found"}, status=status.HTTP_404_NOT_FOUND)
+        
 @api_view(['GET'])
 def GetProfile(request):
     auth_token=request.META.get('HTTP_AUTHORIZATION')
