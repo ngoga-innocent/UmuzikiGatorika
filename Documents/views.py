@@ -2,7 +2,7 @@ from django.shortcuts import render,get_object_or_404
 from django.http import JsonResponse
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from .models import Copies,SongType,SongCategory
+from .models import Copies,SongType,SongCategory,AppVersion
 from.serializers import CopiesSerializer,SongTypeSerializer,SongCategorySerializer,RequestDocumentSerializer
 from django.core.paginator import Paginator
 from rest_framework import status
@@ -12,7 +12,7 @@ from rest_framework.permissions import IsAuthenticated,AllowAny
 from Payments.models import Payment
 from datetime import timedelta
 from django.utils.timezone import now
-
+from Notifications.send_Push_Notification import send_push_notification
 import random
 # Create your views here.
 class CopiesClass(APIView):
@@ -72,6 +72,7 @@ class CopiesClass(APIView):
 class SongTypeClass(APIView):
     def get(self,request):
         type_id = request.query_params.get("type_id") 
+        
         if type_id is not None:
             try:
                 type=SongType.objects.get(id=type_id)
@@ -91,6 +92,7 @@ class SongCategoryView(APIView):
         device_token=request.GET.get('device_token',None)
         print("sONG category token",device_token)
         print("category id",category_id)
+       
         if category_id is not None:
             try:
                 category=SongCategory.objects.get(id=category_id)

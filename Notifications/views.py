@@ -10,6 +10,8 @@ from django.db.utils import IntegrityError
 from .models import Device,AppAnnouncement
 from .send_Push_Notification import send_email
 from django.conf import settings
+from .send_Push_Notification import send_push_notification
+from Documents.models import AppVersion
 # Create your views here.
 
 class NotificationView(APIView):
@@ -41,22 +43,42 @@ class NotificationView(APIView):
             return Response({"details":"Notification deleted Successfully"})
         except NotificationModal.DoesNotExist:
             return Response({"error":"provided notification does not exist"},status=404)
+
 class RegisterDevice(APIView):
     def post(self, request):
         token = request.data.get('token')
-
+        app_version = request.data.get('app_version')
+        print(app_version)
         if not token:
             return Response({"error": "Token is required"}, status=status.HTTP_400_BAD_REQUEST)
 
         try:
             device, created = Device.objects.get_or_create(token=token)
+
+            # Check app version and send update notification if needed
+            latest_version = AppVersion.objects.first()
+            print(latest_version)
+            if not app_version:
+                send_push_notification(
+                    token,
+                    "Update App",
+                    "Application uri gukoresha yarangiye. Kora 'update' kugira ngo ukomeze kuyikoresha."
+                )
+            elif latest_version and app_version > latest_version.version_number:
+                send_push_notification(
+                    token,
+                    "Update App",
+                    "Hari version nshya ya application. Kora 'update' kugira ngo ukomeze kuyikoresha neza."
+                )
+
             if created:
                 return Response({"message": "Device registered successfully"}, status=status.HTTP_201_CREATED)
             else:
                 return Response({"message": "Device already registered"}, status=status.HTTP_200_OK)
+
         except IntegrityError:
             return Response({"error": "Device token must be unique"}, status=status.HTTP_400_BAD_REQUEST)
-        
+            
 class SendEmail(APIView):
     def post(self, request):
         email = request.data.get('email')
