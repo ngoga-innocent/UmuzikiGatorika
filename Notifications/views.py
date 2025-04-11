@@ -57,21 +57,21 @@ class RegisterDevice(APIView):
 
             # Check app version and send update notification if needed
             latest_version = AppVersion.objects.first()
-            print(latest_version)
-            # if not app_version:
-            #     send_push_notification(
-            #         token,
-            #         "Update App",
-            #         "Application uri gukoresha yarangiye. Kora 'update' kugira ngo ukomeze kuyikoresha.",
-            #         {"url":"https://play.google.com/store/apps/details?id=com.SailorPin.MusicSheets"}
-            #     )
-            # elif latest_version and app_version > latest_version.version_number:
-            #     send_push_notification(
-            #         token,
-            #         "Update App",
-            #         "Hari version nshya ya application. Kora 'update' kugira ngo ukomeze kuyikoresha neza.",
-            #         {"url":"https://play.google.com/store/apps/details?id=com.SailorPin.MusicSheets"}
-            #     )
+            # print(latest_version)
+            if not app_version:
+                send_push_notification(
+                    token,
+                    "Update App",
+                    "Application uri gukoresha yarangiye. Kora 'update' kugira ngo ukomeze kuyikoresha.",
+                    {"url":"https://play.google.com/store/apps/details?id=com.SailorPin.MusicSheets"}
+                )
+            elif latest_version and app_version > latest_version.version_number:
+                send_push_notification(
+                    token,
+                    "Update App",
+                    "Hari version nshya ya application. Kora 'update' kugira ngo ukomeze kuyikoresha neza.",
+                    {"url":"https://play.google.com/store/apps/details?id=com.SailorPin.MusicSheets"}
+               )
 
             if created:
                 return Response({"message": "Device registered successfully"}, status=status.HTTP_201_CREATED)
