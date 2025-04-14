@@ -10,7 +10,7 @@ from django.db.utils import IntegrityError
 from .models import Device,AppAnnouncement
 from .send_Push_Notification import send_email
 from django.conf import settings
-from .send_Push_Notification import send_push_notification
+from .send_Push_Notification import send_push_notification,send_to_allDevice
 from Documents.models import AppVersion
 # Create your views here.
 
@@ -48,7 +48,7 @@ class RegisterDevice(APIView):
     def post(self, request):
         token = request.data.get('token')
         app_version = request.data.get('app_version')
-        print(app_version)
+        print("app version",app_version)
         if not token:
             return Response({"error": "Token is required"}, status=status.HTTP_400_BAD_REQUEST)
 
@@ -102,3 +102,12 @@ class AppAnnouncementView(APIView):
         announcements = AppAnnouncement.objects.all().order_by("-id")[:1]
         serializer = AppAnnouncementSerializer(announcements, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
+class ChatNotification(APIView):
+    def post(self, request):
+        sender=request.data.get('sender')
+        message=request.data.get('message')
+        
+        send_to_allDevice(sender,message,{"url":"umuzikiGatorika://chat"})
+        return Response({"message":"Notification sent"})
+
+        
