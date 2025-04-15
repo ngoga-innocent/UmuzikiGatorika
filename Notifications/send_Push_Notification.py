@@ -42,14 +42,41 @@ def send_push_notification(expo_push_token, title, body, data=None, retries=3, d
 
     return None  # Return None if all retries failed
 
-def send_to_allDevice(title,body,data=None):
-    devices=Device.objects.all()
-    for device in devices:
-        if device.token:  # Ensure the device has a valid token
-            try:
-                send_push_notification(device.token, title, body, data)
-            except Exception as e:
-                print(f"Failed to send notification to device {device.id} {device.token}: {e}")
+def send_to_allDevice(title, body, data=None):
+    devices = Device.objects.all()
+    tokens = [device.token for device in devices if device.token]
+
+    chunk_size = 100  # Expo recommends up to 100 per batch
+    for i in range(0, len(tokens), chunk_size):
+        chunk = tokens[i:i + chunk_size]
+        payload = [{
+            "to": token,
+            "sound": "default",
+            "title": title,
+            "body": body,
+            "data": data or {"url": "umuzikiGatorika://home"}
+        } for token in chunk]
+
+        try:
+            response = requests.post(
+                "https://exp.host/--/api/v2/push/send",
+                json=payload,
+                headers={
+                    "Accept": "application/json",
+                    "Accept-Encoding": "gzip, deflate",
+                    "Content-Type": "application/json"
+                },
+                timeout=10
+            )
+            if response.status_code == 200:
+                print(f"Batch {i//chunk_size + 1} sent successfully.")
+            else:
+                print(f"Batch error: {response.status_code} - {response.text}")
+        except RequestException as e:
+            print(f"Failed to send batch {i//chunk_size + 1}: {e}")
+        
+        time.sleep(1)  # Optional: delay between chunks to ease server load
+
 def send_email(title,message,receiver):
     html_message = render_to_string('email.html', {'title': title,'message': message})
     plain_message = strip_tags(html_message)
