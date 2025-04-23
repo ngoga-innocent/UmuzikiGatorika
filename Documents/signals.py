@@ -11,8 +11,8 @@ def SendNotification(sender,instance,created,**kwargs):
         if instance.checked:
             send_to_allDevice("Indirimbo nshya ishyizwe kuri application",f"Ntucikwe n'iyi ndirimbo " + instance.name + " Ubu mushobora kuyidownloadinga",{"url":"umuzikigatorika://categories"})
         # Send notification to user
-@receiver(post_save,sender=Request)
-def SendRequestNotification(sender,instance,created,**kwargs):
-    if created:
-        send_to_allDevice("Gusaba Indirimbo",f"Hari umukristu ucyeneye " + instance.name + f" yishyire kuri application Nimba uyifite",{"url":"umuzikigatorika://requests"})
+# @receiver(post_save,sender=Request)
+# def SendRequestNotification(sender,instance,created,**kwargs):
+#     if created:
+#         send_to_allDevice("Gusaba Indirimbo",f"Hari umukristu ucyeneye " + instance.name + f" yishyire kuri application Nimba uyifite",{"url":"umuzikigatorika://requests"})
         # Send notification to user        
