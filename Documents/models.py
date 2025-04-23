@@ -26,7 +26,7 @@ def song_upload_path(instance, filename):
     # Replace spaces with underscores and ensure lowercase
     category_name = category_name.replace(' ', '_').lower()
     # Generate a unique filename
-    filename = f"{uuid.uuid4().hex}-{filename}"
+    filename = f"umuziki gatolika-{uuid.uuid4().hex}-{filename}"
     # Return the upload path
     return os.path.join('songs_docs', category_name,filename)
 class Copies(models.Model):
