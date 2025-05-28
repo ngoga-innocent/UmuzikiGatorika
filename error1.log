@@ -15711,3 +15711,222 @@ Traceback (most recent call last):
            ^^^^^^^^
 AssertionError: .accepted_renderer not set on Response
 "GET /account/TokenVerification HTTP/1.1" 500 69120
+Internal Server Error: /account/TokenVerification
+Traceback (most recent call last):
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/rest_framework/response.py", line 59, in rendered_content
+    assert renderer, ".accepted_renderer not set on Response"
+           ^^^^^^^^
+AssertionError: .accepted_renderer not set on Response
+"GET /account/TokenVerification HTTP/1.1" 500 69052
+Internal Server Error: /account/TokenVerification
+Traceback (most recent call last):
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/rest_framework/response.py", line 59, in rendered_content
+    assert renderer, ".accepted_renderer not set on Response"
+           ^^^^^^^^
+AssertionError: .accepted_renderer not set on Response
+"GET /account/TokenVerification HTTP/1.1" 500 69052
+Internal Server Error: /payments/
+Traceback (most recent call last):
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/urllib3/connection.py", line 174, in _new_conn
+    conn = connection.create_connection(
+        (self._dns_host, self.port), self.timeout, **extra_kw
+    )
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/urllib3/util/connection.py", line 72, in create_connection
+    for res in socket.getaddrinfo(host, port, family, socket.SOCK_STREAM):
+               ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/Cellar/python@3.13/3.13.1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/socket.py", line 975, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+               ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+socket.gaierror: [Errno 8] nodename nor servname provided, or not known
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 716, in urlopen
+    httplib_response = self._make_request(
+        conn,
+    ...<5 lines>...
+        chunked=chunked,
+    )
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 404, in _make_request
+    self._validate_conn(conn)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 1061, in _validate_conn
+    conn.connect()
+    ~~~~~~~~~~~~^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/urllib3/connection.py", line 363, in connect
+    self.sock = conn = self._new_conn()
+                       ~~~~~~~~~~~~~~^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/urllib3/connection.py", line 186, in _new_conn
+    raise NewConnectionError(
+        self, "Failed to establish a new connection: %s" % e
+    )
+urllib3.exceptions.NewConnectionError: <urllib3.connection.HTTPSConnection object at 0x10a257d90>: Failed to establish a new connection: [Errno 8] nodename nor servname provided, or not known
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/requests/adapters.py", line 439, in send
+    resp = conn.urlopen(
+        method=request.method,
+    ...<8 lines>...
+        timeout=timeout
+    )
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 802, in urlopen
+    retries = retries.increment(
+        method, url, error=e, _pool=self, _stacktrace=sys.exc_info()[2]
+    )
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/urllib3/util/retry.py", line 594, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='payments.paypack.rw', port=443): Max retries exceeded with url: /api/auth/agents/authorize (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x10a257d90>: Failed to establish a new connection: [Errno 8] nodename nor servname provided, or not known'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/ngoga/Desktop/Web/Apis/CatholicSong-main/Payments/views.py", line 139, in post
+    return self.Deposit(phone_number, amount,device_token, subscription_type)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ngoga/Desktop/Web/Apis/CatholicSong-main/Payments/views.py", line 41, in Deposit
+    'Authorization': f'Bearer {self.authorize()["access"]}',
+                               ~~~~~~~~~~~~~~^^
+  File "/Users/ngoga/Desktop/Web/Apis/CatholicSong-main/Payments/views.py", line 27, in authorize
+    response = requests.request("POST", url, headers=headers, data=payload)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/requests/api.py", line 61, in request
+    return session.request(method=method, url=url, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/requests/sessions.py", line 542, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/requests/sessions.py", line 655, in send
+    r = adapter.send(request, **kwargs)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/requests/adapters.py", line 516, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPSConnectionPool(host='payments.paypack.rw', port=443): Max retries exceeded with url: /api/auth/agents/authorize (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x10a257d90>: Failed to establish a new connection: [Errno 8] nodename nor servname provided, or not known'))
+"POST /payments/ HTTP/1.1" 500 188218
+Internal Server Error: /account/TokenVerification
+Traceback (most recent call last):
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/rest_framework/response.py", line 59, in rendered_content
+    assert renderer, ".accepted_renderer not set on Response"
+           ^^^^^^^^
+AssertionError: .accepted_renderer not set on Response
+"GET /account/TokenVerification HTTP/1.1" 500 69533
+Internal Server Error: /account/TokenVerification
+Traceback (most recent call last):
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/rest_framework/response.py", line 59, in rendered_content
+    assert renderer, ".accepted_renderer not set on Response"
+           ^^^^^^^^
+AssertionError: .accepted_renderer not set on Response
+"GET /account/TokenVerification HTTP/1.1" 500 69053
+Internal Server Error: /.well-known/assetlinks.json
+Traceback (most recent call last):
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/template/response.py", line 90, in rendered_content
+    template = self.resolve_template(self.template_name)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/template/response.py", line 72, in resolve_template
+    return select_template(template, using=self.using)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/template/loader.py", line 47, in select_template
+    raise TemplateDoesNotExist(", ".join(template_name_list), chain=chain)
+django.template.exceptions.TemplateDoesNotExist: assetlinks.json
+"GET /.well-known/assetlinks.json HTTP/1.1" 500 83401
+Internal Server Error: /.well-known/assetlinks.json
+Traceback (most recent call last):
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/template/response.py", line 90, in rendered_content
+    template = self.resolve_template(self.template_name)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/template/response.py", line 72, in resolve_template
+    return select_template(template, using=self.using)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/template/loader.py", line 47, in select_template
+    raise TemplateDoesNotExist(", ".join(template_name_list), chain=chain)
+django.template.exceptions.TemplateDoesNotExist: assetlinks.json
+"GET /.well-known/assetlinks.json HTTP/1.1" 500 82454
+Internal Server Error: /.well-known/assetlinks.json
+Traceback (most recent call last):
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/template/response.py", line 90, in rendered_content
+    template = self.resolve_template(self.template_name)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/template/response.py", line 72, in resolve_template
+    return select_template(template, using=self.using)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/template/loader.py", line 47, in select_template
+    raise TemplateDoesNotExist(", ".join(template_name_list), chain=chain)
+django.template.exceptions.TemplateDoesNotExist: assetlinks.json
+"GET /.well-known/assetlinks.json HTTP/1.1" 500 83252
+Internal Server Error: /.well-known/assetlinks.json
+Traceback (most recent call last):
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/template/response.py", line 90, in rendered_content
+    template = self.resolve_template(self.template_name)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/template/response.py", line 72, in resolve_template
+    return select_template(template, using=self.using)
+  File "/Users/ngoga/Desktop/Web/Apis/envs/catholicSongenv/lib/python3.13/site-packages/django/template/loader.py", line 47, in select_template
+    raise TemplateDoesNotExist(", ".join(template_name_list), chain=chain)
+django.template.exceptions.TemplateDoesNotExist: assetlinks.json
+"GET /.well-known/assetlinks.json HTTP/1.1" 500 82454

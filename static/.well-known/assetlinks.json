@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.SailorPin.MusicSheets",
+      "sha256_cert_fingerprints": [
+        "D3:5B:53:7E:6F:DD:A9:4C:8B:D2:BC:7B:C1:CC:AE:4F:14:C4:7C:23:24:26:66:1B:95:7D:8C:DA:AA:01:85:B8"
+      ]
+    }
+  }
+]

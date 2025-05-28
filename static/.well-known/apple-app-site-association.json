@@ -1,0 +1,11 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "ngogainnocent1@gmail.com.SailorPin.MusicSheets",
+        "paths": [ "/reel/*", "/records/*", "/home/*" ]
+      }
+    ]
+  }
+}

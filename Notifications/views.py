@@ -62,14 +62,14 @@ class RegisterDevice(APIView):
                 send_push_notification(
                     token,
                     "Update App",
-                    "Application uri gukoresha yarangiye. Kora 'update' kugira ngo ukomeze kuyikoresha.",
+                    "Muraho neza, turabamenyesha ko version mukoresha ya 'Umuziki Gatolika' yamaze gusaza. Mugane appStore  mushake umuziki gatolika mukande 'update' kugira  ngo mudownloadinge version nshya y’iyi porogaramu ifite udushya twinshi harimo n'ahantu ho kuganira. Murakoze cyane.",
                     {"url":"https://play.google.com/store/apps/details?id=com.SailorPin.MusicSheets"}
                 )
             elif latest_version and app_version > latest_version.version_number:
                 send_push_notification(
                     token,
-                    "Update App",
-                    "Hari version nshya ya application. Kora 'update' kugira ngo ukomeze kuyikoresha neza.",
+                    "Application Ishaje",
+                    "Muraho neza, turabamenyesha ko version mukoresha ya 'Umuziki Gatolika' yamaze gusaza. Mugane playstore mushake umuziki gatolika mukande 'update' kugira  ngo mudownloadinge version nshya y’iyi porogaramu ifite udushya twinshi harimo n'ahantu ho kuganira. Murakoze cyane.",
                     {"url":"https://play.google.com/store/apps/details?id=com.SailorPin.MusicSheets"}
                )
 
