@@ -3,9 +3,9 @@ from .models import Payment, Subscriptions
 
 @admin.register(Payment)
 class PaymentAdmin(admin.ModelAdmin):
-    list_display = ('id', 'device_tokem', 'payment_status', 'amount', 'created_at')
+    list_display = ('id', 'device_tokem', 'payment_status', 'amount', 'created_at','transaction_kind')
     search_fields = ('device_tokem', 'payment_status','paid_number')  # Enables search by these fields
-    list_filter = ('payment_status', 'created_at','paid_number')  # Adds filter options in admin
+    list_filter = ('payment_status', 'created_at','paid_number','transaction_kind')  # Adds filter options in admin
 
 # @admin.register(Subscriptions)
 # class SubscriptionsAdmin(admin.ModelAdmin):

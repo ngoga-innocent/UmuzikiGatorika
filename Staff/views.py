@@ -24,6 +24,7 @@ from paypack.oauth2 import Oauth
 from paypack.merchant import Merchant
 from datetime import timedelta
 from django.utils.timezone import now
+from rest_framework.response import Response
 import os
 # Create your views here.
 class Staff(LoginRequiredMixin, UserPassesTestMixin,View):
@@ -406,4 +407,13 @@ class Payments(View):
              'payment_histories':payment_history,
         }
         # print(context)
-        return render(request,'./Pages/payments.html',context)        
+        return render(request,'./Pages/payments.html',context)
+class PaymentInfoApi(APIView):
+    client_id=os.getenv("PAYPACK_ID")
+    client_secret=os.getenv("PAYPACK_SECRET")
+
+    HttpClient(client_id=client_id, client_secret=client_secret)
+    auth = Oauth().auth()
+    def get(self,request):
+        account_info=Merchant().me()
+        return Response({"info":account_info})

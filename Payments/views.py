@@ -65,7 +65,7 @@ class PaymentClass(APIView):
                 )
                     # print(payment)
                     payment.save()
-                    return Response({"response": "Saved Successfully"}, status=status.HTTP_200_OK)
+                    return Response({"response": "Saved Successfully","reference_key":reference_key}, status=status.HTTP_200_OK)
                 except Exception as e:
                     print(f"Failed to save payment: {e}")
                     return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
@@ -166,7 +166,7 @@ class PaymentClass(APIView):
             payment = Payment.objects.get(reference_key=ref)
             payment.payment_status=status
             payment.save()
-            print(payment)
+            # print(payment)
         except Payment.DoesNotExist:
             payment = Payment.objects.create(reference_key=ref, payment_status=status, amount=amount)
             payment.save()
@@ -193,7 +193,7 @@ class CheckDevicePaid(APIView):
             if not last_payment:
                 return Response({"paid": False, "message": "No payment record found. Payment required."}, status=status.HTTP_200_OK)
 
-            one_month_ago = now() - timedelta(days=30)
+            one_month_ago = now() - timedelta(days=15)
             print("One month ago:", one_month_ago)
             print("Last payment date:", last_payment.created_at)
             print(last_payment.created_at >= one_month_ago)
@@ -205,3 +205,39 @@ class CheckDevicePaid(APIView):
         except Exception as e:
             print("Error occurred:", str(e))  # Debug unexpected error
             return Response({"error": "Internal Server Error", "details": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+class CheckPaymentConfirmed(APIView):
+    def post(self, request):
+        reference_key = request.data.get('reference_key')
+
+        if not reference_key:
+            return Response(
+                {"message": "Reference key is required."},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+        try:
+            payment = Payment.objects.get(reference_key=reference_key)
+
+            if payment.payment_status == 'successful':
+                return Response(
+                    {"message": "Payment successful.", "completed": True},
+                    status=status.HTTP_200_OK
+                )
+
+            elif payment.payment_status == 'failed':
+                return Response(
+                    {"message": "Payment failed.", "failed": True},
+                    status=status.HTTP_402_PAYMENT_REQUIRED  # more appropriate than 400
+                )
+
+            else:  # pending or processing
+                return Response(
+                    {"message": "Payment is pending.", "pending": True},
+                    status=status.HTTP_202_ACCEPTED
+                )
+
+        except Payment.DoesNotExist:
+            return Response(
+                {"message": "Payment with the provided reference key was not found."},
+                status=status.HTTP_404_NOT_FOUND
+            )
