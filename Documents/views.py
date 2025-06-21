@@ -226,6 +226,22 @@ class RequestSongView(APIView):
             serializer.save()
             return Response({'data':serializer.data})
         return Response({'error':serializer.error},status=status.HTTP_400_BAD_REQUEST)
+class ShouldUpdate(APIView):
+    def post(self, request):
+        try:
+            version = request.data.get("app_version")
+            if not version:
+                return Response({"error": "App version not provided"}, status=status.HTTP_400_BAD_REQUEST)
 
+            updated_version = AppVersion.objects.last()
 
-            
+            print("User version:", version)
+            print("Latest version:", updated_version.version_number)
+
+            if float(version) < float(updated_version.version_number):
+                return Response({"shouldupdate": True})
+            else:
+                return Response({"shouldupdate": False})
+        except Exception as e:
+            print("Error:", e)
+            return Response({"error": "Something went wrong"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)

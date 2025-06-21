@@ -217,7 +217,7 @@ class CheckPaymentConfirmed(APIView):
 
         try:
             payment = Payment.objects.get(reference_key=reference_key)
-
+            print("payment status",payment.payment_status)
             if payment.payment_status == 'successful':
                 return Response(
                     {"message": "Payment successful.", "completed": True},
