@@ -3,8 +3,8 @@
     "apps": [],
     "details": [
       {
-        "appID": "ngogainnocent1@gmail.com.SailorPin.MusicSheets",
-        "paths": [ "/reel/*", "/records/*", "/home/*","/post/*","posts/*" ]
+        "appID": "BZD8DS4FM8.SailorPin.MusicSheets",
+        "paths": [ "/reel/*","/reels/*", "/records/*", "/home/*","/post/*","posts/*" ]
       }
     ]
   }
