@@ -2,6 +2,9 @@ from django.shortcuts import render,redirect
 from django.views import View
 from Documents.models import Copies,SongCategory,SongType
 from Notifications.send_Push_Notification import send_email
+from django.http import FileResponse
+import os
+from django.conf import settings
 
 # Create your views here.
 def HomeView(request):
@@ -30,3 +33,11 @@ class Home(View):
 
     
   # Change 'home' to your actual URL name if different
+
+
+# def assetlinks_json(request):
+#     file_path = os.path.join(settings.BASE_DIR, 'static/.well-known/assetlinks.json')
+#     return FileResponse(open(file_path, 'rb'), content_type='application/json')
+def apple_app_site_association(request):
+    file_path = os.path.join(settings.BASE_DIR, 'static/.well-known/apple-app-site-association')
+    return FileResponse(open(file_path, 'rb'), content_type='application/json')
