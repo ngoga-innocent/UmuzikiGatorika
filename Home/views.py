@@ -35,9 +35,9 @@ class Home(View):
   # Change 'home' to your actual URL name if different
 
 
-# def assetlinks_json(request):
-#     file_path = os.path.join(settings.BASE_DIR, 'static/.well-known/assetlinks.json')
-#     return FileResponse(open(file_path, 'rb'), content_type='application/json')
+def assetlinks_json(request):
+    file_path = os.path.join(settings.BASE_DIR, 'static/.well-known/assetlinks.json')
+    return FileResponse(open(file_path, 'rb'), content_type='application/json')
 def apple_app_site_association(request):
     file_path = os.path.join(settings.BASE_DIR, 'static/.well-known/apple-app-site-association')
     return FileResponse(open(file_path, 'rb'), content_type='application/json')

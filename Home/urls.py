@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import HomeView,Home,AboutView,apple_app_site_association
+from .views import HomeView,Home,AboutView,apple_app_site_association,assetlinks_json
 
 urlpatterns = [
     path('',Home.as_view(),name='home'),
@@ -11,3 +11,7 @@ urlpatterns = [
 urlpatterns += [
     path('.well-known/apple-app-site-association', apple_app_site_association)
 ]
+urlpatterns += [
+    path('.well-known/assetlinks.json', assetlinks_json)
+]
+
